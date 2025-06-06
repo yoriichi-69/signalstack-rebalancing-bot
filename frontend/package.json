@@ -38,7 +38,6 @@
     "react-toastify": "^11.0.5",
     "react-use": "^17.4.0",
     "recharts": "^2.8.0",
-    "typescript": "^5.8.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -71,5 +70,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  }
 }

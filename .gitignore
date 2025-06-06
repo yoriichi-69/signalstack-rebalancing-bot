@@ -4,6 +4,9 @@ __pycache__/
 build/
 dist/
 
+# python env
+backend/venv/
+
 node_modules
 .env
 
