@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import {
   Box,
   Grid,
@@ -14,7 +15,11 @@ import {
   AutoGraph,
   Speed,
 } from '@mui/icons-material';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area } from 'recharts';
+import GlowEffect from '../components/GlowEffect';
+import { Tilt } from 'react-tilt';
+import MetricCard from '../components/MetricCard';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 // Mock data for demonstration
 const portfolioValue = [
@@ -32,35 +37,6 @@ const signalData = [
   { name: 'Volatility', value: 0 },
   { name: 'Breakout', value: 1 },
 ];
-
-const MetricCard: React.FC<{
-  title: string;
-  value: string;
-  icon: React.ReactNode;
-  trend?: string;
-}> = ({ title, value, icon, trend }) => (
-  <Card sx={{ height: '100%' }}>
-    <CardContent>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography color="text.secondary" variant="subtitle2">
-          {title}
-        </Typography>
-        {icon}
-      </Box>
-      <Typography variant="h4" component="div" sx={{ mb: 1 }}>
-        {value}
-      </Typography>
-      {trend && (
-        <Typography
-          variant="body2"
-          color={trend.startsWith('+') ? 'success.main' : 'error.main'}
-        >
-          {trend}
-        </Typography>
-      )}
-    </CardContent>
-  </Card>
-);
 
 const SignalIndicator: React.FC<{
   name: string;
@@ -92,94 +68,206 @@ const SignalIndicator: React.FC<{
 );
 
 const Dashboard: React.FC = () => {
+  const tiltOptions = {
+    max: 15,
+    perspective: 1000,
+    scale: 1.02,
+    transition: true,
+    easing: "cubic-bezier(.03,.98,.52,.99)",
+  };
+
   return (
-    <Box>
-      <Typography variant="h4" sx={{ mb: 4 }}>
-        Dashboard
-      </Typography>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      transition={{ duration: 0.6 }}
+    >
+      <Box>
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          <Typography 
+            variant="h4" 
+            sx={{ 
+              mb: 4, 
+              background: 'linear-gradient(45deg, #6366f1 30%, #4f46e5 90%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: 'bold',
+              letterSpacing: '-0.025em',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2,
+            }}
+          >
+            <DashboardIcon sx={{ fontSize: 32 }} />
+            Dashboard
+          </Typography>
+        </motion.div>
 
-      <Grid container spacing={3}>
-        {/* Key Metrics */}
-        <Grid item xs={12} md={3}>
-          <MetricCard
-            title="Portfolio Value"
-            value="$16,000"
-            icon={<AccountBalance color="primary" />}
-            trend="+12.5%"
-          />
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <MetricCard
-            title="Performance"
-            value="+15.2%"
-            icon={<TrendingUp color="success" />}
-            trend="+2.3%"
-          />
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <MetricCard
-            title="Active Strategies"
-            value="4"
-            icon={<AutoGraph color="info" />}
-          />
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <MetricCard
-            title="Signal Strength"
-            value="75%"
-            icon={<Speed color="warning" />}
-          />
-        </Grid>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={3} component={motion.div} 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            <Tilt options={tiltOptions}>
+              <GlowEffect color="#6366f1" intensity="low" size="medium">
+                <MetricCard
+                  title="Portfolio Value"
+                  value={16000}
+                  prefix="$"
+                  decimals={2}
+                  icon={<AccountBalance sx={{ fontSize: 28 }} />}
+                  trend="+12.5%"
+                  trendColor="success"
+                />
+              </GlowEffect>
+            </Tilt>
+          </Grid>
+          <Grid item xs={12} md={3} component={motion.div} 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            <Tilt options={tiltOptions}>
+              <GlowEffect color="#10b981" intensity="low" size="medium">
+                <MetricCard
+                  title="Performance"
+                  value={15.2}
+                  suffix="%"
+                  decimals={2}
+                  icon={<TrendingUp sx={{ fontSize: 28 }} />}
+                  trend="+2.3%"
+                  trendColor="success"
+                />
+              </GlowEffect>
+            </Tilt>
+          </Grid>
+          <Grid item xs={12} md={3} component={motion.div} 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.5, duration: 0.5 }}
+          >
+            <Tilt options={tiltOptions}>
+              <GlowEffect color="#3b82f6" intensity="low" size="medium">
+                <MetricCard
+                  title="Active Strategies"
+                  value={4}
+                  icon={<AutoGraph sx={{ fontSize: 28 }} />}
+                />
+              </GlowEffect>
+            </Tilt>
+          </Grid>
+          <Grid item xs={12} md={3} component={motion.div} 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
+            <Tilt options={tiltOptions}>
+              <GlowEffect color="#f59e0b" intensity="low" size="medium">
+                <MetricCard
+                  title="Signal Strength"
+                  value={75}
+                  suffix="%"
+                  icon={<Speed sx={{ fontSize: 28 }} />}
+                />
+              </GlowEffect>
+            </Tilt>
+          </Grid>
 
-        {/* Portfolio Chart */}
-        <Grid item xs={12} md={8}>
-          <Paper sx={{ p: 3, height: '100%' }}>
-            <Typography variant="h6" sx={{ mb: 3 }}>
-              Portfolio Value
-            </Typography>
-            <Box sx={{ height: 300 }}>
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={portfolioValue}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.1)" />
-                  <XAxis dataKey="time" stroke="rgba(255, 255, 255, 0.5)" />
-                  <YAxis stroke="rgba(255, 255, 255, 0.5)" />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: 'rgba(30, 41, 59, 0.9)',
-                      border: 'none',
-                      borderRadius: '8px',
-                    }}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="value"
-                    stroke="#6366f1"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </Box>
-          </Paper>
-        </Grid>
+          {/* Portfolio Chart */}
+          <Grid item xs={12} md={8} component={motion.div} 
+            initial={{ opacity: 0, y: 40 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.7, duration: 0.7 }}
+          >
+            <Card sx={{ 
+              height: '100%',
+              background: 'rgba(30, 41, 59, 0.7)',
+              backdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+            }}>
+              <CardContent>
+                <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
+                  Portfolio Performance
+                </Typography>
+                <Box sx={{ height: 400 }}>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={portfolioValue}>
+                      <defs>
+                        <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#6366f1" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#6366f1" stopOpacity={0}/>
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.1)" />
+                      <XAxis 
+                        dataKey="time" 
+                        stroke="rgba(255, 255, 255, 0.5)"
+                        tick={{ fill: 'rgba(255, 255, 255, 0.5)' }}
+                      />
+                      <YAxis 
+                        stroke="rgba(255, 255, 255, 0.5)"
+                        tick={{ fill: 'rgba(255, 255, 255, 0.5)' }}
+                      />
+                      <Tooltip 
+                        contentStyle={{ 
+                          background: 'rgba(30, 41, 59, 0.9)',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          borderRadius: 8,
+                        }}
+                        labelStyle={{ color: 'rgba(255, 255, 255, 0.8)' }}
+                      />
+                      <Line 
+                        type="monotone" 
+                        dataKey="value" 
+                        stroke="#6366f1" 
+                        strokeWidth={2}
+                        dot={{ fill: '#6366f1', strokeWidth: 2 }}
+                        activeDot={{ r: 8, fill: '#6366f1' }}
+                      />
+                      <Area 
+                        type="monotone" 
+                        dataKey="value" 
+                        stroke="false" 
+                        fillOpacity={1} 
+                        fill="url(#colorValue)" 
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
 
-        {/* Signal Indicators */}
-        <Grid item xs={12} md={4}>
-          <Paper sx={{ p: 3, height: '100%' }}>
-            <Typography variant="h6" sx={{ mb: 3 }}>
-              Signal Indicators
-            </Typography>
-            {signalData.map((signal) => (
-              <SignalIndicator
-                key={signal.name}
-                name={signal.name}
-                value={signal.value}
-              />
-            ))}
-          </Paper>
+          {/* Signal Indicators */}
+          <Grid item xs={12} md={4} component={motion.div} 
+            initial={{ opacity: 0, y: 40 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.8, duration: 0.7 }}
+          >
+            <Card sx={{ 
+              height: '100%',
+              background: 'rgba(30, 41, 59, 0.7)',
+              backdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+            }}>
+              <CardContent>
+                <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
+                  Active Signals
+                </Typography>
+                {signalData.map((signal, index) => (
+                  <SignalIndicator key={signal.name} {...signal} />
+                ))}
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </motion.div>
   );
 };
 

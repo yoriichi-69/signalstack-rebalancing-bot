@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import App from './App';
 import './index.css';
+import { initParticlesEngine } from '@tsparticles/react';
+import { loadSlim } from '@tsparticles/slim';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,6 +20,10 @@ const queryClient = new QueryClient({
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+initParticlesEngine(async (engine) => {
+  await loadSlim(engine);
+});
 
 root.render(
   <React.StrictMode>

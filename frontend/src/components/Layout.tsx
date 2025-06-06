@@ -49,16 +49,37 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
 
   const drawer = (
-    <div>
-      <Toolbar>
-        <Typography variant="h6" noWrap component="div" sx={{ fontWeight: 'bold' }}>
+    <Box sx={{ 
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%)',
+      backdropFilter: 'blur(12px)',
+      borderRight: '1px solid rgba(255, 255, 255, 0.1)',
+    }}>
+      <Toolbar sx={{ 
+        minHeight: '80px !important',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+      }}>
+        <Typography 
+          variant="h6" 
+          noWrap 
+          component="div" 
+          sx={{ 
+            fontWeight: 'bold',
+            background: 'linear-gradient(45deg, #6366f1 30%, #4f46e5 90%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            fontSize: '1.5rem',
+          }}
+        >
           SignalStack
         </Typography>
       </Toolbar>
-      <Divider />
-      <List>
+      <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.1)' }} />
+      <List sx={{ flex: 1, px: 2, py: 1 }}>
         {menuItems.map((item) => (
-          <ListItem key={item.text} disablePadding>
+          <ListItem key={item.text} disablePadding sx={{ mb: 1 }}>
             <ListItemButton
               selected={location.pathname === item.path}
               onClick={() => {
@@ -66,27 +87,53 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 setMobileOpen(false);
               }}
               sx={{
+                borderRadius: 2,
                 '&.Mui-selected': {
                   backgroundColor: 'rgba(99, 102, 241, 0.1)',
                   '&:hover': {
                     backgroundColor: 'rgba(99, 102, 241, 0.2)',
                   },
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: 4,
+                    height: '60%',
+                    backgroundColor: theme.palette.primary.main,
+                    borderRadius: '0 4px 4px 0',
+                  },
+                },
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
                 },
               }}
             >
               <ListItemIcon
                 sx={{
                   color: location.pathname === item.path ? theme.palette.primary.main : 'inherit',
+                  minWidth: 40,
                 }}
               >
                 {item.icon}
               </ListItemIcon>
-              <ListItemText primary={item.text} />
+              <ListItemText 
+                primary={item.text} 
+                primaryTypographyProps={{
+                  fontWeight: location.pathname === item.path ? 600 : 400,
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-    </div>
+      <Box sx={{ p: 2, borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+          Version 2.0.0
+        </Typography>
+      </Box>
+    </Box>
   );
 
   return (
@@ -96,10 +143,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          backgroundColor: 'background.paper',
-          boxShadow: 'none',
-          borderBottom: '1px solid',
-          borderColor: 'divider',
+          backgroundColor: 'rgba(15, 23, 42, 0.8)',
+          backdropFilter: 'blur(12px)',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
         }}
       >
         <Toolbar>
@@ -130,7 +177,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-              backgroundColor: 'background.paper',
             },
           }}
         >
@@ -143,9 +189,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-              backgroundColor: 'background.paper',
-              borderRight: '1px solid',
-              borderColor: 'divider',
             },
           }}
           open
@@ -161,6 +204,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           minHeight: '100vh',
           backgroundColor: 'background.default',
+          backgroundImage: 'radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.1) 0%, transparent 50%)',
         }}
       >
         <Toolbar />
