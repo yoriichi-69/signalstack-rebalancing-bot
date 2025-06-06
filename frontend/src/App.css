@@ -437,3 +437,298 @@ button:disabled {
   border-radius: 4px;
   cursor: pointer;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0a0a0a;
+  color: white;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  position: relative;
+}
+
+.app::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 80px);
+}
+
+/* Loading Screen */
+.app-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.loading-container {
+  text-align: center;
+  max-width: 400px;
+  padding: 40px;
+}
+
+.loading-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.signal-waves {
+  display: flex;
+  gap: 4px;
+  align-items: end;
+}
+
+.signal-waves span {
+  width: 6px;
+  background: #00ff88;
+  border-radius: 3px;
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+.signal-waves span:nth-child(1) {
+  height: 24px;
+  animation-delay: 0s;
+}
+
+.signal-waves span:nth-child(2) {
+  height: 40px;
+  animation-delay: 0.2s;
+}
+
+.signal-waves span:nth-child(3) {
+  height: 32px;
+  animation-delay: 0.4s;
+}
+
+@keyframes wave {
+  0%, 100% { transform: scaleY(1); opacity: 0.7; }
+  50% { transform: scaleY(1.5); opacity: 1; }
+}
+
+.loading-title {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(45deg, #00ff88, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+
+.loading-subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff88, #00d4ff);
+  border-radius: 2px;
+  width: 0%;
+  animation: loading-progress 2s ease-in-out infinite;
+}
+
+@keyframes loading-progress {
+  0% { width: 0%; }
+  50% { width: 70%; }
+  100% { width: 100%; }
+}
+
+/* Route Placeholder */
+.route-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  padding: 40px;
+}
+
+.placeholder-content {
+  text-align: center;
+  max-width: 500px;
+  padding: 60px 40px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+}
+
+.placeholder-content h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.placeholder-content p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.current-route {
+  font-family: 'Courier New', monospace;
+  background: rgba(0, 255, 136, 0.1);
+  color: #00ff88;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px !important;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  display: inline-block;
+  margin-top: 16px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Selection Styling */
+::selection {
+  background: rgba(0, 255, 136, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(0, 255, 136, 0.3);
+  color: white;
+}
+
+/* Focus Styling */
+*:focus {
+  outline: 2px solid rgba(0, 255, 136, 0.5);
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-content {
+    min-height: calc(100vh - 64px);
+  }
+
+  .loading-container {
+    padding: 20px;
+  }
+
+  .loading-title {
+    font-size: 24px;
+  }
+
+  .loading-subtitle {
+    font-size: 14px;
+  }
+
+  .placeholder-content {
+    padding: 40px 20px;
+    margin: 20px;
+  }
+
+  .placeholder-content h2 {
+    font-size: 24px;
+  }
+
+  .placeholder-content p {
+    font-size: 14px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .app {
+    background: #000;
+  }
+  
+  .app::before {
+    display: none;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .app::before,
+  .mobile-nav-container,
+  .mobile-nav-backdrop {
+    display: none !important;
+  }
+}

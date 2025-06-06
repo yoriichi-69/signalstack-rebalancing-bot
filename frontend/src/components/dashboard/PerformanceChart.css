@@ -1,0 +1,220 @@
+.performance-chart-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.chart-title-section {
+  flex: 1;
+}
+
+.chart-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 8px 0;
+}
+
+.chart-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.current-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+}
+
+.change-stats {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.change-stats.positive {
+  color: #00ff88;
+}
+
+.change-stats.negative {
+  color: #ff6b6b;
+}
+
+.chart-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chart-type-selector {
+  display: flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.chart-type-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.chart-type-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.chart-type-btn.active {
+  background: rgba(0, 255, 136, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.chart-container {
+  flex: 1;
+  min-height: 300px;
+  margin-bottom: 20px;
+}
+
+.chart-tooltip {
+  background: rgba(26, 26, 46, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.tooltip-time {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  margin: 0 0 4px 0;
+  font-weight: 500;
+}
+
+.tooltip-value {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.tooltip-value span {
+  color: #00ff88;
+}
+
+.tooltip-change {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.tooltip-change.positive {
+  color: #00ff88;
+}
+
+.tooltip-change.negative {
+  color: #ff6b6b;
+}
+
+.tooltip-change span {
+  font-weight: 600;
+}
+
+.performance-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.metric-value {
+  font-size: 14px;
+  color: white;
+  font-weight: 600;
+}
+
+/* Skeleton Loading */
+.chart-skeleton-title {
+  width: 120px;
+  height: 24px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.chart-skeleton-stats {
+  width: 200px;
+  height: 40px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 4px;
+}
+
+.chart-skeleton {
+  flex: 1;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 8px;
+  min-height: 300px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .chart-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .current-value {
+    font-size: 20px;
+  }
+
+  .performance-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .metric-item {
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+  }
+}
