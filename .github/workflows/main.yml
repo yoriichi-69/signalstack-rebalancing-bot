@@ -1,0 +1,114 @@
+# d:\intel\cryptorizz\main\signalstack-rebalancing-bot\.github\workflows\main.yml
+name: SignalStack CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Compile contracts
+        run: npx hardhat compile
+        
+      - name: Run contract tests
+        run: npx hardhat test
+        
+      - name: Run contract coverage
+        run: npx hardhat coverage
+        
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          
+      - name: Install Python dependencies
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Run backend tests
+        run: |
+          cd backend
+          python -m pytest
+          
+      - name: Setup frontend
+        run: |
+          cd frontend
+          npm ci
+          
+      - name: Run frontend tests
+        run: |
+          cd frontend
+          npm test
+  
+  build:
+    needs: test
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm ci
+          npm run build
+          
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          
+      - name: Build and push frontend
+        uses: docker/build-push-action@v3
+        with:
+          context: ./frontend
+          push: true
+          tags: signalstack/frontend:${{ github.sha }},signalstack/frontend:latest
+          
+      - name: Build and push backend
+        uses: docker/build-push-action@v3
+        with:
+          context: ./backend
+          push: true
+          tags: signalstack/backend:${{ github.sha }},signalstack/backend:latest
+  
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /opt/signalstack
+            docker-compose pull
+            docker-compose up -d

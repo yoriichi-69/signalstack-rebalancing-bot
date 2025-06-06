@@ -1,0 +1,32 @@
+{
+  "name": "signalstack-rebalancing-bot",
+  "version": "1.0.0",
+  "description": "Built for the AI + Web3 Berlin Hackathon.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoriichi-69/signalstack-rebalancing-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yoriichi-69/signalstack-rebalancing-bot/issues"
+  },
+  "homepage": "https://github.com/yoriichi-69/signalstack-rebalancing-bot#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.24.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.3.0",
+    "@uniswap/v3-periphery": "^1.4.4",
+    "ethers": "^6.14.3"
+  }
+}
