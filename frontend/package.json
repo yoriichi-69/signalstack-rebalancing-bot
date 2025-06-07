@@ -37,7 +37,7 @@
     "react-spring": "^10.0.1",
     "react-toastify": "^11.0.5",
     "react-use": "^17.4.0",
-    "recharts": "^2.8.0",
+    "recharts": "^2.15.3",
     "typescript": "^5.8.3",
     "web-vitals": "^2.1.4"
   },

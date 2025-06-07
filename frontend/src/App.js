@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 
 // V1 Imports (Keep your existing functionality)
@@ -17,20 +16,89 @@ import 'react-toastify/dist/ReactToastify.css';
 import strategies from './utils/StrategyService';
 
 // V2 Imports (New professional components)
-import Header from './components/layout/Header';
+import Header from './components/navigation/Header';
 import MobileNav from './components/layout/MobileNav';
 import Dashboard from './components/dashboard/Dashboard';
 import LandingPage from './components/landing/LandingPage';
 
-// Enhanced V3 Imports (New services and features)
-import VoiceCommandService from './services/VoiceCommandService';
+// Enhanced V3 Imports (New services and features - Voice removed)
 import NotificationService from './services/NotificationService';
 import NewsService from './services/NewsService';
 import SecurityService from './services/SecurityService';
 import PerformanceMonitor from './utils/PerformanceMonitor';
-import ChatSystem from './components/social/ChatSystem/ChatSystem';
-import { ThemeProvider, useTheme } from './contexts/ThemeContext';
+import { useTheme } from './contexts/ThemeContext';
+
+// PWA Imports
+import { motion, AnimatePresence } from 'framer-motion';
 import usePWA from './hooks/usePWA';
+
+// PWA Components
+const PWAInstallPrompt = ({ onInstall, onDismiss, isVisible }) => (
+  <AnimatePresence>
+    {isVisible && (
+      <motion.div
+        className="pwa-install-prompt"
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 100 }}
+      >
+        <div className="install-content">
+          <h3>📱 Install SignalStack</h3>
+          <p>Get the full app experience with offline access and push notifications</p>
+          <div className="install-actions">
+            <button className="btn-install" onClick={onInstall}>
+              Install App
+            </button>
+            <button className="btn-dismiss" onClick={onDismiss}>
+              Not Now
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
+const OfflineIndicator = ({ isOnline }) => (
+  <AnimatePresence>
+    {!isOnline && (
+      <motion.div
+        className="offline-indicator"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -50 }}
+      >
+        <span>📡 You're offline - Using cached data</span>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
+const PWAUpdatePrompt = ({ onUpdate, onDismiss, isVisible }) => (
+  <AnimatePresence>
+    {isVisible && (
+      <motion.div
+        className="pwa-update-prompt"
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -100 }}
+      >
+        <div className="update-content">
+          <h3>🔄 Update Available</h3>
+          <p>A new version of SignalStack is ready to install</p>
+          <div className="update-actions">
+            <button className="btn-update" onClick={onUpdate}>
+              Update Now
+            </button>
+            <button className="btn-dismiss" onClick={onDismiss}>
+              Later
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
 
 function App() {
   // V1 Authentication state (Keep existing)
@@ -57,13 +125,16 @@ function App() {
   const [isAppLoading, setIsAppLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  // V3 Enhanced state (New enhanced features)
-  const [voiceCommandActive, setVoiceCommandActive] = useState(false);
+  // V3 Enhanced state (Voice-related state removed)
   const [newsData, setNewsData] = useState([]);
   const [securityAlerts, setSecurityAlerts] = useState([]);
   const [performanceMetrics, setPerformanceMetrics] = useState({});
 
-  // V3 Custom hooks
+  // PWA State
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [showUpdatePrompt, setShowUpdatePrompt] = useState(false);
+
+  // Hooks
   const { theme, toggleTheme } = useTheme();
   const { 
     isInstalled, 
@@ -71,88 +142,29 @@ function App() {
     installApp, 
     isOnline, 
     updateAvailable, 
-    updateApp 
+    updateApp,
+    installationStatus,
+    requestNotificationPermission
   } = usePWA();
 
-  // V3 Voice command handler
-  const handleVoiceCommand = useCallback(({ result }) => {
-    console.log('Voice command received:', result);
-    PerformanceMonitor.trackUserInteraction('voice_command', result.action);
-    
-    switch(result.action) {
-      case 'SHOW_PORTFOLIO':
-        setCurrentRoute('/portfolio');
-        NotificationService.success('Navigating to Portfolio');
-        break;
-        
-      case 'SHOW_DASHBOARD':
-        setCurrentRoute('/dashboard');
-        NotificationService.success('Navigating to Dashboard');
-        break;
-        
-      case 'SHOW_PRICE':
-        if (result.symbol) {
-          const price = prices[result.symbol.toUpperCase()];
-          if (price) {
-            NotificationService.info(`${result.symbol.toUpperCase()}: $${price.toFixed(2)}`);
-          } else {
-            NotificationService.warning(`Price not available for ${result.symbol}`);
-          }
-        } else {
-          setCurrentRoute('/signals');
-        }
-        break;
-        
-      case 'SHOW_SIGNALS':
-        setCurrentRoute('/signals');
-        NotificationService.success('Navigating to Trading Signals');
-        break;
-        
-      case 'SHOW_ANALYTICS':
-        setCurrentRoute('/analytics');
-        NotificationService.success('Navigating to Analytics');
-        break;
-        
-      case 'REBALANCE_PORTFOLIO':
-        if (virtualAccount) {
-          executeVirtualRebalance();
-          NotificationService.success('Starting portfolio rebalancing');
-        } else {
-          NotificationService.warning('No portfolio available for rebalancing');
-        }
-        break;
-        
-      case 'REFRESH_SIGNALS':
-        fetchSignalData();
-        NotificationService.success('Refreshing trading signals');
-        break;
-        
-      case 'TOGGLE_THEME':
-        toggleTheme();
-        NotificationService.success(`Switched to ${theme === 'dark' ? 'light' : 'dark'} theme`);
-        break;
-        
-      case 'START_RECORDING':
-        setVoiceCommandActive(true);
-        break;
-        
-      case 'STOP_RECORDING':
-        setVoiceCommandActive(false);
-        break;
-        
-      case 'SHOW_PORTFOLIO_VALUE':
-        if (portfolioValue > 0) {
-          NotificationService.info(`Portfolio Value: $${portfolioValue.toFixed(2)}`);
-        } else {
-          NotificationService.warning('Portfolio value not available');
-        }
-        break;
-        
-      default:
-        NotificationService.warning(`Unknown voice command: ${result.action}`);
-        break;
+  // PWA Handlers
+  const handlePWAInstall = useCallback(async () => {
+    const success = await installApp();
+    if (success) {
+      setShowInstallPrompt(false);
+      NotificationService.success('App installed successfully! 🎉');
+      
+      const notificationGranted = await requestNotificationPermission();
+      if (notificationGranted) {
+        NotificationService.success('Push notifications enabled! 🔔');
+      }
     }
-  }, [theme, toggleTheme, prices, portfolioValue, virtualAccount]);
+  }, [installApp, requestNotificationPermission]);
+
+  const handlePWAUpdate = useCallback(async () => {
+    await updateApp();
+    setShowUpdatePrompt(false);
+  }, [updateApp]);
 
   // V3 News update handler
   const handleNewsUpdate = useCallback((news) => {
@@ -181,25 +193,29 @@ function App() {
     }
   }, []);
 
-  // V1 Initialize app (Enhanced with V3 services)
+  // PWA useEffect hooks
+  useEffect(() => {
+    if (isInstallable && !isInstalled) {
+      setTimeout(() => setShowInstallPrompt(true), 5000);
+    }
+  }, [isInstallable, isInstalled]);
+
+  useEffect(() => {
+    if (updateAvailable) {
+      setShowUpdatePrompt(true);
+    }
+  }, [updateAvailable]);
+
+  // V1 Initialize app (Voice services removed)
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        // V2: Show loading screen
         setIsAppLoading(true);
         
-        // V3: Initialize enhanced services
+        // V3: Initialize enhanced services (Voice removed)
         PerformanceMonitor.startMonitoring();
         await SecurityService.initializeSecurity();
         NotificationService.initialize();
-        
-        // V3: Setup voice commands
-        if (VoiceCommandService.isSupported()) {
-          await VoiceCommandService.initialize();
-          VoiceCommandService.addEventListener('voice_command', handleVoiceCommand);
-          VoiceCommandService.addEventListener('recording_start', () => setVoiceCommandActive(true));
-          VoiceCommandService.addEventListener('recording_stop', () => setVoiceCommandActive(false));
-        }
         
         // V3: Setup news stream
         NewsService.addEventListener('news_update', handleNewsUpdate);
@@ -273,7 +289,6 @@ function App() {
           PriceService.stopRealTimeUpdates();
           unsubscribe();
           NewsService.stopNewsStream();
-          VoiceCommandService.removeEventListener('voice_command', handleVoiceCommand);
           SecurityService.removeEventListener('security_event', handleSecurityEvent);
           PerformanceMonitor.stopMonitoring();
         };
@@ -285,7 +300,7 @@ function App() {
     };
 
     initializeApp();
-  }, [handleVoiceCommand, handleNewsUpdate, handleSecurityEvent]);
+  }, [handleNewsUpdate, handleSecurityEvent]);
   
   // V1: Keep all your existing functions
   const fetchSignalData = async () => {
@@ -297,7 +312,6 @@ function App() {
       const weights = await SignalService.fetchTargetWeights();
       setTargetWeights(weights);
       
-      // V3: Use NotificationService instead of toast
       NotificationService.success("Signals updated successfully");
     } catch (error) {
       console.error("Error fetching signal data:", error);
@@ -316,7 +330,6 @@ function App() {
       setTxHistory(virtualAccount.getTransactionHistory());
       setPortfolioHistory(virtualAccount.portfolioHistory || []);
       
-      // V3: Enhanced notification with performance tracking
       PerformanceMonitor.trackUserInteraction('portfolio_rebalance', {
         newValue: result.newValue,
         timestamp: Date.now()
@@ -354,8 +367,7 @@ function App() {
   };
   
   // V1: Keep existing auth functions, enhance for V2 & V3
-  const handleLoginSuccess = (credentials) => { // Add credentials parameter
-    // Add localStorage for landing page integration
+  const handleLoginSuccess = (credentials) => {
     localStorage.setItem('isAuthenticated', 'true');
     localStorage.setItem('userEmail', credentials?.email || 'user@signalstack.com');
     
@@ -363,14 +375,12 @@ function App() {
     const accounts = AuthService.getAccounts();
     setUserAccounts(accounts);
     
-    // V2: Set user for header
     setUser({
       id: 1,
       name: accounts[0]?.name || 'Trading User',
       email: credentials?.email || 'user@signalstack.com'
     });
     
-    // V3: Track login
     PerformanceMonitor.trackUserInteraction('user_login');
     SecurityService.logSecurityEvent('user_login_success');
     
@@ -392,7 +402,6 @@ function App() {
     setActiveAccount(null);
     setUser(null);
     
-    // V3: Track logout
     PerformanceMonitor.trackUserInteraction('user_logout');
     SecurityService.logSecurityEvent('user_logout');
     NotificationService.info('You have been logged out');
@@ -442,7 +451,7 @@ function App() {
     
     return {
       totalValue: totalValue,
-      dayChange: 2.45, // You can calculate this from portfolioHistory
+      dayChange: 2.45,
       dayChangeAmount: totalValue * 0.0245,
       allocations: Object.entries(balances).map(([token, balance]) => ({
         name: token,
@@ -472,7 +481,7 @@ function App() {
     return colors[token] || '#8b5cf6';
   };
 
-  // V3: Enhanced loading screen with PWA status
+  // V3: Enhanced loading screen
   if (isAppLoading) {
     return (
       <div className="app-loading">
@@ -495,7 +504,6 @@ function App() {
             <div className="loading-progress"></div>
           </div>
           
-          {/* V3: PWA Loading Status */}
           <div className="loading-status">
             {!isOnline && <span className="status-offline">📴 Offline Mode</span>}
             {isInstallable && <span className="status-installable">📱 App Ready to Install</span>}
@@ -506,13 +514,12 @@ function App() {
     );
   }
 
-   // V1: Login screen (Replace with Landing Page)
+  // V1: Login screen (Replace with Landing Page)
   if (!isAuthenticated) {
     return (
       <div className="app">
         <LandingPage onLoginSuccess={handleLoginSuccess}/>
         
-        {/* Keep your existing notification containers */}
         <div id="notification-root"></div>
         
         <ToastContainer
@@ -526,48 +533,36 @@ function App() {
           draggable
           pauseOnHover
         />
+        
+        <OfflineIndicator isOnline={isOnline} />
+        
+        <PWAInstallPrompt 
+          isVisible={showInstallPrompt && isInstallable && !isInstalled}
+          onInstall={handlePWAInstall}
+          onDismiss={() => setShowInstallPrompt(false)}
+        />
+
+        <PWAUpdatePrompt 
+          isVisible={showUpdatePrompt}
+          onUpdate={handlePWAUpdate}
+          onDismiss={() => setShowUpdatePrompt(false)}
+        />
+
+        <div className="app-status">
+          {!isOnline && (
+            <div className="status-item offline">
+              📡 Offline Mode
+            </div>
+          )}
+        </div>
       </div>
     );
   }
 
-  // V2: Main authenticated app with new professional UI
+  // V2: Main authenticated app
   return (
     <div className={`app ${theme}`}>
-      {/* V3: PWA Status Bar */}
-      <div className="pwa-status">
-        {!isOnline && (
-          <div className="offline-indicator">
-            📴 You're offline - Some features may be limited
-          </div>
-        )}
-        
-        {updateAvailable && (
-          <div className="update-indicator">
-            🔄 App update available!
-            <button onClick={updateApp} className="update-btn">
-              Update Now
-            </button>
-          </div>
-        )}
-        
-        {isInstallable && !isInstalled && (
-          <div className="install-indicator">
-            📱 Install SignalStack for better experience
-            <button onClick={installApp} className="install-btn">
-              Install
-            </button>
-          </div>
-        )}
-      </div>
-
-      {/* V3: Voice Command Indicator */}
-      {voiceCommandActive && (
-        <div className="voice-indicator">
-          🎤 Listening... Say your command
-        </div>
-      )}
-
-      {/* V2: New Professional Header */}
+      {/* V2: New Professional Header (Voice props removed) */}
       <Header 
         user={user}
         activeAccount={activeAccount}
@@ -578,9 +573,6 @@ function App() {
         onToggleMobileNav={toggleMobileNav}
         theme={theme}
         onToggleTheme={toggleTheme}
-        voiceCommandActive={voiceCommandActive}
-        onToggleVoice={() => VoiceCommandService.toggleListening()}
-        isVoiceSupported={VoiceCommandService.isSupported()}
       />
 
       {/* V2: Mobile Navigation */}
@@ -622,7 +614,6 @@ function App() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              {/* V1: Your existing portfolio view */}
               <div className="dashboard-grid legacy-grid">
                 <section className="dashboard-card portfolio-section">
                   <h2>Virtual Portfolio</h2>
@@ -685,7 +676,6 @@ function App() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              {/* V1: Your existing signals view */}
               <div className="dashboard-grid legacy-grid">
                 <section className="dashboard-card signals-section">
                   <h2>
@@ -752,7 +742,6 @@ function App() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              {/* V1: Your existing charts and history */}
               <div className="dashboard-grid legacy-grid">
                 <section className="dashboard-card chart-section">
                   <h2>Portfolio Performance</h2>
@@ -805,7 +794,6 @@ function App() {
             </motion.div>
           )}
 
-          {/* V3: News Route */}
           {currentRoute === '/news' && (
             <motion.div
               key="news"
@@ -842,7 +830,6 @@ function App() {
             </motion.div>
           )}
 
-          {/* Placeholder for other routes */}
           {!['dashboard', 'portfolio', 'signals', 'analytics', 'news'].includes(currentRoute.split('/')[1]) && (
             <motion.div
               key="other"
@@ -862,13 +849,38 @@ function App() {
         </AnimatePresence>
       </main>
 
-      {/* V3: Chat System */}
-      <ChatSystem />
+      {/* PWA Components */}
+      <OfflineIndicator isOnline={isOnline} />
+      
+      <PWAInstallPrompt 
+        isVisible={showInstallPrompt && isInstallable && !isInstalled}
+        onInstall={handlePWAInstall}
+        onDismiss={() => setShowInstallPrompt(false)}
+      />
 
-      {/* V3: Notification container */}
+      <PWAUpdatePrompt 
+        isVisible={showUpdatePrompt}
+        onUpdate={handlePWAUpdate}
+        onDismiss={() => setShowUpdatePrompt(false)}
+      />
+
+      {/* Status indicators (Voice indicator removed) */}
+      <div className="app-status">
+        {!isOnline && (
+          <div className="status-item offline">
+            📡 Offline Mode
+          </div>
+        )}
+        {isRebalancing && (
+          <div className="status-item rebalancing">
+            ⚖️ Rebalancing...
+          </div>
+        )}
+      </div>
+
+      {/* Notification containers */}
       <div id="notification-root"></div>
 
-      {/* V1: Keep existing toast notifications */}
       <ToastContainer
         position="top-right"
         autoClose={3000}

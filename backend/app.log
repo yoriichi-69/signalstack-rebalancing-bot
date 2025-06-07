@@ -2682,3 +2682,440 @@
 2025-06-07 14:06:12,911 - __main__ - INFO - Refreshing market data...
 2025-06-07 14:06:21,181 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
 2025-06-07 14:06:21,181 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:06:36,993 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:06:37,004 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:07:21,190 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:07:37,006 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:07:41,468 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:07:41,469 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:07:54,370 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:07:54,370 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:08:41,469 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:08:49,620 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:08:49,620 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:08:54,371 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:09:03,416 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:09:03,416 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:09:49,621 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:10:03,401 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:10:03,402 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:10:03,418 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:10:12,169 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:10:12,169 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:11:03,405 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:11:12,170 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:11:13,938 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:11:13,938 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:11:24,563 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:11:24,563 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:12:13,943 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:12:16,863 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:12:16,865 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:12:24,564 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:12:38,847 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:12:38,850 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:13:16,866 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:13:26,545 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:13:26,545 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:13:38,851 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:13:58,099 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:13:58,100 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:14:26,546 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:14:35,147 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:14:35,149 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:14:58,108 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:14:59,728 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:14:59,731 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:15:35,151 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:15:43,611 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:15:43,612 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:15:59,731 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:16:12,457 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:16:12,457 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:16:43,613 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:16:57,213 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:16:57,213 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:17:12,459 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:17:26,256 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:17:26,256 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:17:57,215 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:18:03,990 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:18:03,990 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:18:26,259 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:18:39,293 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:18:39,294 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:19:04,003 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:19:12,117 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:19:12,118 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:19:39,302 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:19:47,293 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:19:47,299 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:20:12,118 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:20:26,497 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:20:26,498 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:20:47,304 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:20:54,649 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:20:54,650 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:21:26,500 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:21:44,947 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:21:44,947 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:21:54,651 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:22:14,203 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:22:14,208 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:22:44,949 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:22:54,370 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:22:54,371 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:23:14,209 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:23:21,500 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:23:21,502 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:23:54,373 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:24:10,502 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:24:10,502 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:24:21,510 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:24:40,967 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:24:40,967 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:25:10,503 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:25:31,702 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:25:31,702 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:25:40,971 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:25:49,871 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:25:49,872 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:26:31,703 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:26:39,637 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:26:39,637 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:26:49,874 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:26:59,310 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:26:59,316 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:27:39,637 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:27:49,075 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:27:49,076 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:27:59,319 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:28:01,365 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:28:01,365 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:28:49,076 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:29:01,367 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:29:13,333 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:29:13,333 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:29:14,573 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:29:14,574 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:30:13,334 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:30:14,575 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:30:22,243 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:30:22,243 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:30:26,958 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:30:26,958 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:31:22,245 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:31:25,465 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:31:25,465 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:31:26,959 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:31:28,921 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:31:28,921 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:32:25,470 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:32:28,922 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:32:28,954 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:32:28,954 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:32:42,436 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:32:42,436 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:33:17,320 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 14:33:17] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 14:33:17,321 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 14:33:17] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 14:33:17,323 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 14:33:17] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 14:33:17,327 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 14:33:17] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 14:33:17,333 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 14:33:17] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 14:33:17,335 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 14:33:17] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 14:33:17,632 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 14:33:17] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 14:33:28,956 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:33:37,254 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:33:37,256 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:33:42,438 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:33:43,647 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:33:43,648 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:34:37,264 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:34:43,648 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:34:51,177 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:34:51,181 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:34:55,995 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:34:55,995 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:35:51,190 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:35:55,996 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:36:05,499 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:36:05,499 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:36:09,596 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:36:09,597 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:37:05,500 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:37:09,598 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:37:14,791 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:37:14,792 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:37:37,624 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:37:37,624 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:38:14,793 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:38:28,370 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:38:28,371 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 14:38:37,626 - __main__ - INFO - Refreshing market data...
+2025-06-07 14:38:44,565 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 14:38:44,565 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 17:57:26,380 - __main__ - INFO - Refreshing market data...
+2025-06-07 17:57:26,573 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.185.34:5000
+2025-06-07 17:57:26,573 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-07 17:57:26,589 - werkzeug - INFO -  * Restarting with stat
+2025-06-07 17:57:28,374 - __main__ - INFO - Refreshing market data...
+2025-06-07 17:57:28,389 - werkzeug - WARNING -  * Debugger is active!
+2025-06-07 17:57:28,394 - werkzeug - INFO -  * Debugger PIN: 948-022-834
+2025-06-07 17:57:28,739 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 17:57:28,740 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 17:57:29,707 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 17:57:29,707 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 17:57:44,366 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:44] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:44,367 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:44] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:44,369 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:44] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:44,370 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:44] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:44,375 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:44] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:44,378 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:44] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:44,689 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:44] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:48,459 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:48] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:48,469 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:48] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:48,475 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:48] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:48,795 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:48] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:48,806 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:48] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:48,812 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:48] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:48,821 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:48] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 17:57:48,870 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 17:57:48] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-07 17:58:28,741 - __main__ - INFO - Refreshing market data...
+2025-06-07 17:58:29,708 - __main__ - INFO - Refreshing market data...
+2025-06-07 17:58:43,669 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 17:58:43,670 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 17:58:48,925 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 17:58:48,942 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 17:59:43,674 - __main__ - INFO - Refreshing market data...
+2025-06-07 17:59:46,696 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 17:59:46,696 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 17:59:48,959 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:00:11,510 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:00:11,511 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:00:46,697 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:00:50,134 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:00:50,134 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:01:11,512 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:01:20,002 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:01:20,004 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:01:50,135 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:02:08,781 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:02:08,781 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:02:20,005 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:02:45,042 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:02:45,044 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:02:54,497 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:02:54] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-07 18:02:54,511 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:02:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-07 18:02:54,521 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:02:54] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-07 18:02:54,857 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:02:54] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-07 18:02:54,864 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:02:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-07 18:02:54,875 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:02:54] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-07 18:02:54,878 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:02:54] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-07 18:02:54,880 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:02:54] "[33mGET /offline.html HTTP/1.1[0m" 404 -
+2025-06-07 18:03:08,782 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:03:22,605 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:03:22,605 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:03:45,048 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:03:58,460 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:03:58,463 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:04:22,606 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:04:26,319 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:04:26,319 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:04:58,464 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:05:20,635 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:05:20,636 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:05:26,321 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:05:35,727 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:05:35,728 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:06:20,637 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:06:35,729 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:06:38,975 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:06:38,978 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:06:44,529 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:06:44,529 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:07:38,978 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:07:44,531 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:07:47,513 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:07:47,519 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:07:52,322 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:07:52,322 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:08:47,522 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:08:52,324 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:09:01,574 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:09:01,574 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:09:11,276 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:09:11,276 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:09:15,726 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:09:15] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:09:15,730 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:09:15] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:09:16,060 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:09:16] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:09:16,061 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:09:16] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:09:16,071 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:09:16] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:09:16,081 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:09:16] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:09:16,092 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:09:16] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:10:01,575 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:10:11,277 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:10:18,964 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:10:18,964 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:10:31,572 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:10:31,572 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:11:18,966 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:11:23,857 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:11:23,857 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:11:31,574 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:11:33,623 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:11:33,626 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:12:23,858 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:12:25,935 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:12:25,935 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:12:33,627 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:12:48,756 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:12:48,759 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:13:25,936 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:13:30,141 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:13:30,141 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:13:48,762 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:13:57,079 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:13:57,082 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:14:20,859 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:20] "[33mGET /main.514a4a5eedb23c4df3fc.hot-update.json HTTP/1.1[0m" 404 -
+2025-06-07 18:14:21,138 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:21] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:21,139 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:21] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:21,464 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:21] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:21,465 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:21] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:21,466 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:21] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:21,469 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:21] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:21,471 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:21] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:21,604 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:21] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-07 18:14:30,142 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:14:33,330 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:14:33,338 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:14:37,833 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:37] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:37,834 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:37] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:37,838 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:37] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:37,844 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:37] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:37,850 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:37] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:37,854 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:37] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:38,178 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:38] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:38,227 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:38] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-07 18:14:48,426 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:48] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:48,427 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:48] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:48,430 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:48] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:48,433 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:48] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:48,439 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:48] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:48,448 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:48] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:48,772 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:48] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 18:14:48,819 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:14:48] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-07 18:14:57,083 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:15:05,887 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:15:05,887 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:15:33,346 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:16:05,888 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:16:10,191 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:16:10,191 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:16:24,849 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:16:24,849 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:17:10,192 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:17:18,593 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:17:18,593 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:17:24,851 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:17:26,694 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:17:26,694 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:18:18,594 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:18:26,695 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:18:27,406 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:18:27,407 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:18:34,775 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:18:34,775 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:19:27,408 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:19:34,776 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:19:42,492 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:19:42,492 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:19:42,575 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:19:42,575 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:20:42,493 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:20:42,577 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:20:44,838 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:20:44,838 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:20:56,601 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:20:56,602 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:21:44,840 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:21:56,602 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:21:58,900 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:21:58,900 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:22:04,810 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:22:04,810 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:22:58,901 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:23:04,811 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:23:07,357 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:23:07,357 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:23:07,656 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:23:07,656 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:24:07,358 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:24:07,657 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:24:09,648 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:24:09,649 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:24:26,819 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:24:26,819 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:25:09,650 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:25:23,857 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:25:23,857 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:25:26,820 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:25:39,624 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:25:39,624 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:26:23,858 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:26:37,994 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:26:37,994 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:26:39,625 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:26:43,035 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:26:43,036 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:27:37,994 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:27:43,036 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:27:52,239 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:27:52,239 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:28:01,148 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:28:01,148 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:28:52,240 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:29:01,149 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:29:06,580 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:29:06,580 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:29:08,255 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:29:08,256 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:30:06,581 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:30:08,257 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:30:15,210 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:30:15,210 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:30:19,448 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:30:19,449 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:31:12,977 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:31:12] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-07 18:31:15,212 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:31:19,450 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:31:30,347 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:31:30,347 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:31:43,559 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:31:43,559 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:32:30,348 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:32:43,126 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:32:43,127 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:32:43,560 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:32:56,465 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:32:56,465 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:33:43,128 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:33:52,244 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:33:52,244 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:33:56,470 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:33:58,342 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:33:58,342 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:34:52,245 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:34:54,342 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:34:54,342 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:34:58,343 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:35:07,542 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:35:07,542 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:35:27,886 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 18:35:27] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-07 18:35:54,343 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:35:56,778 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:35:56,779 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 18:36:07,543 - __main__ - INFO - Refreshing market data...
+2025-06-07 18:36:27,866 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 18:36:27,866 - __main__ - INFO - Data refresh completed successfully

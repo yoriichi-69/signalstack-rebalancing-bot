@@ -1,106 +1,162 @@
-/* filepath: frontend/src/hooks/usePWA.js */
 import { useState, useEffect } from 'react';
-import NotificationService from '../services/NotificationService';
 
-const usePWA = () => {
+export const usePWA = () => {
   const [isInstallable, setIsInstallable] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const [updateAvailable, setUpdateAvailable] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [installationStatus, setInstallationStatus] = useState('not-installed');
 
   useEffect(() => {
     // Check if already installed
-    setIsInstalled(window.matchMedia('(display-mode: standalone)').matches);
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
+                         window.navigator.standalone ||
+                         document.referrer.includes('android-app://');
+    
+    setIsInstalled(isStandalone);
+    setInstallationStatus(isStandalone ? 'installed' : 'not-installed');
 
     // Listen for install prompt
-    const handleBeforeInstallPrompt = (e) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
+    const handleBeforeInstallPrompt = (event) => {
+      event.preventDefault();
+      setDeferredPrompt(event);
       setIsInstallable(true);
+      setInstallationStatus('installable');
     };
 
-    // Listen for online/offline status
-    const handleOnline = () => {
-      setIsOnline(true);
-      NotificationService.success('Connection restored');
-    };
-
-    const handleOffline = () => {
-      setIsOnline(false);
-      NotificationService.warning('You are offline. Some features may be limited.');
-    };
-
-    // Listen for app installation
+    // Listen for successful installation
     const handleAppInstalled = () => {
       setIsInstalled(true);
       setIsInstallable(false);
+      setInstallationStatus('installed');
       setDeferredPrompt(null);
-      NotificationService.success('SignalStack installed successfully!');
     };
 
+    // Monitor online/offline status
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    // Register event listeners
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('appinstalled', handleAppInstalled);
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
-    window.addEventListener('appinstalled', handleAppInstalled);
+
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      registerServiceWorker();
+    }
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('appinstalled', handleAppInstalled);
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
-      window.removeEventListener('appinstalled', handleAppInstalled);
     };
   }, []);
 
-  const installApp = async () => {
-    if (!deferredPrompt) return false;
+  const registerServiceWorker = async () => {
+    try {
+      const registration = await navigator.serviceWorker.register('/sw.js', {
+        scope: '/'
+      });
 
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    
-    if (outcome === 'accepted') {
-      setIsInstallable(false);
-      setDeferredPrompt(null);
-      return true;
+      console.log('Service Worker registered successfully:', registration);
+
+      // Check for updates
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            setUpdateAvailable(true);
+          }
+        });
+      });
+
+      if (registration.waiting) {
+        setUpdateAvailable(true);
+      }
+
+    } catch (error) {
+      console.error('Service Worker registration failed:', error);
     }
-    
-    return false;
   };
 
-  const shareApp = async (data = {}) => {
-    const shareData = {
-      title: 'SignalStack - Professional Trading Dashboard',
-      text: 'Check out this amazing crypto trading platform!',
-      url: window.location.origin,
-      ...data
-    };
-
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-        return true;
-      } catch (error) {
-        console.error('Error sharing:', error);
-        return false;
-      }
-    } else {
-      // Fallback to clipboard
-      try {
-        await navigator.clipboard.writeText(shareData.url);
-        NotificationService.success('Link copied to clipboard!');
-        return true;
-      } catch (error) {
-        console.error('Error copying to clipboard:', error);
-        return false;
-      }
+  const installApp = async () => {
+    if (!deferredPrompt) {
+      console.log('Install prompt not available');
+      return false;
     }
+
+    try {
+      setInstallationStatus('installing');
+      
+      deferredPrompt.prompt();
+      
+      const { outcome } = await deferredPrompt.userChoice;
+      
+      if (outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+        setInstallationStatus('installed');
+        setIsInstallable(false);
+        setDeferredPrompt(null);
+        return true;
+      } else {
+        console.log('User dismissed the install prompt');
+        setInstallationStatus('dismissed');
+        return false;
+      }
+    } catch (error) {
+      console.error('Installation failed:', error);
+      setInstallationStatus('error');
+      return false;
+    }
+  };
+
+  const updateApp = async () => {
+    if (!updateAvailable) return;
+
+    try {
+      const registration = await navigator.serviceWorker.getRegistration();
+      
+      if (registration && registration.waiting) {
+        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error('Update failed:', error);
+    }
+  };
+
+  const requestNotificationPermission = async () => {
+    if (!('Notification' in window)) {
+      console.log('Notifications not supported');
+      return false;
+    }
+
+    if (Notification.permission === 'granted') {
+      return true;
+    }
+
+    if (Notification.permission === 'denied') {
+      return false;
+    }
+
+    const permission = await Notification.requestPermission();
+    return permission === 'granted';
   };
 
   return {
     isInstallable,
     isInstalled,
     isOnline,
+    updateAvailable,
+    installationStatus,
     installApp,
-    shareApp
+    updateApp,
+    requestNotificationPermission
   };
 };
 
