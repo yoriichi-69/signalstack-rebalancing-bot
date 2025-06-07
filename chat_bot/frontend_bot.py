@@ -3,6 +3,7 @@
 
 import streamlit as st
 import requests
+import json
 
 port = 6502
 
@@ -44,7 +45,6 @@ if user_input:
         bot_reply = formatted
 
     elif isinstance(bot_reply, dict):  # fallback if dict but not a token
-        import json
         bot_reply = f"```json\n{json.dumps(bot_reply, indent=2)}\n```"
 
     st.session_state.messages.append(("bot", bot_reply))

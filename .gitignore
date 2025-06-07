@@ -6,6 +6,7 @@ dist/
 
 # python env
 backend/venv/
+rizz_venv/
 
 node_modules
 .env

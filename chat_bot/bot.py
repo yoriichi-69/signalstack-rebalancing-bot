@@ -120,8 +120,7 @@ def chat():
 
     # Fallback to RAG if no token match
     answer = rag_chain.invoke({"query": query})
-    return jsonify({"response": answer})
-
+    return jsonify({"response": answer.get("result", "No answer available.")})
 
 @app.route("/")
 def root():
