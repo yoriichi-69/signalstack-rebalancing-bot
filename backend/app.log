@@ -3119,3 +3119,60 @@
 2025-06-07 18:36:07,543 - __main__ - INFO - Refreshing market data...
 2025-06-07 18:36:27,866 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
 2025-06-07 18:36:27,866 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 20:37:07,256 - __main__ - INFO - Refreshing market data...
+2025-06-07 20:37:07,302 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.85.38:5000
+2025-06-07 20:37:07,302 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-07 20:37:07,304 - werkzeug - INFO -  * Restarting with stat
+2025-06-07 20:37:08,743 - __main__ - INFO - Refreshing market data...
+2025-06-07 20:37:08,753 - werkzeug - WARNING -  * Debugger is active!
+2025-06-07 20:37:08,759 - werkzeug - INFO -  * Debugger PIN: 948-022-834
+2025-06-07 20:37:11,683 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 20:37:11,683 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 20:37:17,650 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:17] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 20:37:17,650 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:17] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 20:37:17,659 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:17] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 20:37:17,963 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:17] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 20:37:17,963 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:17] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 20:37:17,963 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:17] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 20:37:17,970 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:17] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 20:37:18,019 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-07 20:37:18,316 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:18] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-07 20:37:18,760 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:18] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-07 20:37:18,765 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-07 20:37:18,779 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:18] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-07 20:37:18,779 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:18] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-07 20:37:18,779 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 20:37:18] "[33mGET /offline.html HTTP/1.1[0m" 404 -
+2025-06-07 20:37:25,712 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 20:37:25,712 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 20:38:11,685 - __main__ - INFO - Refreshing market data...
+2025-06-07 20:38:25,715 - __main__ - INFO - Refreshing market data...
+2025-06-07 20:38:37,089 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 20:38:37,102 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 20:38:38,861 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 20:38:38,862 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 21:34:13,725 - __main__ - INFO - Refreshing market data...
+2025-06-07 21:34:13,733 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.85.38:5000
+2025-06-07 21:34:13,733 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-07 21:34:13,733 - werkzeug - INFO -  * Restarting with stat
+2025-06-07 21:34:15,125 - __main__ - INFO - Refreshing market data...
+2025-06-07 21:34:15,141 - werkzeug - WARNING -  * Debugger is active!
+2025-06-07 21:34:15,141 - werkzeug - INFO -  * Debugger PIN: 948-022-834
+2025-06-07 21:34:22,540 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 21:34:22] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 21:34:22,542 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 21:34:22] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 21:34:22,543 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 21:34:22] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 21:34:22,839 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 21:34:22] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 21:34:22,839 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 21:34:22] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 21:34:22,843 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 21:34:22] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 21:34:22,853 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 21:34:22] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-07 21:34:22,930 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 21:34:22] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-07 21:34:23,221 - werkzeug - INFO - 127.0.0.1 - - [07/Jun/2025 21:34:23] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-07 21:34:29,102 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 21:34:29,102 - __main__ - INFO - Data refresh completed successfully
+2025-06-07 21:34:36,664 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-07 21:34:36,664 - __main__ - INFO - Data refresh completed successfully
