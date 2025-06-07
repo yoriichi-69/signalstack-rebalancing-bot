@@ -1,0 +1,7 @@
+{
+  "model_name": 384,
+  "chunk_size": 1000,
+  "overlap": 200,
+  "total_chunks": 187,
+  "embedding_dimension": 384
+}

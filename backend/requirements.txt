@@ -1,4 +1,23 @@
+# test_signals.py
 signals
 
+# app.py
 flask
 flask_cors
+
+# bot.py
+requests
+langchain
+openai
+faiss-cpu
+python-dotenv
+langchain_community
+sentence-transformers
+langchain_openai
+langchain
+langchain-huggingface
+sentence-transformers
+numpy
+
+# bot-frontend
+streamlit
