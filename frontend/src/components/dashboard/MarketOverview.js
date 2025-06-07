@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import './MarketOverview.css';
 
 const MarketOverview = ({ marketData }) => {
   const [selectedMarket, setSelectedMarket] = useState('crypto');
   const [isLive, setIsLive] = useState(true);
+
+  // useEffect MUST come before any early returns
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Simulate live price updates
+      if (isLive) {
+        // Your existing code here
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isLive]);
 
   // Mock market data - replace with real API data
   const mockMarketData = {
@@ -34,36 +44,32 @@ const MarketOverview = ({ marketData }) => {
     }
   };
 
+  // Use mockMarketData as fallback
   const data = marketData || mockMarketData;
-  const currentData = data[selectedMarket] || data.crypto;
+  const currentData = data?.[selectedMarket] || data?.crypto || {};
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Simulate live price updates
-      if (isLive) {
-        // Add small random changes to prices
-        console.log('Live update...');
-      }
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [isLive]);
+  // Safety check after defining currentData
+  if (!currentData || Object.keys(currentData).length === 0) {
+    return <div>Loading market data...</div>;
+  }
 
   const getSentimentColor = (sentiment) => {
     switch(sentiment) {
-      case 'bullish': return '#00ff88';
-      case 'bearish': return '#ff6b6b';
-      case 'neutral': return '#ffd700';
-      default: return '#8b5cf6';
+      case 'bullish':
+        return 'text-green-500';
+      case 'bearish':
+        return 'text-red-500';
+      default:
+        return 'text-gray-500';
     }
   };
 
   const getFearGreedColor = (index) => {
-    if (index < 25) return '#ff6b6b'; // Extreme Fear
-    if (index < 45) return '#ff9500'; // Fear
-    if (index < 55) return '#ffd700'; // Neutral
-    if (index < 75) return '#9ccc65'; // Greed
-    return '#00ff88'; // Extreme Greed
+    if (index < 25) return 'text-red-500';
+    if (index < 45) return 'text-orange-500';
+    if (index < 55) return 'text-yellow-500';
+    if (index < 75) return 'text-green-500';
+    return 'text-blue-500';
   };
 
   const getFearGreedLabel = (index) => {
@@ -75,171 +81,56 @@ const MarketOverview = ({ marketData }) => {
   };
 
   return (
-    <motion.div 
-      className="market-overview-container"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="market-header">
-        <div className="header-left">
-          <h3 className="market-title">Market Overview</h3>
-          <div className="live-indicator">
-            <div className={`live-dot ${isLive ? 'active' : ''}`}></div>
-            <span className="live-text">Live</span>
-          </div>
+    <div className="market-overview">
+      <div className="market-stats">
+        <div className="stat-item">
+          <span>Total Market Cap:</span>
+          <span>${currentData?.totalMarketCap?.toLocaleString() || 'N/A'}</span>
         </div>
+        <div className="stat-item">
+          <span>Total Volume:</span>
+          <span>${currentData?.totalVolume?.toLocaleString() || 'N/A'}</span>
+        </div>
+        <div className="stat-item">
+          <span>BTC Dominance:</span>
+          <span>{currentData?.btcDominance || 'N/A'}%</span>
+        </div>
+        <div className="stat-item">
+          <span>Fear & Greed Index:</span>
+          <span className={getFearGreedColor(currentData?.fearGreedIndex || 50)}>
+            {currentData?.fearGreedIndex || 'N/A'} ({getFearGreedLabel(currentData?.fearGreedIndex || 50)})
+          </span>
+        </div>
+      </div>
 
-        <div className="market-selector">
-          {['crypto', 'indices'].map(market => (
-            <motion.button
-              key={market}
-              className={`market-btn ${selectedMarket === market ? 'active' : ''}`}
-              onClick={() => setSelectedMarket(market)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {market === 'crypto' ? '₿' : '📈'} {market.charAt(0).toUpperCase() + market.slice(1)}
-            </motion.button>
+      {/* Top Gainers */}
+      {currentData?.topGainers && (
+        <div className="top-gainers">
+          <h3>Top Gainers</h3>
+          {currentData.topGainers.map((coin, index) => (
+            <div key={index} className="coin-item">
+              <span>{coin.symbol}</span>
+              <span>${coin.price}</span>
+              <span className="text-green-500">+{coin.change}%</span>
+            </div>
           ))}
         </div>
-      </div>
+      )}
 
-      <div className="market-content">
-        {selectedMarket === 'crypto' && (
-          <div className="crypto-overview">
-            {/* Market Stats */}
-            <div className="market-stats-grid">
-              <div className="stat-card">
-                <span className="stat-label">Market Cap</span>
-                <span className="stat-value">${(currentData.totalMarketCap / 1e12).toFixed(2)}T</span>
-              </div>
-              <div className="stat-card">
-                <span className="stat-label">24h Volume</span>
-                <span className="stat-value">${(currentData.totalVolume / 1e9).toFixed(1)}B</span>
-              </div>
-              <div className="stat-card">
-                <span className="stat-label">BTC Dominance</span>
-                <span className="stat-value">{currentData.btcDominance}%</span>
-              </div>
-              <div className="stat-card">
-                <span className="stat-label">Active Cryptos</span>
-                <span className="stat-value">{currentData.activeCryptos.toLocaleString()}</span>
-              </div>
+      {/* Top Losers */}
+      {currentData?.topLosers && (
+        <div className="top-losers">
+          <h3>Top Losers</h3>
+          {currentData.topLosers.map((coin, index) => (
+            <div key={index} className="coin-item">
+              <span>{coin.symbol}</span>
+              <span>${coin.price}</span>
+              <span className="text-red-500">{coin.change}%</span>
             </div>
-
-            {/* Fear & Greed Index */}
-            <div className="fear-greed-section">
-              <h4 className="section-title">Fear & Greed Index</h4>
-              <div className="fear-greed-display">
-                <div className="fear-greed-gauge">
-                  <div className="gauge-background">
-                    <div 
-                      className="gauge-fill"
-                      style={{ 
-                        width: `${currentData.fearGreedIndex}%`,
-                        backgroundColor: getFearGreedColor(currentData.fearGreedIndex)
-                      }}
-                    ></div>
-                  </div>
-                  <div className="gauge-info">
-                    <span className="gauge-value">{currentData.fearGreedIndex}</span>
-                    <span 
-                      className="gauge-label"
-                      style={{ color: getFearGreedColor(currentData.fearGreedIndex) }}
-                    >
-                      {getFearGreedLabel(currentData.fearGreedIndex)}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Top Movers */}
-            <div className="top-movers">
-              <div className="movers-section">
-                <h4 className="section-title">Top Gainers</h4>
-                <div className="movers-list">
-                  {currentData.topGainers.slice(0, 3).map((coin, index) => (
-                    <motion.div
-                      key={coin.symbol}
-                      className="mover-item gainer"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <div className="coin-info">
-                        <span className="coin-symbol">{coin.symbol}</span>
-                        <span className="coin-price">${coin.price.toLocaleString()}</span>
-                      </div>
-                      <div className="coin-change positive">
-                        +{coin.change.toFixed(2)}%
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="movers-section">
-                <h4 className="section-title">Top Losers</h4>
-                <div className="movers-list">
-                  {currentData.topLosers.map((coin, index) => (
-                    <motion.div
-                      key={coin.symbol}
-                      className="mover-item loser"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <div className="coin-info">
-                        <span className="coin-symbol">{coin.symbol}</span>
-                        <span className="coin-price">${coin.price.toLocaleString()}</span>
-                      </div>
-                      <div className="coin-change negative">
-                        {coin.change.toFixed(2)}%
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {selectedMarket === 'indices' && (
-          <div className="indices-overview">
-            <div className="indices-grid">
-              {Object.entries(data.indices).map(([key, index]) => (
-                <motion.div
-                  key={key}
-                  className="index-card"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="index-name">{key.toUpperCase()}</span>
-                  <span className="index-value">{index.value.toLocaleString()}</span>
-                  <span className={`index-change ${index.change >= 0 ? 'positive' : 'negative'}`}>
-                    {index.change >= 0 ? '+' : ''}{index.change.toFixed(2)}%
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Market Sentiment Indicator */}
-      <div className="market-sentiment">
-        <span className="sentiment-label">Market Sentiment:</span>
-        <span 
-          className="sentiment-value"
-          style={{ color: getSentimentColor(currentData.marketSentiment) }}
-        >
-          {currentData.marketSentiment?.charAt(0).toUpperCase() + currentData.marketSentiment?.slice(1) || 'Neutral'}
-        </span>
-      </div>
-    </motion.div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 

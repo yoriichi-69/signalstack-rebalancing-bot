@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 
@@ -16,10 +16,21 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import strategies from './utils/StrategyService';
 
-// V2 Imports (New professional components - create these)
+// V2 Imports (New professional components)
 import Header from './components/layout/Header';
 import MobileNav from './components/layout/MobileNav';
 import Dashboard from './components/dashboard/Dashboard';
+import LandingPage from './components/landing/LandingPage';
+
+// Enhanced V3 Imports (New services and features)
+import VoiceCommandService from './services/VoiceCommandService';
+import NotificationService from './services/NotificationService';
+import NewsService from './services/NewsService';
+import SecurityService from './services/SecurityService';
+import PerformanceMonitor from './utils/PerformanceMonitor';
+import ChatSystem from './components/social/ChatSystem/ChatSystem';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
+import usePWA from './hooks/usePWA';
 
 function App() {
   // V1 Authentication state (Keep existing)
@@ -46,12 +57,156 @@ function App() {
   const [isAppLoading, setIsAppLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  // V1 Initialize app (Keep existing logic, enhance with V2)
+  // V3 Enhanced state (New enhanced features)
+  const [voiceCommandActive, setVoiceCommandActive] = useState(false);
+  const [newsData, setNewsData] = useState([]);
+  const [securityAlerts, setSecurityAlerts] = useState([]);
+  const [performanceMetrics, setPerformanceMetrics] = useState({});
+
+  // V3 Custom hooks
+  const { theme, toggleTheme } = useTheme();
+  const { 
+    isInstalled, 
+    isInstallable, 
+    installApp, 
+    isOnline, 
+    updateAvailable, 
+    updateApp 
+  } = usePWA();
+
+  // V3 Voice command handler
+  const handleVoiceCommand = useCallback(({ result }) => {
+    console.log('Voice command received:', result);
+    PerformanceMonitor.trackUserInteraction('voice_command', result.action);
+    
+    switch(result.action) {
+      case 'SHOW_PORTFOLIO':
+        setCurrentRoute('/portfolio');
+        NotificationService.success('Navigating to Portfolio');
+        break;
+        
+      case 'SHOW_DASHBOARD':
+        setCurrentRoute('/dashboard');
+        NotificationService.success('Navigating to Dashboard');
+        break;
+        
+      case 'SHOW_PRICE':
+        if (result.symbol) {
+          const price = prices[result.symbol.toUpperCase()];
+          if (price) {
+            NotificationService.info(`${result.symbol.toUpperCase()}: $${price.toFixed(2)}`);
+          } else {
+            NotificationService.warning(`Price not available for ${result.symbol}`);
+          }
+        } else {
+          setCurrentRoute('/signals');
+        }
+        break;
+        
+      case 'SHOW_SIGNALS':
+        setCurrentRoute('/signals');
+        NotificationService.success('Navigating to Trading Signals');
+        break;
+        
+      case 'SHOW_ANALYTICS':
+        setCurrentRoute('/analytics');
+        NotificationService.success('Navigating to Analytics');
+        break;
+        
+      case 'REBALANCE_PORTFOLIO':
+        if (virtualAccount) {
+          executeVirtualRebalance();
+          NotificationService.success('Starting portfolio rebalancing');
+        } else {
+          NotificationService.warning('No portfolio available for rebalancing');
+        }
+        break;
+        
+      case 'REFRESH_SIGNALS':
+        fetchSignalData();
+        NotificationService.success('Refreshing trading signals');
+        break;
+        
+      case 'TOGGLE_THEME':
+        toggleTheme();
+        NotificationService.success(`Switched to ${theme === 'dark' ? 'light' : 'dark'} theme`);
+        break;
+        
+      case 'START_RECORDING':
+        setVoiceCommandActive(true);
+        break;
+        
+      case 'STOP_RECORDING':
+        setVoiceCommandActive(false);
+        break;
+        
+      case 'SHOW_PORTFOLIO_VALUE':
+        if (portfolioValue > 0) {
+          NotificationService.info(`Portfolio Value: $${portfolioValue.toFixed(2)}`);
+        } else {
+          NotificationService.warning('Portfolio value not available');
+        }
+        break;
+        
+      default:
+        NotificationService.warning(`Unknown voice command: ${result.action}`);
+        break;
+    }
+  }, [theme, toggleTheme, prices, portfolioValue, virtualAccount]);
+
+  // V3 News update handler
+  const handleNewsUpdate = useCallback((news) => {
+    setNewsData(prevNews => [news, ...prevNews.slice(0, 19)]);
+    
+    if (news.priority === 'high') {
+      NotificationService.info(`Breaking: ${news.title}`, {
+        persistent: true,
+        actions: [
+          { label: 'Read More', action: () => setCurrentRoute('/news') },
+          { label: 'Dismiss', action: 'dismiss' }
+        ]
+      });
+    }
+  }, []);
+
+  // V3 Security event handler
+  const handleSecurityEvent = useCallback((event) => {
+    setSecurityAlerts(prev => [event, ...prev.slice(0, 9)]);
+    
+    if (event.severity === 'high' || event.severity === 'critical') {
+      NotificationService.warning(`Security Alert: ${event.message}`, {
+        persistent: true,
+        priority: 'high'
+      });
+    }
+  }, []);
+
+  // V1 Initialize app (Enhanced with V3 services)
   useEffect(() => {
     const initializeApp = async () => {
       try {
         // V2: Show loading screen
         setIsAppLoading(true);
+        
+        // V3: Initialize enhanced services
+        PerformanceMonitor.startMonitoring();
+        await SecurityService.initializeSecurity();
+        NotificationService.initialize();
+        
+        // V3: Setup voice commands
+        if (VoiceCommandService.isSupported()) {
+          await VoiceCommandService.initialize();
+          VoiceCommandService.addEventListener('voice_command', handleVoiceCommand);
+          VoiceCommandService.addEventListener('recording_start', () => setVoiceCommandActive(true));
+          VoiceCommandService.addEventListener('recording_stop', () => setVoiceCommandActive(false));
+        }
+        
+        // V3: Setup news stream
+        NewsService.addEventListener('news_update', handleNewsUpdate);
+        NewsService.startNewsStream();
+        
+        // V3: Setup security monitoring
+        SecurityService.addEventListener('security_event', handleSecurityEvent);
         
         // V1: Check authentication status
         const authStatus = AuthService.isAuthenticated();
@@ -108,21 +263,29 @@ function App() {
         // V1: Fetch signals
         await fetchSignalData();
         
+        // V3: Track app initialization
+        PerformanceMonitor.trackUserInteraction('app_initialized');
+        
         // V2: Hide loading after everything is ready
         setTimeout(() => setIsAppLoading(false), 1000);
         
         return () => {
           PriceService.stopRealTimeUpdates();
           unsubscribe();
+          NewsService.stopNewsStream();
+          VoiceCommandService.removeEventListener('voice_command', handleVoiceCommand);
+          SecurityService.removeEventListener('security_event', handleSecurityEvent);
+          PerformanceMonitor.stopMonitoring();
         };
       } catch (error) {
         console.error('Failed to initialize app:', error);
+        NotificationService.error('Failed to initialize app');
         setIsAppLoading(false);
       }
     };
 
     initializeApp();
-  }, []);
+  }, [handleVoiceCommand, handleNewsUpdate, handleSecurityEvent]);
   
   // V1: Keep all your existing functions
   const fetchSignalData = async () => {
@@ -134,10 +297,11 @@ function App() {
       const weights = await SignalService.fetchTargetWeights();
       setTargetWeights(weights);
       
-      toast.success("Signals updated successfully");
+      // V3: Use NotificationService instead of toast
+      NotificationService.success("Signals updated successfully");
     } catch (error) {
       console.error("Error fetching signal data:", error);
-      toast.error("Failed to fetch signals");
+      NotificationService.error("Failed to fetch signals");
     } finally {
       setIsLoadingSignals(false);
     }
@@ -151,10 +315,17 @@ function App() {
       const result = virtualAccount.executeRebalance(targetWeights, prices);
       setTxHistory(virtualAccount.getTransactionHistory());
       setPortfolioHistory(virtualAccount.portfolioHistory || []);
-      toast.success(`Rebalancing complete! Portfolio value: $${result.newValue.toFixed(2)}`);
+      
+      // V3: Enhanced notification with performance tracking
+      PerformanceMonitor.trackUserInteraction('portfolio_rebalance', {
+        newValue: result.newValue,
+        timestamp: Date.now()
+      });
+      
+      NotificationService.success(`Rebalancing complete! Portfolio value: $${result.newValue.toFixed(2)}`);
     } catch (error) {
       console.error("Error executing rebalance:", error);
-      toast.error("Rebalancing failed: " + error.message);
+      NotificationService.error("Rebalancing failed: " + error.message);
     } finally {
       setIsRebalancing(false);
     }
@@ -167,7 +338,9 @@ function App() {
         setTxHistory(virtualAccount.getTransactionHistory());
         setPortfolioHistory([]);
         setPortfolioValue(virtualAccount.getPortfolioValue(prices));
-        toast.info("Virtual account has been reset");
+        
+        PerformanceMonitor.trackUserInteraction('account_reset');
+        NotificationService.info("Virtual account has been reset");
       }
     }
   };
@@ -175,11 +348,17 @@ function App() {
   const applyStrategy = (strategyKey, weights) => {
     setTargetWeights(weights);
     setActiveStrategy(strategyKey);
-    toast.success(`Applied ${strategies[strategyKey].getName()} strategy`);
+    
+    PerformanceMonitor.trackUserInteraction('strategy_applied', { strategy: strategyKey });
+    NotificationService.success(`Applied ${strategies[strategyKey].getName()} strategy`);
   };
   
-  // V1: Keep existing auth functions, enhance for V2
-  const handleLoginSuccess = () => {
+  // V1: Keep existing auth functions, enhance for V2 & V3
+  const handleLoginSuccess = (credentials) => { // Add credentials parameter
+    // Add localStorage for landing page integration
+    localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('userEmail', credentials?.email || 'user@signalstack.com');
+    
     setIsAuthenticated(true);
     const accounts = AuthService.getAccounts();
     setUserAccounts(accounts);
@@ -188,8 +367,12 @@ function App() {
     setUser({
       id: 1,
       name: accounts[0]?.name || 'Trading User',
-      email: 'user@signalstack.com'
+      email: credentials?.email || 'user@signalstack.com'
     });
+    
+    // V3: Track login
+    PerformanceMonitor.trackUserInteraction('user_login');
+    SecurityService.logSecurityEvent('user_login_success');
     
     if (accounts.length > 0) {
       setActiveAccount(accounts[0]);
@@ -208,6 +391,11 @@ function App() {
     setUserAccounts([]);
     setActiveAccount(null);
     setUser(null);
+    
+    // V3: Track logout
+    PerformanceMonitor.trackUserInteraction('user_logout');
+    SecurityService.logSecurityEvent('user_logout');
+    NotificationService.info('You have been logged out');
   };
   
   const createNewAccount = () => {
@@ -217,9 +405,11 @@ function App() {
       if (result.success) {
         setUserAccounts([...userAccounts, result.account]);
         setActiveAccount(result.account);
-        toast.success("New portfolio created!");
+        
+        PerformanceMonitor.trackUserInteraction('account_created');
+        NotificationService.success("New portfolio created!");
       } else {
-        toast.error("Failed to create portfolio");
+        NotificationService.error("Failed to create portfolio");
       }
     }
   };
@@ -228,6 +418,7 @@ function App() {
     const account = userAccounts.find(acc => acc.id === parseInt(accountId));
     if (account) {
       setActiveAccount(account);
+      PerformanceMonitor.trackUserInteraction('account_switched');
     }
   };
 
@@ -235,6 +426,7 @@ function App() {
   const handleNavigate = (route) => {
     setCurrentRoute(route);
     setIsMobileNavOpen(false);
+    PerformanceMonitor.trackPageView(route);
   };
 
   const toggleMobileNav = () => {
@@ -280,7 +472,7 @@ function App() {
     return colors[token] || '#8b5cf6';
   };
 
-  // V2: Loading screen (New professional loading)
+  // V3: Enhanced loading screen with PWA status
   if (isAppLoading) {
     return (
       <div className="app-loading">
@@ -302,36 +494,27 @@ function App() {
           <div className="loading-bar">
             <div className="loading-progress"></div>
           </div>
+          
+          {/* V3: PWA Loading Status */}
+          <div className="loading-status">
+            {!isOnline && <span className="status-offline">📴 Offline Mode</span>}
+            {isInstallable && <span className="status-installable">📱 App Ready to Install</span>}
+            {updateAvailable && <span className="status-update">🔄 Update Available</span>}
+          </div>
         </motion.div>
       </div>
     );
   }
 
-  // V1: Login screen (Keep existing, but with better styling)
+   // V1: Login screen (Replace with Landing Page)
   if (!isAuthenticated) {
     return (
       <div className="app">
-        <div className="login-wrapper">
-          <motion.div 
-            className="login-container"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="login-header">
-              <div className="login-logo">
-                <div className="signal-waves">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <h1>SignalStack</h1>
-              </div>
-              <p>Professional Portfolio Rebalancer</p>
-            </div>
-            <LoginForm onSuccess={handleLoginSuccess} />
-          </motion.div>
-        </div>
+        <LandingPage onLoginSuccess={handleLoginSuccess}/>
+        
+        {/* Keep your existing notification containers */}
+        <div id="notification-root"></div>
+        
         <ToastContainer
           position="top-right"
           autoClose={3000}
@@ -349,7 +532,41 @@ function App() {
 
   // V2: Main authenticated app with new professional UI
   return (
-    <div className="app">
+    <div className={`app ${theme}`}>
+      {/* V3: PWA Status Bar */}
+      <div className="pwa-status">
+        {!isOnline && (
+          <div className="offline-indicator">
+            📴 You're offline - Some features may be limited
+          </div>
+        )}
+        
+        {updateAvailable && (
+          <div className="update-indicator">
+            🔄 App update available!
+            <button onClick={updateApp} className="update-btn">
+              Update Now
+            </button>
+          </div>
+        )}
+        
+        {isInstallable && !isInstalled && (
+          <div className="install-indicator">
+            📱 Install SignalStack for better experience
+            <button onClick={installApp} className="install-btn">
+              Install
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* V3: Voice Command Indicator */}
+      {voiceCommandActive && (
+        <div className="voice-indicator">
+          🎤 Listening... Say your command
+        </div>
+      )}
+
       {/* V2: New Professional Header */}
       <Header 
         user={user}
@@ -359,6 +576,11 @@ function App() {
         onCreateAccount={createNewAccount}
         onLogout={handleLogout}
         onToggleMobileNav={toggleMobileNav}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        voiceCommandActive={voiceCommandActive}
+        onToggleVoice={() => VoiceCommandService.toggleListening()}
+        isVoiceSupported={VoiceCommandService.isSupported()}
       />
 
       {/* V2: Mobile Navigation */}
@@ -384,7 +606,9 @@ function App() {
                 activeAccount={activeAccount}
                 portfolioData={createPortfolioData()}
                 signalsData={signals}
-                marketData={null}
+                marketData={newsData}
+                securityAlerts={securityAlerts}
+                performanceMetrics={performanceMetrics}
               />
             </motion.div>
           )}
@@ -581,8 +805,45 @@ function App() {
             </motion.div>
           )}
 
+          {/* V3: News Route */}
+          {currentRoute === '/news' && (
+            <motion.div
+              key="news"
+              className="news-view"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="dashboard-grid">
+                <section className="dashboard-card news-section">
+                  <h2>Market News</h2>
+                  <div className="news-list">
+                    {newsData.length === 0 ? (
+                      <p>Loading latest market news...</p>
+                    ) : (
+                      newsData.map((news, index) => (
+                        <div key={index} className="news-item">
+                          <h3>{news.title}</h3>
+                          <p>{news.summary}</p>
+                          <div className="news-meta">
+                            <span className="news-source">{news.source}</span>
+                            <span className="news-time">{new Date(news.timestamp).toLocaleString()}</span>
+                            {news.priority === 'high' && (
+                              <span className="news-priority">🔥 Breaking</span>
+                            )}
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </section>
+              </div>
+            </motion.div>
+          )}
+
           {/* Placeholder for other routes */}
-          {!['dashboard', 'portfolio', 'signals', 'analytics'].includes(currentRoute.split('/')[1]) && (
+          {!['dashboard', 'portfolio', 'signals', 'analytics', 'news'].includes(currentRoute.split('/')[1]) && (
             <motion.div
               key="other"
               className="route-placeholder"
@@ -600,6 +861,12 @@ function App() {
           )}
         </AnimatePresence>
       </main>
+
+      {/* V3: Chat System */}
+      <ChatSystem />
+
+      {/* V3: Notification container */}
+      <div id="notification-root"></div>
 
       {/* V1: Keep existing toast notifications */}
       <ToastContainer
