@@ -10,10 +10,12 @@ st.set_page_config(page_title="Web3 Chatbot", layout="wide")
 st.title("🤖 Web3 Chatbot")
 
 st.markdown("""
-Ask me about:
-- Token prices (e.g. `$ETH`, `$ARB`)
-- Web3 concepts (DeFi, staking, L2s)
+Ask me anything about:
+- Token prices (e.g. `$ETH`, `$ARB`) Use `$` sign
+- Web3 concepts (DeFi, staking, L2s, Agents)
 - Smart contracts, swaps, rebalancing agents 🧠
+- AIML concepts (Logistic regression, AI agents)
+- Token rebalancing
 """)
 
 # Chat history
