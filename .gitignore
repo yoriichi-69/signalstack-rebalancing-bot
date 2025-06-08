@@ -8,6 +8,9 @@ dist/
 backend/venv/
 rizz_venv/
 
+# logs
+backend/app.log
+
 node_modules
 .env
 

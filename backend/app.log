@@ -546,3 +546,12 @@
 2025-06-08 17:56:57,567 - __main__ - INFO - Data refresh completed successfully
 2025-06-08 17:56:57,588 - werkzeug - WARNING -  * Debugger is active!
 2025-06-08 17:56:57,598 - werkzeug - INFO -  * Debugger PIN: 772-961-979
+2025-06-08 17:57:04,011 - __main__ - INFO - Refreshing market data...
+2025-06-08 17:57:04,012 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-08 17:57:04,012 - __main__ - INFO - Data refresh completed successfully
+2025-06-08 17:57:57,581 - __main__ - INFO - Refreshing market data...
+2025-06-08 17:57:57,582 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-08 17:57:57,582 - __main__ - INFO - Data refresh completed successfully
+2025-06-08 17:58:04,013 - __main__ - INFO - Refreshing market data...
+2025-06-08 17:58:04,015 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-08 17:58:04,015 - __main__ - INFO - Data refresh completed successfully
