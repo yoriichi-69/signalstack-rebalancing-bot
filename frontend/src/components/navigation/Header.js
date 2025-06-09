@@ -24,9 +24,9 @@ const Header = ({
   const navItems = [
     { path: '/dashboard', label: 'Dashboard', icon: '📊' },
     { path: '/portfolio', label: 'Portfolio', icon: '💼' },
-    { path: '/signals', label: 'Signals', icon: '📡' },
-    { path: '/analytics', label: 'Analytics', icon: '📈' },
-    { path: '/news', label: 'News', icon: '📰' }
+    { path: '/signals', label: 'Signals', icon: '��' },
+    { path: '/bots', label: 'Bots', icon: '🤖' },
+    { path: '/market', label: 'Market', icon: '📈' }
   ];
 
   const handleNavClick = (path) => {
@@ -35,6 +35,10 @@ const Header = ({
     // Prevent default navigation that causes logout
     if (onNavigate && typeof onNavigate === 'function') {
       onNavigate(path);
+      
+      // Close the dropdown menus if they're open
+      setShowUserDropdown(false);
+      setShowAccountDropdown(false);
     } else {
       // If no navigation handler, update URL without reload
       window.history.pushState({}, '', path);

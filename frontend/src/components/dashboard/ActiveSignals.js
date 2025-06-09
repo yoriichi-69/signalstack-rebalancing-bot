@@ -7,6 +7,58 @@ const ActiveSignals = ({ signals, signalsData, onExecuteSignal }) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [filteredSignals, setFilteredSignals] = useState([]); // ✅ Define filteredSignals state
 
+  // Add a function to fetch current crypto prices from an API
+  const [cryptoPrices, setCryptoPrices] = useState({
+    BTC: 106889.35,
+    ETH: 2522.08,
+    SOL: 154.26,
+    BNB: 587.67,
+    ADA: 0.58,
+    XRP: 2.26,
+    DOGE: 0.1856,
+    SHIB: 0.000024,
+    AVAX: 39.15,
+    LINK: 17.82,
+    DOT: 18.75
+  });
+
+  // Function to fetch latest crypto prices
+  const fetchCryptoPrices = async () => {
+    try {
+      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,binancecoin,cardano,ripple,dogecoin,shiba-inu,avalanche-2,chainlink,polkadot&vs_currencies=usd');
+      const data = await response.json();
+      
+      const updatedPrices = { ...cryptoPrices };
+      
+      if (data.bitcoin) updatedPrices.BTC = data.bitcoin.usd;
+      if (data.ethereum) updatedPrices.ETH = data.ethereum.usd;
+      if (data.solana) updatedPrices.SOL = data.solana.usd;
+      if (data.binancecoin) updatedPrices.BNB = data.binancecoin.usd;
+      if (data.cardano) updatedPrices.ADA = data.cardano.usd;
+      if (data.ripple) updatedPrices.XRP = data.ripple.usd;
+      if (data.dogecoin) updatedPrices.DOGE = data.dogecoin.usd;
+      if (data['shiba-inu']) updatedPrices.SHIB = data['shiba-inu'].usd;
+      if (data['avalanche-2']) updatedPrices.AVAX = data['avalanche-2'].usd;
+      if (data.chainlink) updatedPrices.LINK = data.chainlink.usd;
+      if (data.polkadot) updatedPrices.DOT = data.polkadot.usd;
+      
+      setCryptoPrices(updatedPrices);
+    } catch (error) {
+      console.error('Error fetching crypto prices:', error);
+    }
+  };
+  
+  // Set up automatic price updates
+  useEffect(() => {
+    // Initial fetch
+    fetchCryptoPrices();
+    
+    // Set up interval for regular updates (every 30 seconds)
+    const interval = setInterval(fetchCryptoPrices, 30000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   // ✅ Convert backend signals to frontend format
   useEffect(() => {
     const convertBackendSignals = () => {
@@ -30,12 +82,25 @@ const ActiveSignals = ({ signals, signalsData, onExecuteSignal }) => {
           else if (confidence > 70 && Math.abs(score) > 0.5) status = 'ready';
           else if (confidence < 50) status = 'executed';
           
+          // Get current price from cryptoPrices
+          const currentPrice = cryptoPrices[token] || null;
+          
+          // Calculate target price based on signal type and score
+          let targetPrice = null;
+          if (currentPrice) {
+            if (type === 'BUY') {
+              targetPrice = currentPrice * (1 + Math.abs(score) * 0.1); // Up to 10% higher for strong buy signals
+            } else if (type === 'SELL') {
+              targetPrice = currentPrice * (1 - Math.abs(score) * 0.1); // Up to 10% lower for strong sell signals
+            }
+          }
+          
           return {
             id: `signal_${token}_${index}`,
             type: type,
             asset: token,
-            price: null,
-            targetPrice: null,
+            price: currentPrice,
+            targetPrice: targetPrice,
             confidence: Math.round(confidence),
             timeframe: confidence > 80 ? '1h' : confidence > 60 ? '4h' : '24h',
             source: 'AI Technical Analysis',
@@ -55,7 +120,27 @@ const ActiveSignals = ({ signals, signalsData, onExecuteSignal }) => {
       }
       // Fallback to signals prop
       else if (signals && Array.isArray(signals)) {
-        signalsToProcess = signals;
+        signalsToProcess = signals.map(signal => {
+          // Update price if available
+          if (signal.asset && cryptoPrices[signal.asset]) {
+            const currentPrice = cryptoPrices[signal.asset];
+            let targetPrice = signal.targetPrice;
+            
+            // Recalculate target price based on signal type
+            if (signal.type === 'BUY') {
+              targetPrice = currentPrice * 1.05; // Default 5% higher
+            } else if (signal.type === 'SELL') {
+              targetPrice = currentPrice * 0.95; // Default 5% lower
+            }
+            
+            return {
+              ...signal,
+              price: currentPrice,
+              targetPrice: targetPrice
+            };
+          }
+          return signal;
+        });
       }
       // Fallback to mock data
       else {
@@ -71,7 +156,7 @@ const ActiveSignals = ({ signals, signalsData, onExecuteSignal }) => {
     };
 
     convertBackendSignals();
-  }, [signalsData, signals, filter]); // ✅ Add dependencies
+  }, [signalsData, signals, filter, cryptoPrices]); // Add cryptoPrices as dependency
 
   // ✅ Mock signals for fallback
   const getMockSignals = () => [
@@ -79,8 +164,8 @@ const ActiveSignals = ({ signals, signalsData, onExecuteSignal }) => {
       id: 'signal_btc_1',
       type: 'BUY',
       asset: 'BTC',
-      price: 45250.30,
-      targetPrice: 47000,
+      price: cryptoPrices.BTC,
+      targetPrice: cryptoPrices.BTC * 1.05, // Target 5% higher
       confidence: 85,
       timeframe: '4h',
       source: 'Technical Analysis',
@@ -99,8 +184,8 @@ const ActiveSignals = ({ signals, signalsData, onExecuteSignal }) => {
       id: 'signal_eth_2',
       type: 'SELL',
       asset: 'ETH',
-      price: 3120.45,
-      targetPrice: 2950,
+      price: cryptoPrices.ETH,
+      targetPrice: cryptoPrices.ETH * 0.95, // Target 5% lower
       confidence: 72,
       timeframe: '1h',
       source: 'Volume Analysis',
@@ -116,7 +201,27 @@ const ActiveSignals = ({ signals, signalsData, onExecuteSignal }) => {
       token: 'ETH'
     },
     {
-      id: 'signal_portfolio_3',
+      id: 'signal_sol_3',
+      type: 'BUY',
+      asset: 'SOL',
+      price: cryptoPrices.SOL,
+      targetPrice: cryptoPrices.SOL * 1.07, // Target 7% higher
+      confidence: 78,
+      timeframe: '4h',
+      source: 'Technical Analysis',
+      timestamp: new Date().toLocaleString(),
+      status: 'ready',
+      roi: '+5.2%',
+      total_score: 0.9,
+      ml_confidence: 0.78,
+      mean_reversion: 0.4,
+      momentum: 0.6,
+      volatility: 0.2,
+      breakout: 0.5,
+      token: 'SOL'
+    },
+    {
+      id: 'signal_portfolio_4',
       type: 'REBALANCE',
       asset: 'Portfolio',
       price: null,
@@ -139,7 +244,8 @@ const ActiveSignals = ({ signals, signalsData, onExecuteSignal }) => {
 
   const handleRefresh = () => {
     setIsRefreshing(true);
-    // Simulate API call
+    // Fetch new prices and update signals
+    fetchCryptoPrices();
     setTimeout(() => setIsRefreshing(false), 1000);
   };
 
@@ -182,6 +288,52 @@ const ActiveSignals = ({ signals, signalsData, onExecuteSignal }) => {
     if (score > 0.1) return 'Bullish';
     if (score < -0.1) return 'Bearish';
     return 'Neutral';
+  };
+
+  // Add a function to handle executing a signal as a trade
+  const handleExecuteSignal = (signal) => {
+    // Set this signal to executed
+    const updatedSignals = filteredSignals.map(s => {
+      if (s.id === signal.id) {
+        return {
+          ...s,
+          status: 'executed',
+          executedAt: new Date().toLocaleString()
+        };
+      }
+      return s;
+    });
+    
+    setFilteredSignals(updatedSignals);
+    
+    // Call the parent component's handler
+    if (onExecuteSignal && typeof onExecuteSignal === 'function') {
+      onExecuteSignal(signal);
+    }
+  };
+
+  // Add a modal state for trade confirmation
+  const [showTradeModal, setShowTradeModal] = useState(false);
+  const [selectedSignal, setSelectedSignal] = useState(null);
+  
+  // Function to open the trade confirmation modal
+  const openTradeModal = (signal) => {
+    setSelectedSignal(signal);
+    setShowTradeModal(true);
+  };
+  
+  // Function to close the trade confirmation modal
+  const closeTradeModal = () => {
+    setShowTradeModal(false);
+    setSelectedSignal(null);
+  };
+  
+  // Function to confirm and execute the trade
+  const confirmTrade = () => {
+    if (selectedSignal) {
+      handleExecuteSignal(selectedSignal);
+      closeTradeModal();
+    }
   };
 
   return (
@@ -372,7 +524,7 @@ const ActiveSignals = ({ signals, signalsData, onExecuteSignal }) => {
                     {(signal.status === 'active' || signal.status === 'ready') && onExecuteSignal && (
                       <motion.button
                         className="execute-btn"
-                        onClick={() => onExecuteSignal(signal)}
+                        onClick={() => openTradeModal(signal)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -399,6 +551,29 @@ const ActiveSignals = ({ signals, signalsData, onExecuteSignal }) => {
           )}
         </AnimatePresence>
       </div>
+
+      {showTradeModal && (
+        <div className="trade-confirmation-modal">
+          <div className="modal-content">
+            <h2>Confirm Trade</h2>
+            <p>Are you sure you want to execute this trade?</p>
+            <div className="signal-details">
+              <div className="signal-info">
+                <span className="asset-name">{selectedSignal.asset}</span>
+                <span className="signal-timeframe">{selectedSignal.timeframe}</span>
+              </div>
+              <div className="signal-info">
+                <span className="current-price">${selectedSignal.price?.toLocaleString()}</span>
+                <span className="target-price">→ ${selectedSignal.targetPrice?.toLocaleString()}</span>
+              </div>
+            </div>
+            <div className="modal-actions">
+              <button className="cancel-btn" onClick={closeTradeModal}>Cancel</button>
+              <button className="confirm-btn" onClick={confirmTrade}>Confirm</button>
+            </div>
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 };

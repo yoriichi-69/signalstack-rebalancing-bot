@@ -1,0 +1,96 @@
+{
+  "trading_user_01": {
+    "account_id": "7f34700c-d409-4bef-bfdb-822ed2ac0033",
+    "user_id": "trading_user_01",
+    "balance": 100000,
+    "portfolio": {},
+    "bots": [],
+    "trade_history": [],
+    "performance_history": [
+      {
+        "timestamp": 1749454926.8009717,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000
+      },
+      {
+        "timestamp": 1749458578.1223867,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000
+      },
+      {
+        "timestamp": 1749462237.3296845,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000
+      }
+    ],
+    "created_at": 1749454926.8009717
+  },
+  "default_user": {
+    "account_id": "616931f3-f7bb-446d-a04b-b95643fd876b",
+    "user_id": "default_user",
+    "balance": 0,
+    "portfolio": {},
+    "bots": [
+      {
+        "bot_id": "bot_momentum_321a53",
+        "strategy": "momentum",
+        "risk_profile": 100,
+        "allocated_fund": 100000,
+        "initial_value": 100000,
+        "portfolio_value": 19190.026336839102,
+        "assets": {
+          "BTC": 0.4,
+          "ETH": 0.4,
+          "DOT": 0.2
+        },
+        "status": "active",
+        "created_at": 1749455559.930749,
+        "performance_history": [
+          {
+            "timestamp": 1749455559.930749,
+            "value": 100000,
+            "pnl": 0,
+            "pnl_percent": 0
+          },
+          {
+            "timestamp": 1749459182.162352,
+            "value": 18968.148183166817,
+            "pnl": -81031.85181683318,
+            "pnl_percent": -81.03185181683318
+          },
+          {
+            "timestamp": 1749462785.9452658,
+            "value": 43603.977999999996,
+            "pnl": -56396.022000000004,
+            "pnl_percent": -56.396022
+          }
+        ]
+      }
+    ],
+    "trade_history": [],
+    "performance_history": [
+      {
+        "timestamp": 1749455385.7269156,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000
+      },
+      {
+        "timestamp": 1749459001.3195274,
+        "balance": 0,
+        "portfolio_value": 18943.395654185606,
+        "total_value": 18943.395654185606
+      },
+      {
+        "timestamp": 1749462659.2154813,
+        "balance": 0,
+        "portfolio_value": 43566.966,
+        "total_value": 43566.966
+      }
+    ],
+    "created_at": 1749455385.7269156
+  }
+}

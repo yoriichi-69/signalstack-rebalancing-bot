@@ -1,49 +1,47 @@
 import RealtimeDataService from './RealtimeDataService';
+import RebalanceService from './RebalanceService';
 
 class AdvancedPortfolioEngine {
   constructor() {
     this.strategies = {
-      'modern_portfolio_theory': {
+      modern_portfolio_theory: {
         name: 'Modern Portfolio Theory',
-        description: 'Optimizes risk-adjusted returns using MPT',
-        riskTolerance: 0.5,
-        maxSingleAssetWeight: 0.4,
-        minSingleAssetWeight: 0.05
+        description: 'Optimize for maximum Sharpe ratio'
       },
-      'risk_parity': {
+      risk_parity: {
         name: 'Risk Parity',
-        description: 'Equal risk contribution from each asset',
-        riskTolerance: 0.3,
-        maxSingleAssetWeight: 0.35,
-        minSingleAssetWeight: 0.08
+        description: 'Allocate based on equal risk contribution'
       },
-      'momentum_based': {
-        name: 'Momentum Strategy',
-        description: 'Weights based on price momentum and technical indicators',
-        riskTolerance: 0.7,
-        maxSingleAssetWeight: 0.5,
-        minSingleAssetWeight: 0.03
+      tactical_allocation: {
+        name: 'Tactical Allocation',
+        description: 'Dynamic allocation based on market signals'
       },
-      'mean_reversion': {
-        name: 'Mean Reversion',
-        description: 'Contrarian approach buying oversold assets',
-        riskTolerance: 0.4,
-        maxSingleAssetWeight: 0.3,
-        minSingleAssetWeight: 0.1
+      minimum_volatility: {
+        name: 'Minimum Volatility',
+        description: 'Minimize portfolio variance'
       },
-      'ai_adaptive': {
-        name: 'AI Adaptive',
-        description: 'Machine learning based dynamic allocation',
-        riskTolerance: 0.6,
-        maxSingleAssetWeight: 0.45,
-        minSingleAssetWeight: 0.05
+      maximum_diversification: {
+        name: 'Maximum Diversification',
+        description: 'Maximize diversification across assets'
       }
     };
     
-    this.rebalanceThresholds = {
-      conservative: 0.05,
-      moderate: 0.10,
-      aggressive: 0.15
+    this.riskProfiles = {
+      conservative: {
+        volatilityTarget: 0.05,
+        maxDrawdown: 0.10,
+        rebalanceThreshold: 0.03
+      },
+      moderate: {
+        volatilityTarget: 0.10,
+        maxDrawdown: 0.20,
+        rebalanceThreshold: 0.05
+      },
+      aggressive: {
+        volatilityTarget: 0.20,
+        maxDrawdown: 0.35,
+        rebalanceThreshold: 0.07
+      }
     };
     
     this.marketRegimes = {
@@ -73,45 +71,224 @@ class AdvancedPortfolioEngine {
     });
   }
 
-  // Main portfolio analysis method - integrates with your RealtimeDataService
-  async analyzePortfolio(portfolio, strategy = 'modern_portfolio_theory') {
-    console.log(`Analyzing portfolio with ${strategy} strategy...`);
+  /**
+   * Analyze portfolio and provide optimization recommendations
+   * @param {Array} portfolio - Current portfolio
+   * @param {String} strategy - Strategy to apply
+   * @returns {Promise<Object>} Analysis results
+   */
+  async analyzePortfolio(portfolio, strategy = 'tactical_allocation') {
+    try {
+      // Convert portfolio to weights format
+      const currentWeights = this._portfolioToWeights(portfolio);
+      
+      // Get market data and signals
+      const recommendation = await RebalanceService.getRecommendation();
+      
+      // Calculate drift from recommendation
+      const drift = RebalanceService.calculateDrift(
+        currentWeights, 
+        recommendation?.target_weights || {}
+      );
+      
+      // Calculate risk metrics
+      const riskMetrics = this._calculateRiskMetrics(portfolio, recommendation);
+      
+      // Determine rebalance signal
+      const rebalanceSignal = this._generateRebalanceSignal(
+        drift, 
+        riskMetrics,
+        recommendation?.recommendation || 'HOLD',
+        recommendation?.urgency || 'LOW'
+      );
+      
+      // Generate optimized allocation
+      const optimizedAllocation = this._calculateOptimizedAllocation(
+        portfolio, 
+        recommendation?.target_weights || {},
+        strategy
+      );
+      
+      return {
+        currentAllocation: portfolio.map(asset => ({
+          symbol: asset.symbol,
+          currentWeight: asset.value / this._getPortfolioValue(portfolio),
+          targetWeight: (recommendation?.target_weights || {})[asset.symbol] / 100 || 0,
+          currentValue: asset.value
+        })),
+        optimizedAllocation,
+        riskMetrics,
+        rebalanceSignal,
+        driftAnalysis: drift,
+        strategy: {
+          key: strategy,
+          name: this.strategies[strategy]?.name || 'Unknown',
+          description: this.strategies[strategy]?.description || ''
+        }
+      };
+    } catch (error) {
+      console.error('Portfolio analysis failed:', error);
+      throw new Error('Failed to analyze portfolio');
+    }
+  }
+  
+  /**
+   * Generate rebalance signal based on drift and risk metrics
+   * @param {Object} drift - Portfolio drift analysis
+   * @param {Object} riskMetrics - Risk metrics
+   * @param {String} recommendedAction - Recommended action
+   * @param {String} urgency - Urgency level
+   * @returns {Object} Rebalance signal
+   */
+  _generateRebalanceSignal(drift, riskMetrics, recommendedAction, urgency) {
+    const action = drift.needsRebalance ? 'REBALANCE' : 'HOLD';
     
-    // Use your advanced market sentiment analysis
-    const marketSentiment = RealtimeDataService.generateMarketSentiment();
+    // Estimate potential improvement from rebalancing
+    let expectedImprovement = 0;
     
-    // Get portfolio performance simulation from your service
-    const portfolioPerformance = RealtimeDataService.simulatePortfolioPerformance(portfolio);
+    if (drift.needsRebalance) {
+      // Higher drift = higher potential improvement
+      const driftFactor = Math.min(1, drift.maxDrift / 20);
+      
+      // Higher volatility = higher potential for improvement
+      const volatilityFactor = Math.min(1, riskMetrics.portfolioVaR / 0.2);
+      
+      // Higher ratio difference = higher improvement potential
+      const ratioDiff = Math.abs(
+        riskMetrics.sharpeRatio - riskMetrics.optimalSharpeRatio
+      ) / 2;
+      
+      expectedImprovement = 0.01 + (driftFactor * 0.04) + 
+                          (volatilityFactor * 0.03) + 
+                          (ratioDiff * 0.02);
+    }
     
-    const analysis = {
-      timestamp: new Date(),
-      strategy: strategy,
-      marketSentiment: marketSentiment,
-      portfolioPerformance: portfolioPerformance,
-      currentAllocation: await this.calculateDetailedAllocation(portfolio),
-      riskMetrics: await this.calculateAdvancedRiskMetrics(portfolio),
-      correlationMatrix: await this.buildCorrelationMatrix(portfolio),
-      volatilityAnalysis: await this.analyzeVolatilityPatterns(portfolio),
-      liquidityAnalysis: await this.analyzeLiquidity(portfolio),
-      concentrationRisk: this.calculateConcentrationRisk(portfolio),
-      optimizedAllocation: null,
-      rebalanceSignal: null,
-      recommendations: []
+    return {
+      action: recommendedAction || action,
+      urgency: urgency || drift.driftStatus,
+      driftPercentage: drift.maxDrift,
+      expectedImprovement: Math.min(0.1, expectedImprovement), // Cap at 10%
+      timestamp: new Date().toISOString()
     };
-
-    // Generate optimized allocation using market data
-    analysis.optimizedAllocation = await this.generateOptimizedAllocation(portfolio, strategy, analysis);
+  }
+  
+  /**
+   * Calculate optimized allocation based on strategy
+   * @param {Array} portfolio - Current portfolio
+   * @param {Object} targetWeights - Target weights
+   * @param {String} strategy - Strategy to apply
+   * @returns {Array} Optimized allocation
+   */
+  _calculateOptimizedAllocation(portfolio, targetWeights, strategy) {
+    const totalValue = this._getPortfolioValue(portfolio);
     
-    // Generate rebalance signal
-    analysis.rebalanceSignal = this.generateRebalanceSignal(analysis);
+    // Convert target weights to decimal if they are percentages
+    const normalizedTargets = {};
+    for (const [asset, weight] of Object.entries(targetWeights)) {
+      normalizedTargets[asset] = weight > 1 ? weight / 100 : weight;
+    }
     
-    // Generate AI recommendations
-    analysis.recommendations = this.generateAdvancedRecommendations(analysis);
+    return portfolio.map(asset => {
+      const currentWeight = asset.value / totalValue;
+      const targetWeight = normalizedTargets[asset.symbol] || 0;
+      const rebalanceAmount = targetWeight - currentWeight;
+      
+      return {
+        symbol: asset.symbol,
+        currentWeight,
+        targetWeight,
+        currentValue: asset.value,
+        targetValue: targetWeight * totalValue,
+        rebalanceAmount,
+        rebalanceValue: rebalanceAmount * totalValue,
+        action: rebalanceAmount > 0.001 ? 'BUY' : 
+                rebalanceAmount < -0.001 ? 'SELL' : 'HOLD',
+        currentPrice: asset.amount ? (asset.value / asset.amount) : 0,
+        confidence: this._calculateAllocationConfidence(asset.symbol, strategy, rebalanceAmount)
+      };
+    }).sort((a, b) => Math.abs(b.rebalanceValue) - Math.abs(a.rebalanceValue));
+  }
+  
+  /**
+   * Calculate confidence score for allocation recommendation
+   * @param {String} symbol - Asset symbol
+   * @param {String} strategy - Strategy
+   * @param {Number} rebalanceAmount - Rebalance amount (positive = buy, negative = sell)
+   * @returns {Number} Confidence score (0-1)
+   */
+  _calculateAllocationConfidence(symbol, strategy, rebalanceAmount) {
+    // Base confidence
+    let confidence = 0.7;
     
-    // Cache the analysis
-    this.cacheAnalysis(portfolio, analysis);
+    // Higher confidence for larger changes
+    const changeBonus = Math.min(0.2, Math.abs(rebalanceAmount) * 2);
     
-    return analysis;
+    // Coin-specific adjustments
+    if (symbol === 'BTC' || symbol === 'ETH') {
+      confidence += 0.05; // Higher confidence for major coins
+    } else if (symbol === 'USDC') {
+      confidence += 0.1; // Highest confidence for stablecoins
+    } else {
+      confidence -= 0.05; // Lower for altcoins
+    }
+    
+    // Strategy adjustments
+    if (strategy === 'risk_parity' && symbol === 'USDC') {
+      confidence += 0.05; // Risk parity works well with stable assets
+    } else if (strategy === 'minimum_volatility' && (symbol === 'BTC' || symbol === 'ETH')) {
+      confidence -= 0.05; // Less confident in vol minimization for volatile assets
+    }
+    
+    return Math.min(0.95, Math.max(0.5, confidence + changeBonus));
+  }
+  
+  /**
+   * Calculate risk metrics for the portfolio
+   * @param {Array} portfolio - Current portfolio
+   * @param {Object} recommendation - Rebalance recommendation
+   * @returns {Object} Risk metrics
+   */
+  _calculateRiskMetrics(portfolio, recommendation) {
+    const metricRange = Math.random() * 0.2 + 0.8; // Random value between 0.8 and 1.0
+    
+    // Default risk metrics - would be calculated from actual data
+    return {
+      portfolioVaR: 0.15 * metricRange, // 15% Value-at-Risk
+      expectedReturn: 0.12 * metricRange, // 12% Expected annual return
+      sharpeRatio: 0.8 * metricRange,
+      sortinoRatio: 1.2 * metricRange,
+      calmarRatio: 0.4 * metricRange,
+      informationRatio: 0.6 * metricRange,
+      maximumDrawdown: 0.25 * metricRange,
+      volatility: 0.18 * metricRange,
+      optimalSharpeRatio: 1.0 * metricRange,
+      diversificationRatio: 0.7 * metricRange
+    };
+  }
+  
+  /**
+   * Convert portfolio to weights format
+   * @param {Array} portfolio - Portfolio array
+   * @returns {Object} Weights as decimals
+   */
+  _portfolioToWeights(portfolio) {
+    const totalValue = this._getPortfolioValue(portfolio);
+    const weights = {};
+    
+    for (const asset of portfolio) {
+      weights[asset.symbol] = asset.value / totalValue;
+    }
+    
+    return weights;
+  }
+  
+  /**
+   * Calculate total portfolio value
+   * @param {Array} portfolio - Portfolio array
+   * @returns {Number} Total value
+   */
+  _getPortfolioValue(portfolio) {
+    return portfolio.reduce((sum, asset) => sum + (asset.value || 0), 0);
   }
 
   async calculateDetailedAllocation(portfolio) {
@@ -372,75 +549,6 @@ class AdvancedPortfolioEngine {
     if (fearGreed > 70 && volatility < 0.3) return 'bull';
     if (fearGreed < 30 && volatility > 0.4) return 'bear';
     return 'sideways';
-  }
-
-  generateRebalanceSignal(analysis) {
-    const signal = {
-      action: 'HOLD',
-      urgency: 'LOW',
-      confidence: 0,
-      expectedImprovement: 0,
-      estimatedCost: 0,
-      factors: [],
-      riskAdjustedScore: 0
-    };
-    
-    // Calculate maximum drift from optimal allocation
-    const drifts = analysis.optimizedAllocation.map(asset => Math.abs(asset.rebalanceAmount));
-    const maxDrift = Math.max(...drifts);
-    const avgDrift = drifts.reduce((sum, d) => sum + d, 0) / drifts.length;
-    
-    // Market-based urgency
-    const sentiment = analysis.marketSentiment;
-    const isVolatileMarket = sentiment.volatility > 0.35;
-    const isExtremeSentiment = ['extremely-bullish', 'extremely-bearish'].includes(sentiment.sentiment);
-    
-    // Generate signals based on drift and market conditions
-    if (maxDrift > 0.15 || (maxDrift > 0.08 && isExtremeSentiment)) {
-      signal.action = 'REBALANCE';
-      signal.urgency = 'HIGH';
-      signal.confidence = 0.9;
-      signal.factors.push(`Large allocation drift: ${(maxDrift * 100).toFixed(1)}%`);
-      signal.expectedImprovement = this.estimateImprovementPotential(analysis);
-    } else if (maxDrift > 0.08 || (maxDrift > 0.05 && isVolatileMarket)) {
-      signal.action = 'REBALANCE';
-      signal.urgency = 'MEDIUM';
-      signal.confidence = 0.7;
-      signal.factors.push(`Moderate allocation drift: ${(maxDrift * 100).toFixed(1)}%`);
-      signal.expectedImprovement = this.estimateImprovementPotential(analysis) * 0.6;
-    } else if (maxDrift > 0.03) {
-      signal.action = 'REVIEW';
-      signal.urgency = 'LOW';
-      signal.confidence = 0.5;
-      signal.factors.push(`Minor allocation drift: ${(maxDrift * 100).toFixed(1)}%`);
-    }
-    
-    // Risk-based signals
-    const portfolioRisk = this.calculatePortfolioRisk(analysis.currentAllocation);
-    if (portfolioRisk > 0.4) {
-      signal.action = 'REDUCE_RISK';
-      signal.urgency = 'HIGH';
-      signal.factors.push('High portfolio risk detected');
-    }
-    
-    // Opportunity signals
-    if (sentiment.fearGreedIndex < 25 && signal.action !== 'REDUCE_RISK') {
-      signal.factors.push('Extreme fear presents buying opportunity');
-      if (signal.urgency === 'LOW') signal.urgency = 'MEDIUM';
-    }
-    
-    if (sentiment.fearGreedIndex > 75) {
-      signal.factors.push('Extreme greed suggests profit-taking');
-      if (signal.urgency === 'LOW') signal.urgency = 'MEDIUM';
-    }
-    
-    // Calculate estimated costs
-    signal.estimatedCost = this.estimateRebalancingCosts(analysis.optimizedAllocation);
-    
-    // Risk-adjusted score
-    signal.riskAdjustedScore = signal.expectedImprovement / (1 + signal.estimatedCost + portfolioRisk);
-    
-    return signal;
   }
 
   generateAdvancedRecommendations(analysis) {

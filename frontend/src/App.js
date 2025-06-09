@@ -32,6 +32,11 @@ import { useTheme } from './contexts/ThemeContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import usePWA from './hooks/usePWA';
 
+import PortfolioOverview from './components/portfolio/PortfolioOverview';
+import ActiveSignals from './components/dashboard/ActiveSignals';
+import VirtualTradingTerminal from './components/virtual_trading/VirtualTradingTerminal';
+import MarketOverview from './components/dashboard/MarketOverview';
+
 // PWA Components
 const PWAInstallPrompt = ({ onInstall, onDismiss, isVisible }) => (
   <AnimatePresence>
@@ -100,6 +105,11 @@ const PWAUpdatePrompt = ({ onUpdate, onDismiss, isVisible }) => (
   </AnimatePresence>
 );
 
+// import PortfolioOverview from './components/portfolio/PortfolioOverview';
+// import ActiveSignals from './components/signals/ActiveSignals';
+// import VirtualTradingTerminal from './components/virtual_trading/VirtualTradingTerminal';
+// import MarketOverview from './components/market/MarketOverview';
+
 function App() {
   // V1 Authentication state (Keep existing)
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -120,7 +130,7 @@ function App() {
   const [activeStrategy, setActiveStrategy] = useState('signalBased');
 
   // V2 UI state (New for professional UI)
-  const [currentRoute, setCurrentRoute] = useState('/dashboard');
+  const [currentRoute, setCurrentRoute] = useState(window.location.pathname);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isAppLoading, setIsAppLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -433,9 +443,16 @@ function App() {
 
   // V2: New navigation functions
   const handleNavigate = (route) => {
+    console.log('Navigating to:', route);
     setCurrentRoute(route);
-    setIsMobileNavOpen(false);
-    PerformanceMonitor.trackPageView(route);
+    
+    // Update URL without page reload
+    window.history.pushState({}, '', route);
+    
+    // Close mobile nav if open
+    if (isMobileNavOpen) {
+      setIsMobileNavOpen(false);
+    }
   };
 
   const toggleMobileNav = () => {
@@ -479,6 +496,158 @@ function App() {
       'USDC': '#2775ca'
     };
     return colors[token] || '#8b5cf6';
+  };
+
+  // Add function to handle executing trades from signals
+  const handleExecuteSignal = (signal) => {
+    console.log('Executing signal:', signal);
+    
+    if (!virtualAccount) {
+      toast.error('Virtual account not initialized');
+      return;
+    }
+    
+    try {
+      // Determine what to do based on signal type
+      if (signal.type === 'BUY') {
+        // Calculate how much USD to use (10% of portfolio or fixed amount)
+        const usdBalance = virtualAccount.getBalances().USD || 0;
+        const amountToSpend = Math.min(usdBalance * 0.1, 1000); // 10% of USD or $1000, whichever is less
+        
+        if (amountToSpend <= 0) {
+          toast.error(`Insufficient USD balance to execute BUY signal for ${signal.asset}`);
+          return;
+        }
+        
+        // Execute the trade
+        const price = signal.price || prices[signal.asset] || 0;
+        if (price <= 0) {
+          toast.error(`Invalid price for ${signal.asset}`);
+          return;
+        }
+        
+        const tokenAmount = amountToSpend / price;
+        const result = virtualAccount.executeTrade('USD', signal.asset, amountToSpend, tokenAmount);
+        
+        if (result.success) {
+          // Record transaction
+          const newTx = {
+            type: 'BUY',
+            fromToken: 'USD',
+            toToken: signal.asset,
+            amountFrom: amountToSpend,
+            amountTo: tokenAmount,
+            price: price,
+            timestamp: new Date().getTime(),
+            signalId: signal.id
+          };
+          
+          setTxHistory(prev => [newTx, ...prev]);
+          
+          // Update portfolio value
+          updatePortfolioValue();
+          
+          toast.success(`Successfully bought ${tokenAmount.toFixed(6)} ${signal.asset} for $${amountToSpend.toFixed(2)}`);
+        } else {
+          toast.error(result.error || `Failed to execute BUY signal for ${signal.asset}`);
+        }
+      } 
+      else if (signal.type === 'SELL') {
+        // Get token balance
+        const tokenBalance = virtualAccount.getBalances()[signal.asset] || 0;
+        
+        if (tokenBalance <= 0) {
+          toast.error(`No ${signal.asset} balance to sell`);
+          return;
+        }
+        
+        // Sell 50% of the balance
+        const amountToSell = tokenBalance * 0.5;
+        const price = signal.price || prices[signal.asset] || 0;
+        
+        if (price <= 0) {
+          toast.error(`Invalid price for ${signal.asset}`);
+          return;
+        }
+        
+        const usdAmount = amountToSell * price;
+        const result = virtualAccount.executeTrade(signal.asset, 'USD', amountToSell, usdAmount);
+        
+        if (result.success) {
+          // Record transaction
+          const newTx = {
+            type: 'SELL',
+            fromToken: signal.asset,
+            toToken: 'USD',
+            amountFrom: amountToSell,
+            amountTo: usdAmount,
+            price: price,
+            timestamp: new Date().getTime(),
+            signalId: signal.id
+          };
+          
+          setTxHistory(prev => [newTx, ...prev]);
+          
+          // Update portfolio value
+          updatePortfolioValue();
+          
+          toast.success(`Successfully sold ${amountToSell.toFixed(6)} ${signal.asset} for $${usdAmount.toFixed(2)}`);
+        } else {
+          toast.error(result.error || `Failed to execute SELL signal for ${signal.asset}`);
+        }
+      }
+      else if (signal.type === 'REBALANCE') {
+        // Trigger portfolio rebalance
+        executeVirtualRebalance();
+        toast.success('Portfolio rebalancing initiated based on signal');
+      }
+    } catch (error) {
+      console.error('Error executing signal:', error);
+      toast.error(`Failed to execute signal: ${error.message}`);
+    }
+  };
+  
+  // Update portfolio value when prices change
+  const updatePortfolioValue = () => {
+    if (!virtualAccount) return;
+    
+    const balances = virtualAccount.getBalances();
+    let totalValue = balances.USD || 0;
+    
+    // Add value of all tokens
+    Object.keys(balances).forEach(token => {
+      if (token !== 'USD' && prices[token]) {
+        totalValue += balances[token] * prices[token];
+      }
+    });
+    
+    setPortfolioValue(totalValue);
+    
+    // Update portfolio history
+    const timestamp = new Date().getTime();
+    setPortfolioHistory(prev => [...prev, { timestamp, value: totalValue }]);
+    
+    // Keep only the last 100 data points
+    if (portfolioHistory.length > 100) {
+      setPortfolioHistory(prev => prev.slice(prev.length - 100));
+    }
+  };
+
+  const renderContent = () => {
+    switch (currentRoute) {
+      case '/dashboard':
+        return <Dashboard />;
+      case '/portfolio':
+        return <PortfolioOverview virtualAccount={virtualAccount} />;
+      case '/signals':
+        return <ActiveSignals />;
+      case '/bots':
+        return <VirtualTradingTerminal virtualAccount={virtualAccount} setVirtualAccount={setVirtualAccount} />;
+      case '/market':
+        return <MarketOverview />;
+      default:
+        return <Dashboard />;
+    }
   };
 
   // V3: Enhanced loading screen
@@ -573,6 +742,8 @@ function App() {
         onToggleMobileNav={toggleMobileNav}
         theme={theme}
         onToggleTheme={toggleTheme}
+        currentRoute={currentRoute}
+        onNavigate={handleNavigate}
       />
 
       {/* V2: Mobile Navigation */}
@@ -586,266 +757,7 @@ function App() {
       {/* V2: Main Content with Route Management */}
       <main className="app-content">
         <AnimatePresence mode="wait">
-          {currentRoute === '/dashboard' && (
-            <motion.div
-              key="dashboard"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Dashboard 
-                activeAccount={activeAccount}
-                portfolioData={createPortfolioData()}
-                signalsData={signals}
-                marketData={newsData}
-                securityAlerts={securityAlerts}
-                performanceMetrics={performanceMetrics}
-              />
-            </motion.div>
-          )}
-
-          {currentRoute === '/portfolio' && (
-            <motion.div
-              key="portfolio"
-              className="legacy-view"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="dashboard-grid legacy-grid">
-                <section className="dashboard-card portfolio-section">
-                  <h2>Virtual Portfolio</h2>
-                  <div className="portfolio-list">
-                    {virtualAccount && Object.entries(virtualAccount.getBalances()).map(([token, balance]) => (
-                      <div key={token} className="portfolio-item">
-                        <span className="token-name">{token}</span>
-                        <span className="token-balance">{balance.toFixed(token === 'USDC' ? 2 : 6)}</span>
-                        <span className="token-value">
-                          ${(balance * (prices[token] || 0)).toFixed(2)}
-                        </span>
-                        <span className="token-price">
-                          ${(prices[token] || 0).toFixed(token === 'USDC' ? 2 : 2)}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-
-                <section className="dashboard-card target-section">
-                  <h2>Recommended Portfolio</h2>
-                  <div className="targets-list">
-                    {Object.entries(targetWeights).map(([token, weight]) => (
-                      <div key={token} className="target-item">
-                        <span className="token-name">{token}</span>
-                        <span className="token-weight">{weight}%</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <button 
-                    onClick={executeVirtualRebalance} 
-                    className="rebalance-button"
-                    disabled={isRebalancing}
-                  >
-                    {isRebalancing ? (
-                      <>Rebalancing... <LoadingSpinner size={20} /></>
-                    ) : (
-                      'Virtual Rebalance'
-                    )}
-                  </button>
-                  
-                  <button 
-                    onClick={resetVirtualAccount}
-                    style={{ marginTop: '10px', backgroundColor: '#e74c3c' }}
-                  >
-                    Reset Demo Account
-                  </button>
-                </section>
-              </div>
-            </motion.div>
-          )}
-
-          {currentRoute === '/signals' && (
-            <motion.div
-              key="signals"
-              className="legacy-view"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="dashboard-grid legacy-grid">
-                <section className="dashboard-card signals-section">
-                  <h2>
-                    Signal Analysis
-                    <button 
-                      onClick={fetchSignalData} 
-                      style={{ float: 'right', padding: '5px 10px', fontSize: '0.9rem' }}
-                      disabled={isLoadingSignals}
-                    >
-                      {isLoadingSignals ? 'Updating...' : 'Refresh Signals'}
-                    </button>
-                  </h2>
-                  
-                  {isLoadingSignals ? (
-                    <LoadingSpinner />
-                  ) : (
-                    <div className="signals-list">
-                      {Object.entries(signals).map(([token, data]) => (
-                        <div key={token} className="signal-item">
-                          <h3>{token} - ${(prices[token] || 0).toFixed(2)}</h3>
-                          <div className="signal-details">
-                            <div className="signal-score">
-                              <span>Total Score: </span>
-                              <span className={`score-value ${data.total_score > 0 ? 'positive' : data.total_score < 0 ? 'negative' : ''}`}>
-                                {data.total_score}
-                              </span>
-                            </div>
-                            <div className="signal-indicators">
-                              <div>Mean Reversion: {data.mean_reversion}</div>
-                              <div>Momentum: {data.momentum}</div>
-                              <div>Volatility: {data.volatility}</div>
-                              <div>Breakout: {data.breakout}</div>
-                            </div>
-                            <div className="ml-confidence">
-                              <span>ML Confidence: </span>
-                              <span className={`confidence-value ${data.ml_confidence > 0.6 ? 'positive' : data.ml_confidence < 0.4 ? 'negative' : ''}`}>
-                                {(data.ml_confidence * 100).toFixed(0)}%
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </section>
-
-                <section className="dashboard-card strategy-section">
-                  <StrategyComparison 
-                    signals={signals}
-                    prices={prices}
-                    onApplyStrategy={applyStrategy}
-                  />
-                </section>
-              </div>
-            </motion.div>
-          )}
-
-          {currentRoute === '/analytics' && (
-            <motion.div
-              key="analytics"
-              className="legacy-view"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="dashboard-grid legacy-grid">
-                <section className="dashboard-card chart-section">
-                  <h2>Portfolio Performance</h2>
-                  <PortfolioValueChart portfolioHistory={portfolioHistory} />
-                  
-                  <h3 className="chart-title-secondary">Weight Distribution</h3>
-                  <TokenWeightsChart 
-                    tokens={Object.keys(targetWeights)}
-                    currentWeights={Object.keys(targetWeights).map(token => {
-                      const balance = virtualAccount?.getBalances()[token] || 0;
-                      const value = balance * (prices[token] || 0);
-                      return ((value / portfolioValue) * 100) || 0;
-                    })}
-                    targetWeights={Object.values(targetWeights)}
-                  />
-                </section>
-
-                <section className="dashboard-card history-section">
-                  <h2>Transaction History</h2>
-                  {txHistory.length === 0 ? (
-                    <p className="empty-history">No transactions yet</p>
-                  ) : (
-                    <SortableTable 
-                      columns={[
-                        { key: 'type', label: 'Type' },
-                        { key: 'fromToken', label: 'From' },
-                        { key: 'toToken', label: 'To' },
-                        { 
-                          key: 'amountFrom', 
-                          label: 'Amount From',
-                          render: (item) => item.amountFrom.toFixed(6)
-                        },
-                        { 
-                          key: 'amountTo', 
-                          label: 'Amount To',
-                          render: (item) => item.amountTo.toFixed(6)
-                        },
-                        {
-                          key: 'timestamp',
-                          label: 'Time',
-                          render: (item) => new Date(item.timestamp).toLocaleTimeString()
-                        }
-                      ]}
-                      data={txHistory}
-                      defaultSortColumn="timestamp"
-                    />
-                  )}
-                </section>
-              </div>
-            </motion.div>
-          )}
-
-          {currentRoute === '/news' && (
-            <motion.div
-              key="news"
-              className="news-view"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="dashboard-grid">
-                <section className="dashboard-card news-section">
-                  <h2>Market News</h2>
-                  <div className="news-list">
-                    {newsData.length === 0 ? (
-                      <p>Loading latest market news...</p>
-                    ) : (
-                      newsData.map((news, index) => (
-                        <div key={index} className="news-item">
-                          <h3>{news.title}</h3>
-                          <p>{news.summary}</p>
-                          <div className="news-meta">
-                            <span className="news-source">{news.source}</span>
-                            <span className="news-time">{new Date(news.timestamp).toLocaleString()}</span>
-                            {news.priority === 'high' && (
-                              <span className="news-priority">🔥 Breaking</span>
-                            )}
-                          </div>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                </section>
-              </div>
-            </motion.div>
-          )}
-
-          {!['dashboard', 'portfolio', 'signals', 'analytics', 'news'].includes(currentRoute.split('/')[1]) && (
-            <motion.div
-              key="other"
-              className="route-placeholder"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="placeholder-content">
-                <h2>Coming Soon</h2>
-                <p>This section is under development</p>
-                <p className="current-route">Current route: {currentRoute}</p>
-              </div>
-            </motion.div>
-          )}
+          {renderContent()}
         </AnimatePresence>
       </main>
 
