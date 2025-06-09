@@ -77,6 +77,65 @@ except ImportError:
                 'market_stress': 0.3
             }
 
+# Import RebalanceEngine with fallback
+try:
+    from models.rebalance_engine import RebalanceEngine
+except ImportError:
+    print("Warning: RebalanceEngine not found, using mock")
+    class RebalanceEngine:
+        def __init__(self, risk_manager=None):
+            self.risk_manager = risk_manager
+            self.strategies = {
+                'shannon': {'name': "Shannon's Demon"},
+                'threshold': {'name': 'Threshold Rebalancing'},
+                'mpt': {'name': 'Modern Portfolio Theory'},
+                'risk_parity': {'name': 'Risk Parity'},
+                'momentum': {'name': 'Momentum-Based'},
+                'tactical': {'name': 'Tactical Allocation'}
+            }
+            
+        def get_rebalance_recommendation(self, current_weights, signals, prices, risk_profile=50):
+            import random
+            import time
+            
+            return {
+                'recommendation': 'REBALANCE' if random.random() > 0.5 else 'HOLD',
+                'urgency': random.choice(['LOW', 'MEDIUM', 'HIGH']),
+                'strategy': {
+                    'key': 'tactical',
+                    'name': 'Tactical Allocation',
+                    'description': 'Dynamic allocation based on market signals'
+                },
+                'target_weights': {'BTC': 35.0, 'ETH': 30.0, 'ADA': 15.0, 'DOT': 10.0, 'USDC': 10.0},
+                'justification': ['Portfolio drift exceeds threshold', 'Market signals suggest tactical repositioning'],
+                'market_condition': 'volatile' if random.random() > 0.5 else 'stable',
+                'metrics': {
+                    'drift_reduction': 5.2,
+                    'expected_return_impact': 0.2,
+                    'optimization_score': 7.5
+                },
+                'timestamp': time.time()
+            }
+            
+        def generate_rebalance_plan(self, current_weights, target_weights, prices, cash=0):
+            return [
+                {'asset': 'BTC', 'action': 'BUY', 'amount': 0.05, 'value': 2250},
+                {'asset': 'ETH', 'action': 'SELL', 'amount': 0.75, 'value': 2250}
+            ]
+
+# Import VirtualAccountManager with fallback
+try:
+    from models.virtual_account import VirtualAccountManager
+except ImportError:
+    print("Warning: VirtualAccountManager not found, using mock")
+    class VirtualAccountManager:
+        def __init__(self): self.accounts = {}
+        def create_account(self, user_id, **kwargs): self.accounts[user_id] = {'balance': 100000, 'bots': []}; return self.accounts[user_id]
+        def get_account(self, user_id): return self.accounts.get(user_id)
+        def deploy_bot(self, user_id, **kwargs): return {'bot_id': 'mock_bot', 'status': 'active'}
+        def stop_bot(self, user_id, bot_id): return True
+        def update_bot_portfolios(self, *args): print("Updating mock bot portfolios...")
+
 # Import PriceService with fallback
 try:
     from services.price_service import PriceService
@@ -130,13 +189,30 @@ cache = {
     'weights': {},
     'last_update': None,
     'market_data': {},
-    'historical_data': {}
+    'historical_data': {},
+    'rebalance_recommendation': None,
+    'portfolio_data': {
+        'current_weights': {
+            'BTC': 0.32, 
+            'ETH': 0.28, 
+            'ADA': 0.18, 
+            'DOT': 0.12, 
+            'USDC': 0.10
+        },
+        'total_value': 125000
+    }
 }
 
 # Initialize services
 risk_manager = RiskManager()
 signal_generator = SignalGenerator(['BTC', 'ETH', 'ADA', 'DOT', 'USDC'])
 price_service = PriceService()
+rebalance_engine = RebalanceEngine(risk_manager)
+account_manager = VirtualAccountManager()
+
+# Create a default user account for demo
+DEFAULT_USER_ID = "trading_user_01"
+account_manager.create_account(DEFAULT_USER_ID)
 
 def background_refresh():
     """Background thread to refresh data periodically"""
@@ -164,6 +240,24 @@ def background_refresh():
             # Generate signals
             signals = signal_generator.generate_signals()
             weights = signal_generator.calculate_target_weights()
+            
+            # Generate rebalance recommendation
+            try:
+                rebalance_recommendation = rebalance_engine.get_rebalance_recommendation(
+                    cache['portfolio_data']['current_weights'],
+                    signals,
+                    prices,
+                    risk_profile=50  # Default to moderate risk
+                )
+            except Exception as e:
+                logger.warning(f"Rebalance recommendation failed: {e}")
+                rebalance_recommendation = None
+            
+            # Update virtual bot portfolios
+            try:
+                account_manager.update_bot_portfolios(rebalance_engine, signal_generator, prices)
+            except Exception as e:
+                logger.error(f"Failed to update bot portfolios: {e}")
             
             # Run risk assessment
             try:
@@ -200,6 +294,7 @@ def background_refresh():
                 'risk_assessment': risk_assessment,
                 'market_data': market_data,
                 'historical_data': price_service.get_historical_data() if hasattr(price_service, 'get_historical_data') else {},
+                'rebalance_recommendation': rebalance_recommendation,
                 'last_update': time.time()
             })
             
@@ -226,7 +321,8 @@ def health_check():
         'services': {
             'signals': 'active',
             'prices': 'active',
-            'risk_manager': 'active'
+            'risk_manager': 'active',
+            'rebalance_engine': 'active'
         }
     })
 
@@ -270,8 +366,21 @@ def rebalance_portfolio():
         data = request.json
         weights = data.get('weights', {})
         account_id = data.get('accountId')
+        risk_profile = data.get('riskProfile', 50)
+        strategy = data.get('strategy', 'tactical')
         
-        logger.info(f"Rebalance request for account {account_id}: {weights}")
+        logger.info(f"Rebalance request for account {account_id}: {weights} (Strategy: {strategy})")
+        
+        # Get current portfolio state
+        current_weights = cache['portfolio_data']['current_weights']
+        prices = cache['prices']
+        
+        # Generate rebalance plan
+        rebalance_plan = rebalance_engine.generate_rebalance_plan(
+            current_weights, 
+            weights or cache['rebalance_recommendation']['target_weights'],
+            prices
+        )
         
         # Simulate rebalancing delay
         time.sleep(1)
@@ -281,12 +390,19 @@ def rebalance_portfolio():
         tx_data = f"{account_id}_{weights}_{time.time()}"
         tx_hash = "0x" + hashlib.md5(tx_data.encode()).hexdigest()[:16]
         
+        # Update portfolio weights (simulation)
+        if weights:
+            # Convert percentage weights to decimals
+            new_weights = {k: v/100 for k, v in weights.items()}
+            cache['portfolio_data']['current_weights'] = new_weights
+        
         return jsonify({
             'success': True,
             'message': 'Portfolio rebalance completed successfully',
             'transaction_hash': tx_hash,
             'gas_used': '0.005 ETH',
-            'execution_time': '1.2s'
+            'execution_time': '1.2s',
+            'rebalance_plan': rebalance_plan
         })
         
     except Exception as e:
@@ -295,6 +411,32 @@ def rebalance_portfolio():
             'success': False,
             'message': f'Rebalance failed: {str(e)}'
         }), 500
+
+@app.route('/api/portfolio/recommendation', methods=['GET'])
+def get_rebalance_recommendation():
+    """Get portfolio rebalance recommendation"""
+    try:
+        risk_profile = request.args.get('risk_profile', 50, type=int)
+        
+        if not cache.get('rebalance_recommendation') or risk_profile != 50:
+            # Generate new recommendation if risk profile changed
+            recommendation = rebalance_engine.get_rebalance_recommendation(
+                cache['portfolio_data']['current_weights'],
+                cache['signals'],
+                cache['prices'],
+                risk_profile=risk_profile
+            )
+        else:
+            recommendation = cache['rebalance_recommendation']
+            
+        return jsonify({
+            'recommendation': recommendation,
+            'last_update': cache['last_update']
+        })
+        
+    except Exception as e:
+        logger.error(f"Rebalance recommendation error: {e}")
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/portfolio/history', methods=['GET'])
 def get_portfolio_history():
@@ -323,6 +465,80 @@ def get_portfolio_history():
         
     except Exception as e:
         logger.error(f"Portfolio history error: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/portfolio/data', methods=['GET'])
+def get_portfolio_data():
+    """Get current portfolio data"""
+    try:
+        return jsonify({
+            'portfolio': cache['portfolio_data'],
+            'last_update': cache['last_update']
+        })
+    except Exception as e:
+        logger.error(f"Portfolio data error: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/account', methods=['GET'])
+def get_virtual_account():
+    """Get the user's virtual account details."""
+    user_id = request.args.get('user_id', 'default_user')
+    account = account_manager.get_account(user_id)
+    
+    if not account:
+        account = account_manager.create_account(user_id)
+    
+    # Return serializable version of account
+    # Ensure all necessary data is included for frontend display
+    return jsonify(account)
+
+@app.route('/api/bots/deploy', methods=['POST'])
+def deploy_bot():
+    """Deploy a new trading bot with the specified strategy."""
+    data = request.json
+    user_id = data.get('user_id', 'default_user')
+    strategy = data.get('strategy', 'threshold')
+    risk_profile = data.get('riskProfile', 50)
+    allocated_fund = data.get('allocatedFund', 10000)
+    
+    try:
+        account = account_manager.get_account(user_id)
+        if not account:
+            account = account_manager.create_account(user_id)
+            
+        bot = account_manager.deploy_bot(user_id, strategy, risk_profile, allocated_fund)
+        
+        # Trigger an immediate update to set initial portfolio
+        prices = price_service.get_latest_prices(['BTC', 'ETH', 'ADA', 'DOT', 'USDC'])
+        account_manager.update_bot_portfolios(rebalance_engine, signal_generator, prices)
+        
+        return jsonify({'success': True, 'bot': bot})
+    except Exception as e:
+        logger.error(f"Bot deployment error: {str(e)}")
+        return jsonify({'error': str(e)}), 400
+
+@app.route('/api/bots/<bot_id>/stop', methods=['POST'])
+def stop_bot(bot_id):
+    """Stop a trading bot."""
+    try:
+        success = account_manager.stop_bot(DEFAULT_USER_ID, bot_id)
+        if not success:
+            return jsonify({'error': 'Bot not found or could not be stopped'}), 404
+        return jsonify({'success': True, 'message': f'Bot {bot_id} stopped successfully.'})
+    except Exception as e:
+        logger.error(f"Failed to stop bot {bot_id}: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/strategies', methods=['GET'])
+def get_strategies():
+    """Get available rebalancing strategies"""
+    try:
+        return jsonify({
+            'strategies': rebalance_engine.strategies,
+            'default_strategy': 'tactical'
+        })
+    except Exception as e:
+        logger.error(f"Strategies error: {e}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/transactions', methods=['GET'])
@@ -356,6 +572,31 @@ def get_transactions():
         logger.error(f"Transactions error: {e}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/portfolio/performance', methods=['GET'])
+def get_performance_history():
+    """Get performance history for account and bots."""
+    user_id = request.args.get('user_id', 'default_user')
+    
+    try:
+        account = account_manager.get_account(user_id)
+        if not account:
+            account = account_manager.create_account(user_id)
+            
+        # Extract just the performance data
+        performance = {
+            'account': account.get('performance_history', []),
+            'bots': {}
+        }
+        
+        # Get performance for each bot
+        for bot in account.get('bots', []):
+            performance['bots'][bot['bot_id']] = bot.get('performance_history', [])
+            
+        return jsonify(performance)
+    except Exception as e:
+        logger.error(f"Error fetching performance data: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
 # Error handlers
 @app.errorhandler(404)
 def not_found(error):
@@ -369,6 +610,7 @@ if __name__ == '__main__':
     print("🚀 Starting SignalStack Backend Server...")
     print("📡 Initializing signal generators...")
     print("🔍 Loading risk models...")
+    print("💵 Initializing rebalancing engine...")
     print("💰 Starting price feeds...")
     print("✅ Server ready on http://localhost:5000")
     print("\n📋 Available endpoints:")
@@ -377,9 +619,16 @@ if __name__ == '__main__':
     print("   • GET  /api/prices        - Current prices")
     print("   • GET  /api/risk          - Risk assessment")
     print("   • GET  /api/market        - Market overview")
-    print("   • POST /api/portfolio/rebalance - Rebalance portfolio")
+    print("   • POST /api/portfolio/rebalance    - Rebalance portfolio")
+    print("   • GET  /api/portfolio/recommendation - Rebalance recommendation")
     print("   • GET  /api/portfolio/history   - Portfolio history")
+    print("   • GET  /api/portfolio/data      - Current portfolio")
+    print("   • GET  /api/strategies          - Available strategies")
     print("   • GET  /api/transactions  - Recent transactions")
+    print("   --- Virtual Account ---")
+    print("   • GET  /api/account             - Get virtual account details")
+    print("   • POST /api/bots/deploy        - Deploy a new trading bot")
+    print("   • POST /api/bots/<id>/stop     - Stop a trading bot")
     print("\n🌐 Frontend should connect to: http://localhost:5000")
     
     app.run(host='0.0.0.0', port=5000, debug=True)

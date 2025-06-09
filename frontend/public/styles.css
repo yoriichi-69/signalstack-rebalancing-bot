@@ -1,0 +1,65 @@
+/* Menu button styling */
+.menu-button {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #ffffff;
+}
+
+.menu-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.menu-button:active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Navigation button fixes */
+.nav-button {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    color: inherit;
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+.nav-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-button:active {
+    transform: translateY(0);
+}
+
+/* Dropdown styling */
+.user-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 8px;
+    min-width: 200px;
+    backdrop-filter: blur(10px);
+}
+
+.user-dropdown.show {
+    display: block;
+}

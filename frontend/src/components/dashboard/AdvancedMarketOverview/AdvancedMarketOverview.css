@@ -1,0 +1,370 @@
+.advanced-market-overview {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.9) 100%);
+  border-radius: 24px;
+  padding: 0;
+  margin: 20px 0;
+  border: 1px solid rgba(64, 224, 208, 0.2);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(64, 224, 208, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.advanced-market-overview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(64, 224, 208, 0.5), transparent);
+}
+
+.market-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, rgba(64, 224, 208, 0.1), rgba(0, 188, 212, 0.05));
+  border-bottom: 1px solid rgba(64, 224, 208, 0.2);
+}
+
+.header-left h2 {
+  margin: 0 0 12px 0;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #40e0d0, #00bcd4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.market-stats-quick {
+  display: flex;
+  gap: 24px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #a0a0a0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 16px;
+  color: #40e0d0;
+  font-weight: 700;
+}
+
+.view-toggles {
+  display: flex;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid rgba(64, 224, 208, 0.2);
+}
+
+.view-toggle {
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  color: #a0a0a0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.view-toggle:hover {
+  color: #40e0d0;
+  background: rgba(64, 224, 208, 0.1);
+}
+
+.view-toggle.active {
+  background: linear-gradient(135deg, #40e0d0, #00bcd4);
+  color: #000000;
+  box-shadow: 0 4px 15px rgba(64, 224, 208, 0.3);
+}
+
+.market-content {
+  padding: 24px 28px;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(64, 224, 208, 0.3);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(64, 224, 208, 0.1);
+  transform: translateY(-2px);
+}
+
+.glass-card h3 {
+  margin: 0 0 16px 0;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.fear-greed-card {
+  text-align: center;
+}
+
+.fear-greed-meter {
+  position: relative;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 30px;
+  margin: 16px 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.meter-fill {
+  height: 100%;
+  border-radius: 30px;
+  transition: all 0.5s ease;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.meter-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.fear-greed-label {
+  margin: 8px 0 0 0;
+  color: #a0a0a0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.chart-container {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.large {
+  grid-column: span 2;
+}
+
+.large .chart-container {
+  height: 240px;
+}
+
+.heatmap-container {
+  width: 100%;
+  min-height: 400px;
+}
+
+.crypto-heatmap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.heatmap-cell {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.heatmap-cell:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.cell-content {
+  text-align: center;
+  color: #ffffff;
+}
+
+.crypto-symbol {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.crypto-change {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.crypto-price {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.gainers-losers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.gainers-section h3,
+.losers-section h3 {
+  color: #ffffff;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.crypto-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.crypto-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(64, 224, 208, 0.3);
+  transform: translateX(4px);
+}
+
+.crypto-item.gainer {
+  border-left: 3px solid #2ecc71;
+}
+
+.crypto-item.loser {
+  border-left: 3px solid #e74c3c;
+}
+
+.crypto-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.crypto-info .symbol {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.crypto-info .name {
+  font-size: 12px;
+  color: #a0a0a0;
+}
+
+.crypto-price {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.crypto-change.positive {
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+.crypto-change.negative {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.advanced-market-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.9) 100%);
+  border-radius: 24px;
+}
+
+.loading-spinner {
+  font-size: 48px;
+  color: #40e0d0;
+  filter: drop-shadow(0 0 10px rgba(64, 224, 208, 0.5));
+}
+
+@media (max-width: 1200px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .large {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .market-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .market-stats-quick {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .gainers-losers-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .crypto-heatmap {
+    justify-content: flex-start;
+  }
+  
+  .view-toggles {
+    align-self: stretch;
+  }
+}

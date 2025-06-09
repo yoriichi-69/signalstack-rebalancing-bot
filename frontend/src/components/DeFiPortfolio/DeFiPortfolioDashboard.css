@@ -1,0 +1,301 @@
+.defi-portfolio-dashboard {
+  padding: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+.stat-card .MuiCardContent-root {
+  padding: 20px !important;
+}
+
+.defi-portfolio-dashboard .MuiCard-root {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.defi-portfolio-dashboard .MuiTabs-root {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px 16px 0 0;
+}
+
+.defi-portfolio-dashboard .MuiTab-root {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-weight: 600;
+  text-transform: none;
+  transition: all 0.3s ease;
+}
+
+.defi-portfolio-dashboard .MuiTab-root.Mui-selected {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.defi-portfolio-dashboard .MuiTabs-indicator {
+  background: #ffffff;
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* Opportunity Cards */
+.opportunity-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.opportunity-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15) !important;
+  transform: translateY(-2px);
+}
+
+.opportunity-card.high-profit {
+  border-left: 4px solid #4caf50;
+}
+
+.opportunity-card.medium-profit {
+  border-left: 4px solid #ff9800;
+}
+
+.opportunity-card.low-profit {
+  border-left: 4px solid #f44336;
+}
+
+/* Progress Indicators */
+.progress-indicator {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  height: 8px;
+}
+
+.progress-indicator .MuiLinearProgress-bar {
+  border-radius: 10px;
+}
+
+/* Alert Styling */
+.defi-portfolio-dashboard .MuiAlert-root {
+  border-radius: 12px !important;
+  backdrop-filter: blur(10px);
+}
+
+.defi-portfolio-dashboard .MuiAlert-standardInfo {
+  background: rgba(33, 150, 243, 0.1);
+  border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.defi-portfolio-dashboard .MuiAlert-standardWarning {
+  background: rgba(255, 152, 0, 0.1);
+  border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.defi-portfolio-dashboard .MuiAlert-standardError {
+  background: rgba(244, 67, 54, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.defi-portfolio-dashboard .MuiAlert-standardSuccess {
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+/* Button Styling */
+.defi-portfolio-dashboard .MuiButton-contained {
+  background: linear-gradient(45deg, #667eea 30%, #764ba2 90%);
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  text-transform: none;
+  padding: 8px 24px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.defi-portfolio-dashboard .MuiButton-contained:hover {
+  background: linear-gradient(45deg, #5a6fd8 30%, #6a4190 90%);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
+}
+
+.defi-portfolio-dashboard .MuiButton-outlined {
+  border: 2px solid rgba(102, 126, 234, 0.5);
+  color: #667eea;
+  border-radius: 25px;
+  font-weight: 600;
+  text-transform: none;
+  padding: 6px 22px;
+  transition: all 0.3s ease;
+}
+
+.defi-portfolio-dashboard .MuiButton-outlined:hover {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+/* Chip Styling */
+.defi-portfolio-dashboard .MuiChip-root {
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.defi-portfolio-dashboard .MuiChip-colorSuccess {
+  background: linear-gradient(45deg, #4caf50 30%, #66bb6a 90%);
+  color: white;
+}
+
+.defi-portfolio-dashboard .MuiChip-colorWarning {
+  background: linear-gradient(45deg, #ff9800 30%, #ffb74d 90%);
+  color: white;
+}
+
+.defi-portfolio-dashboard .MuiChip-colorError {
+  background: linear-gradient(45deg, #f44336 30%, #ef5350 90%);
+  color: white;
+}
+
+/* Table Styling */
+.defi-portfolio-dashboard .MuiTableContainer-root {
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.defi-portfolio-dashboard .MuiTableHead-root {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.defi-portfolio-dashboard .MuiTableHead-root .MuiTableCell-root {
+  font-weight: 700;
+  color: #667eea;
+  border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.defi-portfolio-dashboard .MuiTableRow-root:hover {
+  background: rgba(102, 126, 234, 0.05);
+}
+
+/* Loading States */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .defi-portfolio-dashboard {
+    padding: 16px;
+  }
+  
+  .stat-card .MuiCardContent-root {
+    padding: 16px !important;
+  }
+  
+  .defi-portfolio-dashboard .MuiTabs-root .MuiTab-root {
+    min-width: auto;
+    padding: 12px 8px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .defi-portfolio-dashboard {
+    padding: 12px;
+  }
+  
+  .defi-portfolio-dashboard .MuiTabs-root .MuiTab-root {
+    padding: 8px 4px;
+    font-size: 0.7rem;
+  }
+  
+  .defi-portfolio-dashboard .MuiTabs-root .MuiTab-root .MuiSvgIcon-root {
+    font-size: 1rem;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Profit Indicators */
+.profit-positive {
+  color: #4caf50 !important;
+  font-weight: 700;
+}
+
+.profit-negative {
+  color: #f44336 !important;
+  font-weight: 700;
+}
+
+.profit-neutral {
+  color: #757575 !important;
+}
+
+/* Status Indicators */
+.status-pending {
+  color: #ff9800 !important;
+}
+
+.status-completed {
+  color: #4caf50 !important;
+}
+
+.status-failed {
+  color: #f44336 !important;
+}
+
+.status-cancelled {
+  color: #757575 !important;
+}

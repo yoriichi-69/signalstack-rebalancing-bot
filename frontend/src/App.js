@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 
 // V1 Imports (Keep your existing functionality)
@@ -16,10 +15,100 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import strategies from './utils/StrategyService';
 
-// V2 Imports (New professional components - create these)
-import Header from './components/layout/Header';
+// V2 Imports (New professional components)
+import Header from './components/navigation/Header';
 import MobileNav from './components/layout/MobileNav';
 import Dashboard from './components/dashboard/Dashboard';
+import LandingPage from './components/landing/LandingPage';
+
+// Enhanced V3 Imports (New services and features - Voice removed)
+import NotificationService from './services/NotificationService';
+import NewsService from './services/NewsService';
+import SecurityService from './services/SecurityService';
+import PerformanceMonitor from './utils/PerformanceMonitor';
+import { useTheme } from './contexts/ThemeContext';
+
+// PWA Imports
+import { motion, AnimatePresence } from 'framer-motion';
+import usePWA from './hooks/usePWA';
+
+import PortfolioOverview from './components/portfolio/PortfolioOverview';
+import VirtualTradingTerminal from './components/virtual_trading/VirtualTradingTerminal';
+import MarketOverview from './components/dashboard/MarketOverview';
+import TradingSignals from './signals/TradingSignals/TradingSignals';
+
+// PWA Components
+const PWAInstallPrompt = ({ onInstall, onDismiss, isVisible }) => (
+  <AnimatePresence>
+    {isVisible && (
+      <motion.div
+        className="pwa-install-prompt"
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 100 }}
+      >
+        <div className="install-content">
+          <h3>📱 Install SignalStack</h3>
+          <p>Get the full app experience with offline access and push notifications</p>
+          <div className="install-actions">
+            <button className="btn-install" onClick={onInstall}>
+              Install App
+            </button>
+            <button className="btn-dismiss" onClick={onDismiss}>
+              Not Now
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
+const OfflineIndicator = ({ isOnline }) => (
+  <AnimatePresence>
+    {!isOnline && (
+      <motion.div
+        className="offline-indicator"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -50 }}
+      >
+        <span>📡 You're offline - Using cached data</span>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
+const PWAUpdatePrompt = ({ onUpdate, onDismiss, isVisible }) => (
+  <AnimatePresence>
+    {isVisible && (
+      <motion.div
+        className="pwa-update-prompt"
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -100 }}
+      >
+        <div className="update-content">
+          <h3>🔄 Update Available</h3>
+          <p>A new version of SignalStack is ready to install</p>
+          <div className="update-actions">
+            <button className="btn-update" onClick={onUpdate}>
+              Update Now
+            </button>
+            <button className="btn-dismiss" onClick={onDismiss}>
+              Later
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
+// import PortfolioOverview from './components/portfolio/PortfolioOverview';
+// import ActiveSignals from './components/signals/ActiveSignals';
+// import VirtualTradingTerminal from './components/virtual_trading/VirtualTradingTerminal';
+// import MarketOverview from './components/market/MarketOverview';
 
 function App() {
   // V1 Authentication state (Keep existing)
@@ -41,17 +130,109 @@ function App() {
   const [activeStrategy, setActiveStrategy] = useState('signalBased');
 
   // V2 UI state (New for professional UI)
-  const [currentRoute, setCurrentRoute] = useState('/dashboard');
+  const [currentRoute, setCurrentRoute] = useState(window.location.pathname);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isAppLoading, setIsAppLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  // V1 Initialize app (Keep existing logic, enhance with V2)
+  // V3 Enhanced state (Voice-related state removed)
+  const [newsData, setNewsData] = useState([]);
+  const [securityAlerts, setSecurityAlerts] = useState([]);
+  const [performanceMetrics, setPerformanceMetrics] = useState({});
+
+  // PWA State
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [showUpdatePrompt, setShowUpdatePrompt] = useState(false);
+
+  // Hooks
+  const { theme, toggleTheme } = useTheme();
+  const { 
+    isInstalled, 
+    isInstallable, 
+    installApp, 
+    isOnline, 
+    updateAvailable, 
+    updateApp,
+    installationStatus,
+    requestNotificationPermission
+  } = usePWA();
+
+  // PWA Handlers
+  const handlePWAInstall = useCallback(async () => {
+    const success = await installApp();
+    if (success) {
+      setShowInstallPrompt(false);
+      NotificationService.success('App installed successfully! 🎉');
+      
+      const notificationGranted = await requestNotificationPermission();
+      if (notificationGranted) {
+        NotificationService.success('Push notifications enabled! 🔔');
+      }
+    }
+  }, [installApp, requestNotificationPermission]);
+
+  const handlePWAUpdate = useCallback(async () => {
+    await updateApp();
+    setShowUpdatePrompt(false);
+  }, [updateApp]);
+
+  // V3 News update handler
+  const handleNewsUpdate = useCallback((news) => {
+    setNewsData(prevNews => [news, ...prevNews.slice(0, 19)]);
+    
+    if (news.priority === 'high') {
+      NotificationService.info(`Breaking: ${news.title}`, {
+        persistent: true,
+        actions: [
+          { label: 'Read More', action: () => setCurrentRoute('/news') },
+          { label: 'Dismiss', action: 'dismiss' }
+        ]
+      });
+    }
+  }, []);
+
+  // V3 Security event handler
+  const handleSecurityEvent = useCallback((event) => {
+    setSecurityAlerts(prev => [event, ...prev.slice(0, 9)]);
+    
+    if (event.severity === 'high' || event.severity === 'critical') {
+      NotificationService.warning(`Security Alert: ${event.message}`, {
+        persistent: true,
+        priority: 'high'
+      });
+    }
+  }, []);
+
+  // PWA useEffect hooks
+  useEffect(() => {
+    if (isInstallable && !isInstalled) {
+      setTimeout(() => setShowInstallPrompt(true), 5000);
+    }
+  }, [isInstallable, isInstalled]);
+
+  useEffect(() => {
+    if (updateAvailable) {
+      setShowUpdatePrompt(true);
+    }
+  }, [updateAvailable]);
+
+  // V1 Initialize app (Voice services removed)
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        // V2: Show loading screen
         setIsAppLoading(true);
+        
+        // V3: Initialize enhanced services (Voice removed)
+        PerformanceMonitor.startMonitoring();
+        await SecurityService.initializeSecurity();
+        NotificationService.initialize();
+        
+        // V3: Setup news stream
+        NewsService.addEventListener('news_update', handleNewsUpdate);
+        NewsService.startNewsStream();
+        
+        // V3: Setup security monitoring
+        SecurityService.addEventListener('security_event', handleSecurityEvent);
         
         // V1: Check authentication status
         const authStatus = AuthService.isAuthenticated();
@@ -108,21 +289,28 @@ function App() {
         // V1: Fetch signals
         await fetchSignalData();
         
+        // V3: Track app initialization
+        PerformanceMonitor.trackUserInteraction('app_initialized');
+        
         // V2: Hide loading after everything is ready
         setTimeout(() => setIsAppLoading(false), 1000);
         
         return () => {
           PriceService.stopRealTimeUpdates();
           unsubscribe();
+          NewsService.stopNewsStream();
+          SecurityService.removeEventListener('security_event', handleSecurityEvent);
+          PerformanceMonitor.stopMonitoring();
         };
       } catch (error) {
         console.error('Failed to initialize app:', error);
+        NotificationService.error('Failed to initialize app');
         setIsAppLoading(false);
       }
     };
 
     initializeApp();
-  }, []);
+  }, [handleNewsUpdate, handleSecurityEvent]);
   
   // V1: Keep all your existing functions
   const fetchSignalData = async () => {
@@ -134,10 +322,10 @@ function App() {
       const weights = await SignalService.fetchTargetWeights();
       setTargetWeights(weights);
       
-      toast.success("Signals updated successfully");
+      NotificationService.success("Signals updated successfully");
     } catch (error) {
       console.error("Error fetching signal data:", error);
-      toast.error("Failed to fetch signals");
+      NotificationService.error("Failed to fetch signals");
     } finally {
       setIsLoadingSignals(false);
     }
@@ -151,10 +339,16 @@ function App() {
       const result = virtualAccount.executeRebalance(targetWeights, prices);
       setTxHistory(virtualAccount.getTransactionHistory());
       setPortfolioHistory(virtualAccount.portfolioHistory || []);
-      toast.success(`Rebalancing complete! Portfolio value: $${result.newValue.toFixed(2)}`);
+      
+      PerformanceMonitor.trackUserInteraction('portfolio_rebalance', {
+        newValue: result.newValue,
+        timestamp: Date.now()
+      });
+      
+      NotificationService.success(`Rebalancing complete! Portfolio value: $${result.newValue.toFixed(2)}`);
     } catch (error) {
       console.error("Error executing rebalance:", error);
-      toast.error("Rebalancing failed: " + error.message);
+      NotificationService.error("Rebalancing failed: " + error.message);
     } finally {
       setIsRebalancing(false);
     }
@@ -167,7 +361,9 @@ function App() {
         setTxHistory(virtualAccount.getTransactionHistory());
         setPortfolioHistory([]);
         setPortfolioValue(virtualAccount.getPortfolioValue(prices));
-        toast.info("Virtual account has been reset");
+        
+        PerformanceMonitor.trackUserInteraction('account_reset');
+        NotificationService.info("Virtual account has been reset");
       }
     }
   };
@@ -175,21 +371,28 @@ function App() {
   const applyStrategy = (strategyKey, weights) => {
     setTargetWeights(weights);
     setActiveStrategy(strategyKey);
-    toast.success(`Applied ${strategies[strategyKey].getName()} strategy`);
+    
+    PerformanceMonitor.trackUserInteraction('strategy_applied', { strategy: strategyKey });
+    NotificationService.success(`Applied ${strategies[strategyKey].getName()} strategy`);
   };
   
-  // V1: Keep existing auth functions, enhance for V2
-  const handleLoginSuccess = () => {
+  // V1: Keep existing auth functions, enhance for V2 & V3
+  const handleLoginSuccess = (credentials) => {
+    localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('userEmail', credentials?.email || 'user@signalstack.com');
+    
     setIsAuthenticated(true);
     const accounts = AuthService.getAccounts();
     setUserAccounts(accounts);
     
-    // V2: Set user for header
     setUser({
       id: 1,
       name: accounts[0]?.name || 'Trading User',
-      email: 'user@signalstack.com'
+      email: credentials?.email || 'user@signalstack.com'
     });
+    
+    PerformanceMonitor.trackUserInteraction('user_login');
+    SecurityService.logSecurityEvent('user_login_success');
     
     if (accounts.length > 0) {
       setActiveAccount(accounts[0]);
@@ -208,6 +411,10 @@ function App() {
     setUserAccounts([]);
     setActiveAccount(null);
     setUser(null);
+    
+    PerformanceMonitor.trackUserInteraction('user_logout');
+    SecurityService.logSecurityEvent('user_logout');
+    NotificationService.info('You have been logged out');
   };
   
   const createNewAccount = () => {
@@ -217,9 +424,11 @@ function App() {
       if (result.success) {
         setUserAccounts([...userAccounts, result.account]);
         setActiveAccount(result.account);
-        toast.success("New portfolio created!");
+        
+        PerformanceMonitor.trackUserInteraction('account_created');
+        NotificationService.success("New portfolio created!");
       } else {
-        toast.error("Failed to create portfolio");
+        NotificationService.error("Failed to create portfolio");
       }
     }
   };
@@ -228,13 +437,22 @@ function App() {
     const account = userAccounts.find(acc => acc.id === parseInt(accountId));
     if (account) {
       setActiveAccount(account);
+      PerformanceMonitor.trackUserInteraction('account_switched');
     }
   };
 
   // V2: New navigation functions
   const handleNavigate = (route) => {
+    console.log('Navigating to:', route);
     setCurrentRoute(route);
-    setIsMobileNavOpen(false);
+    
+    // Update URL without page reload
+    window.history.pushState({}, '', route);
+    
+    // Close mobile nav if open
+    if (isMobileNavOpen) {
+      setIsMobileNavOpen(false);
+    }
   };
 
   const toggleMobileNav = () => {
@@ -250,7 +468,7 @@ function App() {
     
     return {
       totalValue: totalValue,
-      dayChange: 2.45, // You can calculate this from portfolioHistory
+      dayChange: 2.45,
       dayChangeAmount: totalValue * 0.0245,
       allocations: Object.entries(balances).map(([token, balance]) => ({
         name: token,
@@ -280,7 +498,159 @@ function App() {
     return colors[token] || '#8b5cf6';
   };
 
-  // V2: Loading screen (New professional loading)
+  // Add function to handle executing trades from signals
+  const handleExecuteSignal = (signal) => {
+    console.log('Executing signal:', signal);
+    
+    if (!virtualAccount) {
+      toast.error('Virtual account not initialized');
+      return;
+    }
+    
+    try {
+      // Determine what to do based on signal type
+      if (signal.type === 'BUY') {
+        // Calculate how much USD to use (10% of portfolio or fixed amount)
+        const usdBalance = virtualAccount.getBalances().USD || 0;
+        const amountToSpend = Math.min(usdBalance * 0.1, 1000); // 10% of USD or $1000, whichever is less
+        
+        if (amountToSpend <= 0) {
+          toast.error(`Insufficient USD balance to execute BUY signal for ${signal.asset}`);
+          return;
+        }
+        
+        // Execute the trade
+        const price = signal.price || prices[signal.asset] || 0;
+        if (price <= 0) {
+          toast.error(`Invalid price for ${signal.asset}`);
+          return;
+        }
+        
+        const tokenAmount = amountToSpend / price;
+        const result = virtualAccount.executeTrade('USD', signal.asset, amountToSpend, tokenAmount);
+        
+        if (result.success) {
+          // Record transaction
+          const newTx = {
+            type: 'BUY',
+            fromToken: 'USD',
+            toToken: signal.asset,
+            amountFrom: amountToSpend,
+            amountTo: tokenAmount,
+            price: price,
+            timestamp: new Date().getTime(),
+            signalId: signal.id
+          };
+          
+          setTxHistory(prev => [newTx, ...prev]);
+          
+          // Update portfolio value
+          updatePortfolioValue();
+          
+          toast.success(`Successfully bought ${tokenAmount.toFixed(6)} ${signal.asset} for $${amountToSpend.toFixed(2)}`);
+        } else {
+          toast.error(result.error || `Failed to execute BUY signal for ${signal.asset}`);
+        }
+      } 
+      else if (signal.type === 'SELL') {
+        // Get token balance
+        const tokenBalance = virtualAccount.getBalances()[signal.asset] || 0;
+        
+        if (tokenBalance <= 0) {
+          toast.error(`No ${signal.asset} balance to sell`);
+          return;
+        }
+        
+        // Sell 50% of the balance
+        const amountToSell = tokenBalance * 0.5;
+        const price = signal.price || prices[signal.asset] || 0;
+        
+        if (price <= 0) {
+          toast.error(`Invalid price for ${signal.asset}`);
+          return;
+        }
+        
+        const usdAmount = amountToSell * price;
+        const result = virtualAccount.executeTrade(signal.asset, 'USD', amountToSell, usdAmount);
+        
+        if (result.success) {
+          // Record transaction
+          const newTx = {
+            type: 'SELL',
+            fromToken: signal.asset,
+            toToken: 'USD',
+            amountFrom: amountToSell,
+            amountTo: usdAmount,
+            price: price,
+            timestamp: new Date().getTime(),
+            signalId: signal.id
+          };
+          
+          setTxHistory(prev => [newTx, ...prev]);
+          
+          // Update portfolio value
+          updatePortfolioValue();
+          
+          toast.success(`Successfully sold ${amountToSell.toFixed(6)} ${signal.asset} for $${usdAmount.toFixed(2)}`);
+        } else {
+          toast.error(result.error || `Failed to execute SELL signal for ${signal.asset}`);
+        }
+      }
+      else if (signal.type === 'REBALANCE') {
+        // Trigger portfolio rebalance
+        executeVirtualRebalance();
+        toast.success('Portfolio rebalancing initiated based on signal');
+      }
+    } catch (error) {
+      console.error('Error executing signal:', error);
+      toast.error(`Failed to execute signal: ${error.message}`);
+    }
+  };
+  
+  // Update portfolio value when prices change
+  const updatePortfolioValue = () => {
+    if (!virtualAccount) return;
+    
+    const balances = virtualAccount.getBalances();
+    let totalValue = balances.USD || 0;
+    
+    // Add value of all tokens
+    Object.keys(balances).forEach(token => {
+      if (token !== 'USD' && prices[token]) {
+        totalValue += balances[token] * prices[token];
+      }
+    });
+    
+    setPortfolioValue(totalValue);
+    
+    // Update portfolio history
+    const timestamp = new Date().getTime();
+    setPortfolioHistory(prev => [...prev, { timestamp, value: totalValue }]);
+    
+    // Keep only the last 100 data points
+    if (portfolioHistory.length > 100) {
+      setPortfolioHistory(prev => prev.slice(prev.length - 100));
+    }
+  };
+
+  const renderContent = () => {
+    switch (currentRoute) {
+      case '/dashboard':
+        return <Dashboard />;
+      case '/portfolio':
+        return <PortfolioOverview virtualAccount={virtualAccount} />;
+      case '/signals':
+        return <TradingSignals />;
+      case '/bots':
+        return <VirtualTradingTerminal virtualAccount={virtualAccount} setVirtualAccount={setVirtualAccount} />;
+      case '/market':
+        return <MarketOverview />;
+      default:
+        return <Dashboard />;
+    }
+  };
+
+  // V3: Enhanced loading screen
   if (isAppLoading) {
     return (
       <div className="app-loading">
@@ -302,36 +672,25 @@ function App() {
           <div className="loading-bar">
             <div className="loading-progress"></div>
           </div>
+          
+          <div className="loading-status">
+            {!isOnline && <span className="status-offline">📴 Offline Mode</span>}
+            {isInstallable && <span className="status-installable">📱 App Ready to Install</span>}
+            {updateAvailable && <span className="status-update">🔄 Update Available</span>}
+          </div>
         </motion.div>
       </div>
     );
   }
 
-  // V1: Login screen (Keep existing, but with better styling)
+  // V1: Login screen (Replace with Landing Page)
   if (!isAuthenticated) {
     return (
       <div className="app">
-        <div className="login-wrapper">
-          <motion.div 
-            className="login-container"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="login-header">
-              <div className="login-logo">
-                <div className="signal-waves">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <h1>SignalStack</h1>
-              </div>
-              <p>Professional Portfolio Rebalancer</p>
-            </div>
-            <LoginForm onSuccess={handleLoginSuccess} />
-          </motion.div>
-        </div>
+        <LandingPage onLoginSuccess={handleLoginSuccess}/>
+        
+        <div id="notification-root"></div>
+        
         <ToastContainer
           position="top-right"
           autoClose={3000}
@@ -343,14 +702,36 @@ function App() {
           draggable
           pauseOnHover
         />
+        
+        <OfflineIndicator isOnline={isOnline} />
+        
+        <PWAInstallPrompt 
+          isVisible={showInstallPrompt && isInstallable && !isInstalled}
+          onInstall={handlePWAInstall}
+          onDismiss={() => setShowInstallPrompt(false)}
+        />
+
+        <PWAUpdatePrompt 
+          isVisible={showUpdatePrompt}
+          onUpdate={handlePWAUpdate}
+          onDismiss={() => setShowUpdatePrompt(false)}
+        />
+
+        <div className="app-status">
+          {!isOnline && (
+            <div className="status-item offline">
+              📡 Offline Mode
+            </div>
+          )}
+        </div>
       </div>
     );
   }
 
-  // V2: Main authenticated app with new professional UI
+  // V2: Main authenticated app
   return (
-    <div className="app">
-      {/* V2: New Professional Header */}
+    <div className={`app ${theme}`}>
+      {/* V2: New Professional Header (Voice props removed) */}
       <Header 
         user={user}
         activeAccount={activeAccount}
@@ -359,6 +740,10 @@ function App() {
         onCreateAccount={createNewAccount}
         onLogout={handleLogout}
         onToggleMobileNav={toggleMobileNav}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        currentRoute={currentRoute}
+        onNavigate={handleNavigate}
       />
 
       {/* V2: Mobile Navigation */}
@@ -372,236 +757,42 @@ function App() {
       {/* V2: Main Content with Route Management */}
       <main className="app-content">
         <AnimatePresence mode="wait">
-          {currentRoute === '/dashboard' && (
-            <motion.div
-              key="dashboard"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Dashboard 
-                activeAccount={activeAccount}
-                portfolioData={createPortfolioData()}
-                signalsData={signals}
-                marketData={null}
-              />
-            </motion.div>
-          )}
-
-          {currentRoute === '/portfolio' && (
-            <motion.div
-              key="portfolio"
-              className="legacy-view"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* V1: Your existing portfolio view */}
-              <div className="dashboard-grid legacy-grid">
-                <section className="dashboard-card portfolio-section">
-                  <h2>Virtual Portfolio</h2>
-                  <div className="portfolio-list">
-                    {virtualAccount && Object.entries(virtualAccount.getBalances()).map(([token, balance]) => (
-                      <div key={token} className="portfolio-item">
-                        <span className="token-name">{token}</span>
-                        <span className="token-balance">{balance.toFixed(token === 'USDC' ? 2 : 6)}</span>
-                        <span className="token-value">
-                          ${(balance * (prices[token] || 0)).toFixed(2)}
-                        </span>
-                        <span className="token-price">
-                          ${(prices[token] || 0).toFixed(token === 'USDC' ? 2 : 2)}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-
-                <section className="dashboard-card target-section">
-                  <h2>Recommended Portfolio</h2>
-                  <div className="targets-list">
-                    {Object.entries(targetWeights).map(([token, weight]) => (
-                      <div key={token} className="target-item">
-                        <span className="token-name">{token}</span>
-                        <span className="token-weight">{weight}%</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <button 
-                    onClick={executeVirtualRebalance} 
-                    className="rebalance-button"
-                    disabled={isRebalancing}
-                  >
-                    {isRebalancing ? (
-                      <>Rebalancing... <LoadingSpinner size={20} /></>
-                    ) : (
-                      'Virtual Rebalance'
-                    )}
-                  </button>
-                  
-                  <button 
-                    onClick={resetVirtualAccount}
-                    style={{ marginTop: '10px', backgroundColor: '#e74c3c' }}
-                  >
-                    Reset Demo Account
-                  </button>
-                </section>
-              </div>
-            </motion.div>
-          )}
-
-          {currentRoute === '/signals' && (
-            <motion.div
-              key="signals"
-              className="legacy-view"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* V1: Your existing signals view */}
-              <div className="dashboard-grid legacy-grid">
-                <section className="dashboard-card signals-section">
-                  <h2>
-                    Signal Analysis
-                    <button 
-                      onClick={fetchSignalData} 
-                      style={{ float: 'right', padding: '5px 10px', fontSize: '0.9rem' }}
-                      disabled={isLoadingSignals}
-                    >
-                      {isLoadingSignals ? 'Updating...' : 'Refresh Signals'}
-                    </button>
-                  </h2>
-                  
-                  {isLoadingSignals ? (
-                    <LoadingSpinner />
-                  ) : (
-                    <div className="signals-list">
-                      {Object.entries(signals).map(([token, data]) => (
-                        <div key={token} className="signal-item">
-                          <h3>{token} - ${(prices[token] || 0).toFixed(2)}</h3>
-                          <div className="signal-details">
-                            <div className="signal-score">
-                              <span>Total Score: </span>
-                              <span className={`score-value ${data.total_score > 0 ? 'positive' : data.total_score < 0 ? 'negative' : ''}`}>
-                                {data.total_score}
-                              </span>
-                            </div>
-                            <div className="signal-indicators">
-                              <div>Mean Reversion: {data.mean_reversion}</div>
-                              <div>Momentum: {data.momentum}</div>
-                              <div>Volatility: {data.volatility}</div>
-                              <div>Breakout: {data.breakout}</div>
-                            </div>
-                            <div className="ml-confidence">
-                              <span>ML Confidence: </span>
-                              <span className={`confidence-value ${data.ml_confidence > 0.6 ? 'positive' : data.ml_confidence < 0.4 ? 'negative' : ''}`}>
-                                {(data.ml_confidence * 100).toFixed(0)}%
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </section>
-
-                <section className="dashboard-card strategy-section">
-                  <StrategyComparison 
-                    signals={signals}
-                    prices={prices}
-                    onApplyStrategy={applyStrategy}
-                  />
-                </section>
-              </div>
-            </motion.div>
-          )}
-
-          {currentRoute === '/analytics' && (
-            <motion.div
-              key="analytics"
-              className="legacy-view"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* V1: Your existing charts and history */}
-              <div className="dashboard-grid legacy-grid">
-                <section className="dashboard-card chart-section">
-                  <h2>Portfolio Performance</h2>
-                  <PortfolioValueChart portfolioHistory={portfolioHistory} />
-                  
-                  <h3 className="chart-title-secondary">Weight Distribution</h3>
-                  <TokenWeightsChart 
-                    tokens={Object.keys(targetWeights)}
-                    currentWeights={Object.keys(targetWeights).map(token => {
-                      const balance = virtualAccount?.getBalances()[token] || 0;
-                      const value = balance * (prices[token] || 0);
-                      return ((value / portfolioValue) * 100) || 0;
-                    })}
-                    targetWeights={Object.values(targetWeights)}
-                  />
-                </section>
-
-                <section className="dashboard-card history-section">
-                  <h2>Transaction History</h2>
-                  {txHistory.length === 0 ? (
-                    <p className="empty-history">No transactions yet</p>
-                  ) : (
-                    <SortableTable 
-                      columns={[
-                        { key: 'type', label: 'Type' },
-                        { key: 'fromToken', label: 'From' },
-                        { key: 'toToken', label: 'To' },
-                        { 
-                          key: 'amountFrom', 
-                          label: 'Amount From',
-                          render: (item) => item.amountFrom.toFixed(6)
-                        },
-                        { 
-                          key: 'amountTo', 
-                          label: 'Amount To',
-                          render: (item) => item.amountTo.toFixed(6)
-                        },
-                        {
-                          key: 'timestamp',
-                          label: 'Time',
-                          render: (item) => new Date(item.timestamp).toLocaleTimeString()
-                        }
-                      ]}
-                      data={txHistory}
-                      defaultSortColumn="timestamp"
-                    />
-                  )}
-                </section>
-              </div>
-            </motion.div>
-          )}
-
-          {/* Placeholder for other routes */}
-          {!['dashboard', 'portfolio', 'signals', 'analytics'].includes(currentRoute.split('/')[1]) && (
-            <motion.div
-              key="other"
-              className="route-placeholder"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="placeholder-content">
-                <h2>Coming Soon</h2>
-                <p>This section is under development</p>
-                <p className="current-route">Current route: {currentRoute}</p>
-              </div>
-            </motion.div>
-          )}
+          {renderContent()}
         </AnimatePresence>
       </main>
 
-      {/* V1: Keep existing toast notifications */}
+      {/* PWA Components */}
+      <OfflineIndicator isOnline={isOnline} />
+      
+      <PWAInstallPrompt 
+        isVisible={showInstallPrompt && isInstallable && !isInstalled}
+        onInstall={handlePWAInstall}
+        onDismiss={() => setShowInstallPrompt(false)}
+      />
+
+      <PWAUpdatePrompt 
+        isVisible={showUpdatePrompt}
+        onUpdate={handlePWAUpdate}
+        onDismiss={() => setShowUpdatePrompt(false)}
+      />
+
+      {/* Status indicators (Voice indicator removed) */}
+      <div className="app-status">
+        {!isOnline && (
+          <div className="status-item offline">
+            📡 Offline Mode
+          </div>
+        )}
+        {isRebalancing && (
+          <div className="status-item rebalancing">
+            ⚖️ Rebalancing...
+          </div>
+        )}
+      </div>
+
+      {/* Notification containers */}
+      <div id="notification-root"></div>
+
       <ToastContainer
         position="top-right"
         autoClose={3000}
