@@ -1,0 +1,104 @@
+{
+  "trading_user_01": {
+    "account_id": "7f34700c-d409-4bef-bfdb-822ed2ac0033",
+    "user_id": "trading_user_01",
+    "balance": 100000,
+    "portfolio": {},
+    "bots": [],
+    "trade_history": [],
+    "performance_history": [
+      {
+        "timestamp": 1749454926.8009717,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000
+      },
+      {
+        "timestamp": 1749458578.1223867,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000
+      },
+      {
+        "timestamp": 1749462237.3296845,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000
+      },
+      {
+        "timestamp": 1749465873.0186577,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749469507.876995,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749480825.9913561,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749487279.9753108,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749490899.1005754,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749494546.9378822,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      }
+    ],
+    "created_at": 1749454926.8009717
+  },
+  "default_user": {
+    "account_id": "3da29417-3e53-4f2b-a59d-4e1c0815dd8e",
+    "user_id": "default_user",
+    "balance": 100000,
+    "portfolio": {},
+    "bots": [],
+    "trade_history": [],
+    "performance_history": [
+      {
+        "timestamp": 1749494412.0603037,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      }
+    ]
+  }
+}

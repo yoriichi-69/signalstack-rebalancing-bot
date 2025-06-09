@@ -78,8 +78,25 @@ class VirtualAccountManager:
             
         bot_id = f"bot_{strategy}_{uuid.uuid4().hex[:6]}"
         
-        # Initial asset allocation based on strategy
-        initial_assets = self._get_initial_allocation(strategy)
+        # Get current prices for asset allocation - SINGLE CALL to ensure consistency
+        prices = self._get_current_prices()
+        if not prices:
+            raise ValueError("Unable to get current prices for asset allocation.")
+        
+        print(f"Using consistent prices for allocation: {prices}")
+        
+        # Get allocation weights and convert to actual cryptocurrency amounts
+        allocation_weights = self._get_initial_allocation(strategy)
+        actual_assets = {}
+        
+        for asset, weight in allocation_weights.items():
+            if asset in prices and prices[asset] > 0:
+                # Calculate USD value for this asset
+                usd_value = allocated_fund * weight
+                # Convert to actual cryptocurrency amount
+                crypto_amount = usd_value / prices[asset]
+                actual_assets[asset] = crypto_amount
+                print(f"  {asset}: ${usd_value:.2f} = {crypto_amount:.6f} {asset} @ ${prices[asset]:.2f}")
         
         bot = {
             'bot_id': bot_id,
@@ -88,7 +105,8 @@ class VirtualAccountManager:
             'allocated_fund': allocated_fund,  # Initial investment amount - critical for PnL calculation
             'initial_value': allocated_fund,   # Redundant but kept for backward compatibility  
             'portfolio_value': allocated_fund, # Starts with the allocated fund
-            'assets': initial_assets,
+            'assets': actual_assets,  # Store actual cryptocurrency amounts, not weights
+            'deployment_prices': prices,  # Store the prices used for deployment for debugging
             'status': 'active',
             'created_at': time.time(),
             'performance_history': [{
@@ -145,7 +163,89 @@ class VirtualAccountManager:
             'pnl_percent': ((liquidation_value / bot_to_stop['allocated_fund']) - 1) * 100
         })
         
+        # Store liquidation value for potential resume
+        bot_to_stop['liquidation_value'] = liquidation_value
+        
         print(f"Bot {bot_id} stopped. {liquidation_value} USD returned to balance.")
+        self.save_accounts()
+        return True
+        
+    def resume_bot(self, user_id, bot_id):
+        """Resumes a stopped bot by re-allocating funds and restarting trading."""
+        account = self.get_account(user_id)
+        if not account:
+            return False
+            
+        bot_to_resume = next((bot for bot in account['bots'] if bot['bot_id'] == bot_id), None)
+        
+        if not bot_to_resume:
+            return False
+        
+        if bot_to_resume['status'] != 'stopped':
+            return False
+            
+        # Get the liquidation value or use the original allocation amount
+        allocation = bot_to_resume.get('liquidation_value', bot_to_resume['allocated_fund'])
+        
+        # Check if account has enough balance
+        if account['balance'] < allocation:
+            return False, f"Insufficient balance to resume bot. Required: ${allocation}, Available: ${account['balance']}"
+            
+        # Deduct funds from balance
+        account['balance'] -= allocation
+        
+        # Get current prices for proper asset allocation
+        prices = self._get_current_prices()
+        if not prices:
+            return False, "Unable to get current prices for asset allocation."
+        
+        # Get allocation weights and convert to actual amounts
+        allocation_weights = self._get_initial_allocation(bot_to_resume['strategy'])
+        bot_to_resume['assets'] = {}
+        
+        # Purchase assets according to weights with proper conversion
+        for asset, weight in allocation_weights.items():
+            if asset in prices and prices[asset] > 0:
+                # Calculate USD value for this asset
+                usd_value = allocation * weight
+                # Convert to actual cryptocurrency amount
+                crypto_amount = usd_value / prices[asset]
+                bot_to_resume['assets'][asset] = crypto_amount
+        
+        # Update bot status
+        bot_to_resume['status'] = 'active'
+        bot_to_resume['resumed_at'] = time.time()
+        
+        # Record resume event in performance history
+        bot_to_resume['performance_history'].append({
+            'timestamp': time.time(),
+            'value': allocation,
+            'event': 'resumed',
+            'pnl': 0,
+            'pnl_percent': 0
+        })
+        
+        print(f"Bot {bot_id} resumed for user {user_id} with {allocation} USD.")
+        self.save_accounts()
+        return True
+
+    def delete_bot(self, user_id, bot_id):
+        """Deletes a stopped bot permanently."""
+        account = self.get_account(user_id)
+        if not account:
+            return False
+            
+        bot_to_delete = next((bot for bot in account['bots'] if bot['bot_id'] == bot_id), None)
+        
+        if not bot_to_delete:
+            return False, "Bot not found."
+            
+        if bot_to_delete['status'] != 'stopped':
+            return False, "Bot must be stopped before deletion."
+            
+        account['bots'] = [bot for bot in account['bots'] if bot['bot_id'] != bot_id]
+        
+        print(f"Bot {bot_id} deleted permanently for user {user_id}.")
         self.save_accounts()
         return True
 
@@ -346,23 +446,26 @@ class VirtualAccountManager:
                     current_weights,
                     signal_generator.generate_signals(),
                     prices,
-                    risk_profile=bot['risk_profile'],
-                    strategy=bot['strategy']
+                    risk_profile=bot['risk_profile']
                 )
 
-                if recommendation['recommendation'] == 'REBALANCE':
-                    # Perform rebalancing
+                if recommendation and recommendation.get('recommendation') == 'REBALANCE':
+                    # Perform rebalancing - use allocated_fund instead of corrupted total_value to prevent astronomical amounts
                     target_weights = recommendation['target_weights']
-                    self._rebalance_bot_portfolio(user_id, bot, current_weights, target_weights, prices, total_value)
+                    self._rebalance_bot_portfolio(user_id, bot, current_weights, target_weights, prices, bot['allocated_fund'])
                     
-                    # Update bot portfolio value
-                    impact = recommendation['metrics'].get('expected_return_impact', 0)
-                    # Add a small random factor to make it realistic (±1%)
-                    impact += (random.random() - 0.5) * 0.02
-                    bot['portfolio_value'] *= (1 + impact)
+                    # Update bot portfolio value to actual calculated value (no artificial impacts)
+                    recalculated_value = 0
+                    for asset, amount in bot['assets'].items():
+                        if asset in prices:
+                            recalculated_value += amount * prices[asset]
+                    bot['portfolio_value'] = recalculated_value
                     
-                    # Log a synthetic trade for history
+                    # Log a trade for history with actual portfolio value
                     self.execute_virtual_trade(user_id, bot['bot_id'], 'Portfolio', 'REBALANCE', 1, bot['portfolio_value'])
+                else:
+                    # Even if not rebalancing, update portfolio value based on current prices
+                    bot['portfolio_value'] = total_value
         
         # Save accounts after updating
         self.save_accounts()

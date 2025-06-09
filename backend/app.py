@@ -5,6 +5,7 @@ import threading
 import time
 import os
 import sys
+import random
 
 # Add current directory to Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -15,33 +16,49 @@ try:
 except ImportError:
     print("Warning: SignalGenerator not found, using mock")
     class SignalGenerator:
-        def __init__(self, tokens):
-            self.tokens = tokens
+        def __init__(self, symbols=None):
+            self.symbols = symbols if symbols else ["BTC", "ETH", "ADA", "SOL", "DOT", "LINK"]
+
         def generate_signals(self):
-            import random
-            signals = {}
-            for token in self.tokens:
-                signals[token] = {
-                    'total_score': round((random.random() - 0.5) * 4, 2),
-                    'mean_reversion': round((random.random() - 0.5) * 2, 2),
-                    'momentum': round((random.random() - 0.5) * 2, 2),
-                    'volatility': round(random.random() * 2, 2),
-                    'breakout': round((random.random() - 0.5) * 2, 2),
-                    'ml_confidence': round(0.5 + random.random() * 0.4, 3)
-                }
+            signals = []
+            for symbol in self.symbols:
+                action = random.choice(['buy', 'sell', 'hold'])
+                signals.append({
+                    "symbol": symbol,
+                    "signal_id": f"sig_{int(time.time())}_{symbol}",
+                    "timestamp": time.time(),
+                    "action": action,
+                    "type": action.upper(),
+                    "confidence": random.uniform(0.6, 0.95),
+                    "risk": round(random.uniform(2, 6)),
+                    "signal_score": round(random.uniform(-2, 2), 2),
+                    "target_price": round(random.uniform(1000, 50000), 2),
+                    "mean_reversion": round(random.uniform(0.5, 8.5), 1),
+                    "momentum": round(random.uniform(1.2, 9.8), 1),
+                    "volatility": round(random.uniform(2.1, 7.6), 1),
+                    "breakout": round(random.uniform(0.8, 6.3), 1),
+                })
             return signals
+
+        def get_signal_for_asset(self, asset):
+            signal = self.generate_signals()
+            for s in signal:
+                if s["symbol"] == asset:
+                    return s
+            return None
+
         def calculate_target_weights(self):
             # More realistic weight distribution
             weights = {}
-            if 'BTC' in self.tokens:
+            if 'BTC' in self.symbols:
                 weights['BTC'] = 35.0
-            if 'ETH' in self.tokens:
+            if 'ETH' in self.symbols:
                 weights['ETH'] = 30.0
-            if 'ADA' in self.tokens:
+            if 'ADA' in self.symbols:
                 weights['ADA'] = 15.0
-            if 'DOT' in self.tokens:
+            if 'DOT' in self.symbols:
                 weights['DOT'] = 10.0
-            if 'USDC' in self.tokens:
+            if 'USDC' in self.symbols:
                 weights['USDC'] = 10.0
             return weights
 
@@ -135,6 +152,8 @@ except ImportError:
         def deploy_bot(self, user_id, **kwargs): return {'bot_id': 'mock_bot', 'status': 'active'}
         def stop_bot(self, user_id, bot_id): return True
         def update_bot_portfolios(self, *args): print("Updating mock bot portfolios...")
+        def resume_bot(self, user_id, bot_id): return True
+        def delete_bot(self, user_id, bot_id): return True
 
 # Import PriceService with fallback
 try:
@@ -253,11 +272,11 @@ def background_refresh():
                 logger.warning(f"Rebalance recommendation failed: {e}")
                 rebalance_recommendation = None
             
-            # Update virtual bot portfolios
-            try:
-                account_manager.update_bot_portfolios(rebalance_engine, signal_generator, prices)
-            except Exception as e:
-                logger.error(f"Failed to update bot portfolios: {e}")
+            # Update virtual bot portfolios - DISABLED to prevent portfolio inflation
+            # try:
+            #     account_manager.update_bot_portfolios(rebalance_engine, signal_generator, prices)
+            # except Exception as e:
+            #     logger.error(f"Failed to update bot portfolios: {e}")
             
             # Run risk assessment
             try:
@@ -508,10 +527,6 @@ def deploy_bot():
             
         bot = account_manager.deploy_bot(user_id, strategy, risk_profile, allocated_fund)
         
-        # Trigger an immediate update to set initial portfolio
-        prices = price_service.get_latest_prices(['BTC', 'ETH', 'ADA', 'DOT', 'USDC'])
-        account_manager.update_bot_portfolios(rebalance_engine, signal_generator, prices)
-        
         return jsonify({'success': True, 'bot': bot})
     except Exception as e:
         logger.error(f"Bot deployment error: {str(e)}")
@@ -521,12 +536,54 @@ def deploy_bot():
 def stop_bot(bot_id):
     """Stop a trading bot."""
     try:
-        success = account_manager.stop_bot(DEFAULT_USER_ID, bot_id)
+        data = request.json
+        user_id = data.get('user_id', DEFAULT_USER_ID) if data else DEFAULT_USER_ID
+        
+        success = account_manager.stop_bot(user_id, bot_id)
         if not success:
-            return jsonify({'error': 'Bot not found or could not be stopped'}), 404
+            return jsonify({'error': f'Bot {bot_id} not found or could not be stopped'}), 404
         return jsonify({'success': True, 'message': f'Bot {bot_id} stopped successfully.'})
     except Exception as e:
         logger.error(f"Failed to stop bot {bot_id}: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/bots/<bot_id>/resume', methods=['POST'])
+def resume_bot(bot_id):
+    """Resume a stopped trading bot."""
+    try:
+        data = request.json
+        user_id = data.get('user_id', DEFAULT_USER_ID) if data else DEFAULT_USER_ID
+        
+        result = account_manager.resume_bot(user_id, bot_id)
+        if isinstance(result, tuple) and not result[0]:
+            return jsonify({'error': result[1]}), 400
+        if not result:
+            return jsonify({'error': f'Bot {bot_id} not found or could not be resumed'}), 404
+        
+        # Trigger an immediate update to set initial portfolio
+        prices = price_service.get_latest_prices(['BTC', 'ETH', 'ADA', 'DOT', 'USDC'])
+        account_manager.update_bot_portfolios(rebalance_engine, signal_generator, prices)
+        
+        return jsonify({'success': True, 'message': f'Bot {bot_id} resumed successfully.'})
+    except Exception as e:
+        logger.error(f"Failed to resume bot {bot_id}: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/bots/<bot_id>/delete', methods=['DELETE'])
+def delete_bot(bot_id):
+    """Permanently deletes a stopped trading bot."""
+    try:
+        user_id = request.args.get('user_id', DEFAULT_USER_ID)
+        
+        result = account_manager.delete_bot(user_id, bot_id)
+        if isinstance(result, tuple) and not result[0]:
+            return jsonify({'error': result[1]}), 400
+        if not result:
+            return jsonify({'error': f'Bot {bot_id} not found or could not be deleted'}), 404
+            
+        return jsonify({'success': True, 'message': f'Bot {bot_id} deleted successfully.'})
+    except Exception as e:
+        logger.error(f"Failed to delete bot {bot_id}: {e}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/strategies', methods=['GET'])
@@ -629,6 +686,8 @@ if __name__ == '__main__':
     print("   • GET  /api/account             - Get virtual account details")
     print("   • POST /api/bots/deploy        - Deploy a new trading bot")
     print("   • POST /api/bots/<id>/stop     - Stop a trading bot")
+    print("   • POST /api/bots/<id>/resume   - Resume a trading bot")
+    print("   • DELETE /api/bots/<id>/delete - Delete a trading bot")
     print("\n🌐 Frontend should connect to: http://localhost:5000")
     
     app.run(host='0.0.0.0', port=5000, debug=True)

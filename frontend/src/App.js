@@ -20,6 +20,7 @@ import Header from './components/navigation/Header';
 import MobileNav from './components/layout/MobileNav';
 import Dashboard from './components/dashboard/Dashboard';
 import LandingPage from './components/landing/LandingPage';
+import EnhancedChatbot from './components/ai/EnhancedChatbot/EnhancedChatbot';
 
 // Enhanced V3 Imports (New services and features - Voice removed)
 import NotificationService from './services/NotificationService';
@@ -642,7 +643,10 @@ function App() {
       case '/signals':
         return <TradingSignals />;
       case '/bots':
-        return <VirtualTradingTerminal virtualAccount={virtualAccount} setVirtualAccount={setVirtualAccount} />;
+        return <VirtualTradingTerminal 
+          virtualAccount={virtualAccount} 
+          setVirtualAccount={setVirtualAccount} 
+          enableMultipleBots={true} />;
       case '/market':
         return <MarketOverview />;
       default:
@@ -717,15 +721,17 @@ function App() {
           onDismiss={() => setShowUpdatePrompt(false)}
         />
 
-        <div className="app-status">
-          {!isOnline && (
-            <div className="status-item offline">
-              📡 Offline Mode
-            </div>
-          )}
-        </div>
-      </div>
-    );
+              <div className="app-status">
+        {!isOnline && (
+          <div className="status-item offline">
+            📡 Offline Mode
+          </div>
+        )}      </div>
+      
+      {/* Enhanced Chatbot Component */}
+      <EnhancedChatbot />
+    </div>
+  );
   }
 
   // V2: Main authenticated app
@@ -800,10 +806,12 @@ function App() {
         newestOnTop
         closeOnClick
         rtl={false}
-        pauseOnFocusLoss
-        draggable
+        pauseOnFocusLoss        draggable
         pauseOnHover
       />
+      
+      {/* Enhanced Chatbot Component */}
+      <EnhancedChatbot />
     </div>
   );
 }

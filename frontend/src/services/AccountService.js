@@ -54,10 +54,54 @@ class AccountService {
     try {
       const response = await axios.post(`${API_URL}/bots/${botId}/stop`, {
         user_id: userId
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
       return response.data;
     } catch (error) {
       console.error(`Error stopping bot ${botId}:`, error);
+      throw this._formatError(error);
+    }
+  }
+  
+  /**
+   * Resumes a stopped trading bot.
+   * @param {string} botId - The ID of the bot to resume.
+   * @param {string} userId - Optional user ID (defaults to default_user)
+   * @returns {Promise<Object>} A confirmation message.
+   */
+  async resumeBot(botId, userId = DEFAULT_USER_ID) {
+    try {
+      const response = await axios.post(`${API_URL}/bots/${botId}/resume`, {
+        user_id: userId
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error(`Error resuming bot ${botId}:`, error);
+      throw this._formatError(error);
+    }
+  }
+  
+  /**
+   * Deletes a stopped trading bot permanently.
+   * @param {string} botId - The ID of the bot to delete.
+   * @param {string} userId - Optional user ID (defaults to default_user)
+   * @returns {Promise<Object>} A confirmation message.
+   */
+  async deleteBot(botId, userId = DEFAULT_USER_ID) {
+    try {
+      const response = await axios.delete(`${API_URL}/bots/${botId}/delete`, {
+        params: { user_id: userId }
+      });
+      return response.data;
+    } catch (error) {
+      console.error(`Error deleting bot ${botId}:`, error);
       throw this._formatError(error);
     }
   }

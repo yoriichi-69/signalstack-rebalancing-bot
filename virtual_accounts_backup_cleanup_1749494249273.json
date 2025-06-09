@@ -1,0 +1,851 @@
+{
+  "trading_user_01": {
+    "account_id": "7f34700c-d409-4bef-bfdb-822ed2ac0033",
+    "user_id": "trading_user_01",
+    "balance": 100000,
+    "portfolio": {},
+    "bots": [],
+    "trade_history": [],
+    "performance_history": [
+      {
+        "timestamp": 1749454926.8009717,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000
+      },
+      {
+        "timestamp": 1749458578.1223867,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000
+      },
+      {
+        "timestamp": 1749462237.3296845,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000
+      },
+      {
+        "timestamp": 1749465873.0186577,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749469507.876995,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749480825.9913561,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749487279.9753108,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749490899.1005754,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      }
+    ],
+    "created_at": 1749454926.8009717
+  },
+  "default_user": {
+    "account_id": "616931f3-f7bb-446d-a04b-b95643fd876b",
+    "user_id": "default_user",
+    "balance": 0,
+    "portfolio": {},
+    "bots": [
+      {
+        "bot_id": "bot_momentum_321a53",
+        "strategy": "momentum",
+        "risk_profile": 100,
+        "allocated_fund": 100000,
+        "initial_value": 100000,
+        "portfolio_value": 17043.031031624112,
+        "assets": {
+          "DOT": 261.005649974121,
+          "ETH": 1.2026480734377998,
+          "BTC": 0.15355434582128197
+        },
+        "status": "active",
+        "created_at": 1749455559.930749,
+        "performance_history": [
+          {
+            "timestamp": 1749455559.930749,
+            "value": 100000,
+            "pnl": 0,
+            "pnl_percent": 0
+          },
+          {
+            "timestamp": 1749459182.162352,
+            "value": 18968.148183166817,
+            "pnl": -81031.85181683318,
+            "pnl_percent": -81.03185181683318
+          },
+          {
+            "timestamp": 1749462785.9452658,
+            "value": 43603.977999999996,
+            "pnl": -56396.022000000004,
+            "pnl_percent": -56.396022
+          },
+          {
+            "timestamp": 1749466428.1739404,
+            "value": 19267.819760124206,
+            "pnl": -80732.1802398758,
+            "pnl_percent": -80.73218023987579
+          },
+          {
+            "timestamp": 1749480825.9913561,
+            "value": 19025.016242564692,
+            "pnl": -80974.98375743532,
+            "pnl_percent": -80.9749837574353
+          },
+          {
+            "timestamp": 1749487279.9753108,
+            "value": 44245.416,
+            "pnl": -55754.584,
+            "pnl_percent": -55.754583999999994
+          },
+          {
+            "timestamp": 1749490899.1005754,
+            "value": 19141.038364048116,
+            "pnl": -80858.96163595188,
+            "pnl_percent": -80.85896163595189
+          }
+        ]
+      }
+    ],
+    "trade_history": [
+      {
+        "trade_id": "ac9adc92-bcd7-4402-ac32-3a26a7bc09dc",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 53244.41088311757,
+        "value": 53244.41088311757,
+        "timestamp": 1749489659.6166906
+      },
+      {
+        "trade_id": "dd873f80-c2b4-4d93-9b2b-35504392c173",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22474.129431440037,
+        "value": 22474.129431440037,
+        "timestamp": 1749489742.3295906
+      },
+      {
+        "trade_id": "6bb4c77e-771b-445b-a022-ff1f34d6be3a",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 30862.111059623658,
+        "value": 30862.111059623658,
+        "timestamp": 1749489822.5413089
+      },
+      {
+        "trade_id": "9b48c537-7b11-41b7-967a-b08507bacb3f",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 23241.868939560638,
+        "value": 23241.868939560638,
+        "timestamp": 1749489910.6384878
+      },
+      {
+        "trade_id": "d86302be-cfbc-4fae-b345-44059bcd801d",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22717.559601063942,
+        "value": 22717.559601063942,
+        "timestamp": 1749489978.3589883
+      },
+      {
+        "trade_id": "53d17f87-e9b7-4f6e-a437-1d45e85c2eda",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22420.440121946747,
+        "value": 22420.440121946747,
+        "timestamp": 1749490052.0647233
+      },
+      {
+        "trade_id": "7d75b351-9233-41a3-b620-02a509bc51b5",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 23344.860154926308,
+        "value": 23344.860154926308,
+        "timestamp": 1749490133.3339145
+      },
+      {
+        "trade_id": "8f0037cb-d339-4be2-9ff3-e9db9296c6ad",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 23300.434365162368,
+        "value": 23300.434365162368,
+        "timestamp": 1749490203.9674032
+      },
+      {
+        "trade_id": "9388fc1d-4b3b-4d92-b8be-95e8bafe3a11",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 16314.290414587815,
+        "value": 16314.290414587815,
+        "timestamp": 1749490288.125179
+      },
+      {
+        "trade_id": "15bb99af-096e-48ea-b644-4e16e62c44d1",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22711.090366749413,
+        "value": 22711.090366749413,
+        "timestamp": 1749490358.1223419
+      },
+      {
+        "trade_id": "07b3f833-f6a1-41d6-91ad-71400768b21e",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22770.722653999786,
+        "value": 22770.722653999786,
+        "timestamp": 1749490411.4102297
+      },
+      {
+        "trade_id": "8f6282fb-ae48-4f55-993d-4a6f6664be94",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22907.554078835805,
+        "value": 22907.554078835805,
+        "timestamp": 1749490463.4387536
+      },
+      {
+        "trade_id": "9e0e85c8-ab95-4cee-bae1-a90780d22067",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 23322.887867806498,
+        "value": 23322.887867806498,
+        "timestamp": 1749490482.230578
+      },
+      {
+        "trade_id": "edd18c7f-9158-4442-b2c7-cbf2acb201e4",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22743.803873673194,
+        "value": 22743.803873673194,
+        "timestamp": 1749490566.8494687
+      },
+      {
+        "trade_id": "fc74da71-49b6-45f9-8f7d-a82d805a86fd",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22141.103928510973,
+        "value": 22141.103928510973,
+        "timestamp": 1749490636.1782556
+      },
+      {
+        "trade_id": "fd403d94-2e8a-46fc-8492-3029d78f5180",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22360.977720962594,
+        "value": 22360.977720962594,
+        "timestamp": 1749490670.2336042
+      },
+      {
+        "trade_id": "2d66de1f-fe25-4fb5-8c30-f0a40011fb06",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 23015.91356515993,
+        "value": 23015.91356515993,
+        "timestamp": 1749490743.3508751
+      },
+      {
+        "trade_id": "787bd9d6-412c-4a6d-b5af-f92f17dcdd67",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22395.479908600406,
+        "value": 22395.479908600406,
+        "timestamp": 1749490816.8365338
+      },
+      {
+        "trade_id": "88100c3c-64b8-4ffb-a657-0c876dd7f8d4",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 23792.21457080511,
+        "value": 23792.21457080511,
+        "timestamp": 1749490891.4381993
+      },
+      {
+        "trade_id": "4a37a5c3-20d2-49ef-8361-c0826dc46b5f",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22895.889968526437,
+        "value": 22895.889968526437,
+        "timestamp": 1749490960.2804134
+      },
+      {
+        "trade_id": "afcd9f53-68b4-410b-91af-aae52d1360f8",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22294.665313681453,
+        "value": 22294.665313681453,
+        "timestamp": 1749491038.587803
+      },
+      {
+        "trade_id": "0b3dd105-1ddb-4170-a7f6-00d80db38a70",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22920.968539392234,
+        "value": 22920.968539392234,
+        "timestamp": 1749491122.9885654
+      },
+      {
+        "trade_id": "e3789a30-8511-45be-ae47-fc8d81e9a974",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21649.036384560524,
+        "value": 21649.036384560524,
+        "timestamp": 1749491191.27488
+      },
+      {
+        "trade_id": "dd2bbc9f-b82c-47eb-802b-4067f6fdc11d",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22565.413463024786,
+        "value": 22565.413463024786,
+        "timestamp": 1749491264.9257908
+      },
+      {
+        "trade_id": "1e841ab8-8ce9-4b76-a9ce-52e94c791195",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21535.925585194505,
+        "value": 21535.925585194505,
+        "timestamp": 1749491348.9595265
+      },
+      {
+        "trade_id": "b13d7c11-3676-430d-9909-7d8aa2e99685",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21734.374262146834,
+        "value": 21734.374262146834,
+        "timestamp": 1749491417.13464
+      },
+      {
+        "trade_id": "44a56230-d9b7-41b1-99de-b490eccfa08d",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21604.3218628254,
+        "value": 21604.3218628254,
+        "timestamp": 1749491502.4315438
+      },
+      {
+        "trade_id": "e604891d-611c-4b7c-a352-5d22500e52f5",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21744.159034224434,
+        "value": 21744.159034224434,
+        "timestamp": 1749491586.1572266
+      },
+      {
+        "trade_id": "1029e2b1-faf4-457e-ac26-b9f93fd85c88",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21841.231659779856,
+        "value": 21841.231659779856,
+        "timestamp": 1749491659.4577842
+      },
+      {
+        "trade_id": "276400ac-7156-4f22-b2ad-c243b399de46",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22072.30096028674,
+        "value": 22072.30096028674,
+        "timestamp": 1749491739.627975
+      },
+      {
+        "trade_id": "c0d0bb62-9526-4c3a-95e1-89e13943d751",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21673.390908464888,
+        "value": 21673.390908464888,
+        "timestamp": 1749491809.0989537
+      },
+      {
+        "trade_id": "b12ae51d-7634-4cc1-8586-43acbf717260",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21343.67840201799,
+        "value": 21343.67840201799,
+        "timestamp": 1749491872.9834962
+      },
+      {
+        "trade_id": "b4f3a11a-1209-48c5-84fa-2e41c0e79673",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 20534.849170872374,
+        "value": 20534.849170872374,
+        "timestamp": 1749491940.6035469
+      },
+      {
+        "trade_id": "4b9bb2cc-00de-4b7f-8959-f7f5fa25aa9a",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21276.299042388328,
+        "value": 21276.299042388328,
+        "timestamp": 1749492014.540216
+      },
+      {
+        "trade_id": "c6f0fdaf-636e-4ca2-9364-383f2f4c2586",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21652.480225762753,
+        "value": 21652.480225762753,
+        "timestamp": 1749492089.0243745
+      },
+      {
+        "trade_id": "6fb1d13e-be3a-4a98-a2df-70c25601da77",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 20622.043811421823,
+        "value": 20622.043811421823,
+        "timestamp": 1749492158.9141302
+      },
+      {
+        "trade_id": "c184051f-91dc-4b5f-a3ea-cd29aa314e4d",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21159.59015950799,
+        "value": 21159.59015950799,
+        "timestamp": 1749492233.9540014
+      },
+      {
+        "trade_id": "d0c5ec2d-1d7b-4a43-a0a1-3cb8e55348d1",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21190.40178202262,
+        "value": 21190.40178202262,
+        "timestamp": 1749492291.6314843
+      },
+      {
+        "trade_id": "319341d9-a2b7-40c0-baa8-08de0d9fa152",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 20782.719785075755,
+        "value": 20782.719785075755,
+        "timestamp": 1749492369.5253396
+      },
+      {
+        "trade_id": "bbf18dfd-3501-45f9-b552-5a7289c635c4",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21407.381556347736,
+        "value": 21407.381556347736,
+        "timestamp": 1749492449.4657354
+      },
+      {
+        "trade_id": "944d1e4c-733d-421b-becc-51d601f080e9",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21238.580905398452,
+        "value": 21238.580905398452,
+        "timestamp": 1749492518.0304291
+      },
+      {
+        "trade_id": "74b2765a-7ac2-423b-b39e-41a40045b9ad",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21757.640840059128,
+        "value": 21757.640840059128,
+        "timestamp": 1749492592.5471003
+      },
+      {
+        "trade_id": "7656ac96-29a5-45d5-8cc8-8dffa921a291",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21431.86576701,
+        "value": 21431.86576701,
+        "timestamp": 1749492670.9509318
+      },
+      {
+        "trade_id": "61b61c5a-9761-4eb2-b937-07c3e8e8b511",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 20995.33005590409,
+        "value": 20995.33005590409,
+        "timestamp": 1749492743.7880142
+      },
+      {
+        "trade_id": "95d1bd22-24e9-47ef-af93-a65ff9b2557f",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 20768.91771240442,
+        "value": 20768.91771240442,
+        "timestamp": 1749492811.8023674
+      },
+      {
+        "trade_id": "acea57f3-d3c3-4471-9e9b-f1c481fc241f",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21591.917366548172,
+        "value": 21591.917366548172,
+        "timestamp": 1749492886.031802
+      },
+      {
+        "trade_id": "538707b2-1718-43c6-9496-0d2c96c35f1b",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21795.562345078466,
+        "value": 21795.562345078466,
+        "timestamp": 1749492954.6533985
+      },
+      {
+        "trade_id": "6934db60-315e-493a-af03-d6a7de5ff497",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21081.022793217613,
+        "value": 21081.022793217613,
+        "timestamp": 1749493022.557654
+      },
+      {
+        "trade_id": "5ef34848-420c-49c7-8e88-9c4eb337eada",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21512.586473905638,
+        "value": 21512.586473905638,
+        "timestamp": 1749493095.907102
+      },
+      {
+        "trade_id": "a3f1d5e7-821c-43bc-8c44-46f37e473948",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21748.21901049129,
+        "value": 21748.21901049129,
+        "timestamp": 1749493179.2321732
+      },
+      {
+        "trade_id": "82050b71-a16f-4bdc-9dcd-35dabc2abc53",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21711.15717515014,
+        "value": 21711.15717515014,
+        "timestamp": 1749493253.0552166
+      },
+      {
+        "trade_id": "5b98bb32-8f33-43e0-9774-2bc461c1daff",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21378.247594073844,
+        "value": 21378.247594073844,
+        "timestamp": 1749493315.8511808
+      },
+      {
+        "trade_id": "3a175d02-e4fc-4e9c-b8aa-52c3bd10da4d",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21139.327058604453,
+        "value": 21139.327058604453,
+        "timestamp": 1749493388.4767535
+      },
+      {
+        "trade_id": "fa632c02-c1fb-4801-b197-f41d063cf409",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21301.528506111965,
+        "value": 21301.528506111965,
+        "timestamp": 1749493481.3538535
+      },
+      {
+        "trade_id": "0fc06f9d-9da1-4402-910f-8fd357aa472d",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21354.846559784524,
+        "value": 21354.846559784524,
+        "timestamp": 1749493549.4106305
+      },
+      {
+        "trade_id": "a2cbb449-7a6c-45e7-b584-155869cc0713",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21746.77363169159,
+        "value": 21746.77363169159,
+        "timestamp": 1749493623.8514214
+      },
+      {
+        "trade_id": "91d2338b-58c5-47d3-b6ed-7ac05ce8ddb6",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 22008.36080417211,
+        "value": 22008.36080417211,
+        "timestamp": 1749493691.4226542
+      },
+      {
+        "trade_id": "dbc4ca75-ebcd-4ac5-8b96-762e77b043b5",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21422.935878604232,
+        "value": 21422.935878604232,
+        "timestamp": 1749493763.772349
+      },
+      {
+        "trade_id": "fe885833-be37-4483-837f-4a6748f9083a",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21054.083611034785,
+        "value": 21054.083611034785,
+        "timestamp": 1749493831.6121902
+      },
+      {
+        "trade_id": "36425f7e-f3bc-49ec-99b4-78ecaa04aba5",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21035.670578297995,
+        "value": 21035.670578297995,
+        "timestamp": 1749493915.468079
+      },
+      {
+        "trade_id": "5f907517-8f65-4d52-a7ec-05942555ab13",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 21086.56523295774,
+        "value": 21086.56523295774,
+        "timestamp": 1749493999.1348808
+      },
+      {
+        "trade_id": "8d4f784e-2816-4761-b894-6630c6c82c68",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 20406.230481209946,
+        "value": 20406.230481209946,
+        "timestamp": 1749494087.602851
+      },
+      {
+        "trade_id": "982cb3d8-f5b9-4825-94d6-72a08e02905b",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 20929.78599092775,
+        "value": 20929.78599092775,
+        "timestamp": 1749494160.332594
+      },
+      {
+        "trade_id": "962273ca-5af3-46d7-88c8-e765c301367e",
+        "bot_id": "bot_momentum_321a53",
+        "asset": "Portfolio",
+        "action": "REBALANCE",
+        "amount": 1,
+        "price": 20529.983396861713,
+        "value": 20529.983396861713,
+        "timestamp": 1749494238.542692
+      }
+    ],
+    "performance_history": [
+      {
+        "timestamp": 1749455385.7269156,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000
+      },
+      {
+        "timestamp": 1749459001.3195274,
+        "balance": 0,
+        "portfolio_value": 18943.395654185606,
+        "total_value": 18943.395654185606
+      },
+      {
+        "timestamp": 1749462659.2154813,
+        "balance": 0,
+        "portfolio_value": 43566.966,
+        "total_value": 43566.966
+      },
+      {
+        "timestamp": 1749466302.668292,
+        "balance": 0,
+        "portfolio_value": 18998.347221684904,
+        "total_value": 18998.347221684904,
+        "total_initial": 100000,
+        "pnl": -81001.6527783151,
+        "pnl_percent": -81.00165277831509
+      },
+      {
+        "timestamp": 1749469942.1075468,
+        "balance": 0,
+        "portfolio_value": 44081.206000000006,
+        "total_value": 44081.206000000006,
+        "total_initial": 100000,
+        "pnl": -55918.793999999994,
+        "pnl_percent": -55.91879399999999
+      },
+      {
+        "timestamp": 1749480825.9913561,
+        "balance": 0,
+        "portfolio_value": 19025.016242564692,
+        "total_value": 19025.016242564692,
+        "total_initial": 100000,
+        "pnl": -80974.98375743532,
+        "pnl_percent": -80.9749837574353
+      },
+      {
+        "timestamp": 1749487279.9753108,
+        "balance": 0,
+        "portfolio_value": 44245.416,
+        "total_value": 44245.416,
+        "total_initial": 100000,
+        "pnl": -55754.584,
+        "pnl_percent": -55.754583999999994
+      },
+      {
+        "timestamp": 1749490899.1005754,
+        "balance": 0,
+        "portfolio_value": 19141.038364048116,
+        "total_value": 19141.038364048116,
+        "total_initial": 100000,
+        "pnl": -80858.96163595188,
+        "pnl_percent": -80.85896163595189
+      }
+    ],
+    "created_at": 1749455385.7269156
+  }
+}
