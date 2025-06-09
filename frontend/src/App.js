@@ -33,9 +33,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import usePWA from './hooks/usePWA';
 
 import PortfolioOverview from './components/portfolio/PortfolioOverview';
-import ActiveSignals from './components/dashboard/ActiveSignals';
 import VirtualTradingTerminal from './components/virtual_trading/VirtualTradingTerminal';
 import MarketOverview from './components/dashboard/MarketOverview';
+import TradingSignals from './signals/TradingSignals/TradingSignals';
 
 // PWA Components
 const PWAInstallPrompt = ({ onInstall, onDismiss, isVisible }) => (
@@ -640,7 +640,7 @@ function App() {
       case '/portfolio':
         return <PortfolioOverview virtualAccount={virtualAccount} />;
       case '/signals':
-        return <ActiveSignals />;
+        return <TradingSignals />;
       case '/bots':
         return <VirtualTradingTerminal virtualAccount={virtualAccount} setVirtualAccount={setVirtualAccount} />;
       case '/market':

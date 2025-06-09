@@ -24,6 +24,24 @@
         "balance": 100000,
         "portfolio_value": 0,
         "total_value": 100000
+      },
+      {
+        "timestamp": 1749465873.0186577,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749469507.876995,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
       }
     ],
     "created_at": 1749454926.8009717
@@ -40,7 +58,7 @@
         "risk_profile": 100,
         "allocated_fund": 100000,
         "initial_value": 100000,
-        "portfolio_value": 19190.026336839102,
+        "portfolio_value": 44081.206000000006,
         "assets": {
           "BTC": 0.4,
           "ETH": 0.4,
@@ -66,6 +84,12 @@
             "value": 43603.977999999996,
             "pnl": -56396.022000000004,
             "pnl_percent": -56.396022
+          },
+          {
+            "timestamp": 1749466428.1739404,
+            "value": 19267.819760124206,
+            "pnl": -80732.1802398758,
+            "pnl_percent": -80.73218023987579
           }
         ]
       }
@@ -89,6 +113,24 @@
         "balance": 0,
         "portfolio_value": 43566.966,
         "total_value": 43566.966
+      },
+      {
+        "timestamp": 1749466302.668292,
+        "balance": 0,
+        "portfolio_value": 18998.347221684904,
+        "total_value": 18998.347221684904,
+        "total_initial": 100000,
+        "pnl": -81001.6527783151,
+        "pnl_percent": -81.00165277831509
+      },
+      {
+        "timestamp": 1749469942.1075468,
+        "balance": 0,
+        "portfolio_value": 44081.206000000006,
+        "total_value": 44081.206000000006,
+        "total_initial": 100000,
+        "pnl": -55918.793999999994,
+        "pnl_percent": -55.91879399999999
       }
     ],
     "created_at": 1749455385.7269156
