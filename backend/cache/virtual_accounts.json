@@ -42,6 +42,24 @@
         "total_initial": 100000,
         "pnl": 0,
         "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749493386.0795503,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749530820.7058074,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
       }
     ],
     "created_at": 1749454926.8009717
@@ -58,7 +76,7 @@
         "risk_profile": 100,
         "allocated_fund": 100000,
         "initial_value": 100000,
-        "portfolio_value": 44081.206000000006,
+        "portfolio_value": 19040.649380653565,
         "assets": {
           "BTC": 0.4,
           "ETH": 0.4,
@@ -90,6 +108,18 @@
             "value": 19267.819760124206,
             "pnl": -80732.1802398758,
             "pnl_percent": -80.73218023987579
+          },
+          {
+            "timestamp": 1749493386.0795503,
+            "value": 44428.276000000005,
+            "pnl": -55571.723999999995,
+            "pnl_percent": -55.57172399999999
+          },
+          {
+            "timestamp": 1749530820.7058074,
+            "value": 44883.54,
+            "pnl": -55116.46,
+            "pnl_percent": -55.116460000000004
           }
         ]
       }
@@ -131,6 +161,24 @@
         "total_initial": 100000,
         "pnl": -55918.793999999994,
         "pnl_percent": -55.91879399999999
+      },
+      {
+        "timestamp": 1749493386.0795503,
+        "balance": 0,
+        "portfolio_value": 44428.276000000005,
+        "total_value": 44428.276000000005,
+        "total_initial": 100000,
+        "pnl": -55571.723999999995,
+        "pnl_percent": -55.57172399999999
+      },
+      {
+        "timestamp": 1749530820.7058074,
+        "balance": 0,
+        "portfolio_value": 44883.54,
+        "total_value": 44883.54,
+        "total_initial": 100000,
+        "pnl": -55116.46,
+        "pnl_percent": -55.116460000000004
       }
     ],
     "created_at": 1749455385.7269156

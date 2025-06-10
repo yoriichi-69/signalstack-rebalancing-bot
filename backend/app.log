@@ -6274,3 +6274,699 @@
 2025-06-09 17:18:36,259 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
 2025-06-09 17:18:36,259 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
 2025-06-09 17:18:36,260 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:53:04,965 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:53:05,013 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:53:05,015 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:53:05,025 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:53:05,420 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.29.2:5000
+2025-06-09 23:53:05,422 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-09 23:53:05,501 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-09 23:53:08,799 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:53:08,809 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:53:08,809 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:53:08,810 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:53:08,838 - werkzeug - WARNING -  * Debugger is active!
+2025-06-09 23:53:08,854 - werkzeug - INFO -  * Debugger PIN: 516-496-820
+2025-06-09 23:54:05,028 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:54:05,030 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:54:05,031 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:54:05,032 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:54:08,811 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:54:08,814 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:54:08,815 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:54:08,817 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:55:05,034 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:55:05,037 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:55:05,039 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:55:05,039 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:55:08,817 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:55:08,819 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:55:08,820 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:55:08,822 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:55:44,963 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 23:55:44] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-09 23:56:05,041 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:56:05,044 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:56:05,045 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:56:05,046 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:56:08,824 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:56:08,825 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:56:08,826 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:56:08,826 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:56:41,503 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 23:56:41] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-09 23:56:41,505 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 23:56:41] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-09 23:56:42,456 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 23:56:42] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-09 23:56:42,458 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 23:56:42] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-09 23:56:42,460 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 23:56:42] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-09 23:56:42,461 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 23:56:42] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-09 23:56:42,466 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 23:56:42] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-09 23:56:42,496 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 23:56:42] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-09 23:56:42,844 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 23:56:42] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-09 23:56:42,863 - werkzeug - INFO - 127.0.0.1 - - [09/Jun/2025 23:56:42] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-09 23:57:05,049 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:57:05,052 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:57:05,053 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:57:05,054 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:57:08,829 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:57:08,830 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:57:08,831 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:57:08,832 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:58:05,056 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:58:05,059 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:58:05,060 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:58:05,061 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:58:08,833 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:58:08,835 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:58:08,836 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:58:08,836 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:59:05,063 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:59:05,065 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:59:05,066 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:59:05,066 - __main__ - INFO - Data refresh completed successfully
+2025-06-09 23:59:08,838 - __main__ - INFO - Refreshing market data...
+2025-06-09 23:59:08,840 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-09 23:59:08,841 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-09 23:59:08,841 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:00:05,068 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:00:05,070 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:00:05,071 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:00:05,072 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:00:08,842 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:00:08,846 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:00:08,847 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:00:08,848 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:01:05,073 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:01:05,075 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:01:05,076 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:01:05,077 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:01:08,849 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:01:08,853 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:01:08,854 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:01:08,855 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:02:05,079 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:02:05,083 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:02:05,083 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:02:05,084 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:02:08,856 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:02:08,859 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:02:08,860 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:02:08,861 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:03:05,084 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:03:05,087 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:03:05,087 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:03:05,088 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:03:08,866 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:03:08,867 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:03:08,868 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:03:08,869 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:04:05,089 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:04:05,091 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:04:05,092 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:04:05,093 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:04:08,870 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:04:08,871 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:04:08,872 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:04:08,873 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:05:05,094 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:05:05,097 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:05:05,098 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:05:05,099 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:05:08,874 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:05:08,875 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:05:08,876 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:05:08,877 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:06:05,103 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:06:05,107 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:06:05,111 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:06:05,113 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:06:08,878 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:06:08,880 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:06:08,880 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:06:08,881 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:07:05,116 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:07:05,120 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:07:05,121 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:07:05,122 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:07:08,882 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:07:08,882 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:07:08,883 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:07:08,883 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:08:05,134 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:08:05,157 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:08:05,169 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:08:05,195 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:08:08,891 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:08:08,903 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:08:08,913 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:08:08,914 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:09:05,209 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:09:05,214 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:09:05,215 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:09:05,216 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:09:08,922 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:09:08,923 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:09:08,924 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:09:08,924 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:10:05,218 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:10:05,222 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:10:05,223 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:10:05,225 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:10:08,926 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:10:08,927 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:10:08,928 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:10:08,928 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:11:05,228 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:11:05,231 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:11:05,232 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:11:05,233 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:11:08,930 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:11:08,931 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:11:08,932 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:11:08,932 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:21:30,051 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:21:30,060 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:21:30,062 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:21:30,063 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:21:30,115 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.50.247:5000
+2025-06-10 00:21:30,115 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 00:21:30,145 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-10 00:21:34,637 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:21:34,645 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:21:34,646 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:21:34,648 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:21:34,686 - werkzeug - WARNING -  * Debugger is active!
+2025-06-10 00:21:34,740 - werkzeug - INFO -  * Debugger PIN: 516-496-820
+2025-06-10 00:22:30,064 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:22:30,066 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:22:30,066 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:22:30,067 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:22:34,651 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:22:34,668 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:22:34,670 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:22:34,671 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:23:30,068 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:23:30,071 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:23:30,071 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:23:30,073 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:23:34,673 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:23:34,676 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:23:34,677 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:23:34,678 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:24:30,074 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:24:30,078 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:24:30,080 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:24:30,082 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:24:34,680 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:24:34,683 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:24:34,684 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:24:34,685 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:24:47,207 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 00:24:47] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 00:24:47,209 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 00:24:47] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 00:24:47,530 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 00:24:47] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 00:24:47,532 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 00:24:47] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 00:24:47,532 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 00:24:47] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 00:24:47,534 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 00:24:47] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 00:24:47,537 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 00:24:47] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 00:24:47,667 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 00:24:47] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 00:24:47,986 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 00:24:47] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 00:25:30,085 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:25:30,088 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:25:30,089 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:25:30,090 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:25:34,687 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:25:34,689 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:25:34,690 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:25:34,691 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:26:30,091 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:26:30,093 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:26:30,094 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:26:30,096 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:26:34,693 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:26:34,695 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:26:34,695 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:26:34,697 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:27:30,098 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:27:30,099 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:27:30,099 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:27:30,100 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:27:34,698 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:27:34,700 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:27:34,701 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:27:34,702 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:28:30,101 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:28:30,103 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:28:30,103 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:28:30,104 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 00:28:34,703 - __main__ - INFO - Refreshing market data...
+2025-06-10 00:28:34,705 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 00:28:34,706 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 00:28:34,707 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:17:00,093 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:17:00,106 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:17:00,108 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:17:00,109 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:17:00,202 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.29.2:5000
+2025-06-10 10:17:00,203 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 10:17:00,239 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-10 10:17:10,358 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:17:10,372 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:17:10,375 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:17:10,376 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:17:10,429 - werkzeug - WARNING -  * Debugger is active!
+2025-06-10 10:17:10,447 - werkzeug - INFO -  * Debugger PIN: 114-952-741
+2025-06-10 10:18:00,111 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:18:00,113 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:18:00,113 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:18:00,114 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:18:10,377 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:18:10,379 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:18:10,380 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:18:10,380 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:18:32,540 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:18:32] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-10 10:18:32,597 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:18:32] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:19:00,116 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:19:00,118 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:19:00,119 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:19:00,120 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:19:10,382 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:19:10,387 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:19:10,389 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:19:10,390 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:20:00,122 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:20:00,124 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:20:00,125 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:20:00,126 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:20:10,398 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:20:10,404 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:20:10,411 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:20:10,415 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:20:20,832 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:20:20] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:20:20,834 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:20:20] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:20:20,835 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:20:20] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:20:20,842 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:20:20] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:20:20,847 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:20:20] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:20:20,854 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:20:20] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:20:21,161 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:20:21] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:21:00,128 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:21:00,130 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:21:00,131 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:21:00,132 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:21:10,420 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:21:10,423 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:21:10,424 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:21:10,426 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:22:00,134 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:22:00,136 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:22:00,137 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:22:00,138 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:22:10,427 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:22:10,430 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:22:10,431 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:22:10,433 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:23:00,140 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:23:00,143 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:23:00,145 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:23:00,146 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:23:10,435 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:23:10,442 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:23:10,444 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:23:10,447 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:24:00,148 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:24:00,150 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:24:00,152 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:24:00,153 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:24:10,471 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:24:10,479 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:24:10,497 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:24:10,509 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:24:45,920 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:45] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:24:46,253 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:46] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:24:46,255 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:46] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:24:46,257 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:46] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:24:46,261 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:46] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:24:46,269 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:46] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:24:46,283 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:46] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:24:46,652 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:46] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:24:46,993 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:46] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:24:57,733 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:57] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:24:58,048 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:58] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:24:58,055 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:58] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:24:58,063 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:58] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:24:58,400 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:58] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:24:58,404 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:58] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:24:58,409 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:58] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:24:58,749 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:58] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:24:58,754 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:58] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:24:59,086 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:59] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:24:59,092 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:59] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:24:59,455 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:24:59] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:25:00,155 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:25:00,157 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:25:00,159 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:25:00,159 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:25:10,533 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:25:10,537 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:25:10,538 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:25:10,538 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:25:19,723 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:25:19] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:25:20,032 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:25:20] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:25:20,036 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:25:20] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:25:20,048 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:25:20] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:25:20,051 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:25:20] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:25:20,054 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:25:20] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:25:20,063 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:25:20] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:25:20,408 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:25:20] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:26:00,161 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:26:00,164 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:26:00,165 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:26:00,166 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:26:10,540 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:26:10,543 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:26:10,544 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:26:10,545 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:26:58,082 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:26:58] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:26:58,416 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:26:58] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:26:58,418 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:26:58] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:26:58,419 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:26:58] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:26:58,423 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:26:58] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:26:58,428 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:26:58] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:26:58,433 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:26:58] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:26:58,782 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:26:58] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:26:59,129 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:26:59] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:27:00,167 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:27:00,170 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:27:00,172 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:27:00,174 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:27:10,546 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:27:10,550 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:27:10,551 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:27:10,556 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:27:48,960 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:27:48] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:27:48,963 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:27:48] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:27:49,266 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:27:49] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:27:49,304 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:27:49] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:27:49,308 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:27:49] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:27:49,312 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:27:49] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:27:49,321 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:27:49] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:27:49,431 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:27:49] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:27:49,804 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:27:49] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:27:49,838 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:27:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-10 10:28:00,176 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:28:00,182 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:28:00,184 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:28:00,186 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:28:10,559 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:28:10,561 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:28:10,562 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:28:10,563 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:29:00,189 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:29:00,191 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:29:00,192 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:29:00,193 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:29:10,564 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:29:10,565 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:29:10,566 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:29:10,566 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:29:58,180 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:58] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:29:58,184 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:58] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:29:58,193 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:58] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:29:58,409 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:58] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:29:58,519 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:58] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:29:58,525 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:58] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:29:58,536 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:58] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:29:58,739 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:58] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:29:58,861 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:58] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:29:58,865 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:58] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:29:59,076 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:59] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:29:59,189 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:29:59] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:30:00,194 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:30:00,197 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:30:00,197 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:30:00,198 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:30:10,567 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:30:10,569 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:30:10,571 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:30:10,571 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:30:14,601 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:14] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:30:14,903 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:14] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:30:14,934 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:14] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:30:15,236 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:15] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:30:18,564 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:18] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:30:18,568 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:18] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:30:18,575 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:18] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:30:18,793 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:18] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:30:18,912 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:18] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:30:18,919 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:18] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:30:18,928 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:18] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:30:19,119 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:19] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:30:19,260 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:19] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:30:19,265 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:19] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:30:19,447 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:19] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:30:19,578 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:19] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:30:49,233 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:30:49] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:31:00,201 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:31:00,202 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:31:00,202 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:31:00,203 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:31:10,573 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:31:10,575 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:31:10,576 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:31:10,577 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:31:18,942 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:31:18] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:31:19,069 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:31:19] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:31:19,264 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:31:19] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:31:20,446 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:31:20] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:31:49,235 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:31:49] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:32:00,204 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:32:00,205 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:32:00,206 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:32:00,206 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:32:10,578 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:32:10,578 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:32:10,580 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:32:10,580 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:32:18,245 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:18] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:32:18,249 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:18] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:32:18,553 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:18] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:32:18,895 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:18] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:32:21,431 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:21] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:32:21,757 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:21] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:32:21,758 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:21] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:32:21,761 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:21] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:32:21,763 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:21] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:32:21,774 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:21] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:32:21,780 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:21] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:32:22,138 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:22] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:32:37,375 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:37] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:32:37,378 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:37] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:32:37,383 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:37] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:32:37,397 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:37] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:32:37,398 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:37] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:32:37,407 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:37] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:32:37,720 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:37] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:32:37,736 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:37] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:32:38,046 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:38] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:32:38,057 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:38] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:32:38,376 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:38] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:32:38,704 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:38] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:32:42,207 - __main__ - INFO - Rebalance request for account None: {'ADA': 40, 'BTC': -60, 'DOT': 40, 'ETH': 40, 'USDC': 40} (Strategy: tactical)
+2025-06-10 10:32:43,210 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:43] "POST /api/portfolio/rebalance HTTP/1.1" 200 -
+2025-06-10 10:32:46,552 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:32:46] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:33:00,207 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:33:00,211 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:33:00,213 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:33:00,215 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:33:07,699 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:33:07] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:33:10,581 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:33:10,584 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:33:10,585 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:33:10,585 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:33:25,688 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:33:25] "[33mPOST /api/bots/bot_momentum_321a53/stop HTTP/1.1[0m" 404 -
+2025-06-10 10:33:37,392 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:33:37] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:33:37,715 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:33:37] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:33:37,719 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:33:37] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:33:37,967 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:33:37] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:34:00,217 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:34:00,220 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:34:00,221 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:34:00,221 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:34:08,223 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:34:08] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:34:10,586 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:34:10,589 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:34:10,589 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:34:10,590 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:34:37,928 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:34:37] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:34:37,930 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:34:37] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:34:38,245 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:34:38] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:34:38,616 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:34:38] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:35:00,224 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:35:00,226 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:35:00,228 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:35:00,230 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:35:07,712 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:35:07] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:35:10,591 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:35:10,592 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:35:10,592 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:35:10,592 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:35:37,917 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:35:37] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:35:38,220 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:35:38] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:35:38,233 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:35:38] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:35:38,469 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:35:38] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:36:00,231 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:36:00,234 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:36:00,235 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:36:00,237 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:36:08,209 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:36:08] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:36:10,595 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:36:10,596 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:36:10,597 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:36:10,598 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:36:37,919 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:36:37] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:36:37,923 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:36:37] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:36:38,234 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:36:38] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:36:38,593 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:36:38] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:37:00,239 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:37:00,241 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:37:00,243 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:37:00,245 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:37:08,213 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:08] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:37:10,600 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:37:10,601 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:37:10,602 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:37:10,602 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:37:17,830 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:17] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:37:17,831 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:17] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:37:18,184 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:18] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:37:18,185 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:18] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:37:18,186 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:18] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:37:18,190 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:18] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:37:18,193 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:18] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:37:18,232 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:18] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:37:18,600 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:18] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:37:18,619 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-10 10:37:22,467 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:22] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:37:22,473 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:22] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:37:22,767 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:22] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:37:22,783 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:22] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:37:22,797 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:22] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:37:23,094 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:23] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:37:23,109 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:23] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:37:23,425 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:23] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:37:23,440 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:23] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:37:23,769 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:23] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:37:23,773 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:23] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:37:24,123 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:24] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:37:52,915 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:37:52] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:38:00,246 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:38:00,249 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:38:00,249 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:38:00,250 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:38:10,604 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:38:10,604 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:38:10,605 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:38:10,605 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:38:23,222 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:23] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:38:23,225 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:23] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:38:23,258 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:23] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:38:23,482 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:23] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:38:26,500 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:26] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:38:26,849 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:26] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:38:26,857 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:26] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:38:26,863 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:26] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:38:26,868 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:26] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:38:26,869 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:26] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:38:26,872 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:26] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:38:27,227 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:27] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:38:27,605 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:27] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:38:27,621 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-10 10:38:27,623 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:27] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-10 10:38:31,559 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:31] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:38:31,562 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:31] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:38:31,568 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:31] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:38:31,894 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:31] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:38:31,896 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:31] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:38:31,904 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:31] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:38:32,225 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:32] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:38:32,230 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:32] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:38:32,557 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:32] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:38:32,563 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:32] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:38:32,877 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:32] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:38:33,198 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:38:33] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:39:00,252 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:39:00,254 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:39:00,255 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:39:00,255 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:39:01,906 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:01] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:39:10,606 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:39:10,608 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:39:10,608 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:39:10,609 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:39:31,659 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:31] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:39:32,007 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:32] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:39:32,054 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:32] "[33mGET /api/portfolio HTTP/1.1[0m" 404 -
+2025-06-10 10:39:32,057 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:32] "GET /api/prices HTTP/1.1" 200 -
+2025-06-10 10:39:50,736 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:50] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:39:51,094 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:51] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 10:39:51,107 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-10 10:39:58,671 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:58] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:39:58,674 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:58] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:39:58,677 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:58] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:39:58,680 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:58] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:39:58,973 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:58] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:39:58,976 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:58] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:39:58,986 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:39:58] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 10:40:00,257 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:40:00,260 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:40:00,261 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:40:00,261 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:40:03,561 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:03] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:40:03,563 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:03] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:40:03,567 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:03] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:40:03,816 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:03] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:40:03,880 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:03] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:40:03,885 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:03] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:40:03,892 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:03] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:40:04,147 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:04] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:40:04,202 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:04] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:40:04,214 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:04] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:40:04,474 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:04] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:40:04,518 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:04] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:40:10,610 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:40:10,611 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:40:10,611 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:40:10,612 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:40:34,230 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:40:34] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:41:00,263 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:41:00,270 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:41:00,272 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:41:00,273 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:41:03,904 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:41:03] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:41:03,908 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:41:03] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:41:04,212 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:41:04] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:41:04,574 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:41:04] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:41:10,613 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:41:10,614 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:41:10,615 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:41:10,615 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:41:34,214 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:41:34] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:42:00,274 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:42:00,277 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:42:00,278 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:42:00,280 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:42:03,909 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:42:03] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:42:03,914 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:42:03] "GET /api/signals HTTP/1.1" 200 -
+2025-06-10 10:42:04,226 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:42:04] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 10:42:04,423 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:42:04] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 10:42:10,617 - __main__ - INFO - Refreshing market data...
+2025-06-10 10:42:10,618 - __main__ - ERROR - Failed to update bot portfolios: RebalanceEngine.get_rebalance_recommendation() got an unexpected keyword argument 'strategy'
+2025-06-10 10:42:10,618 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 10:42:10,619 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 10:42:34,212 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 10:42:34] "GET /api/signals HTTP/1.1" 200 -

@@ -21,6 +21,7 @@
     "axios": "^1.4.0",
     "chart.js": "^4.4.9",
     "framer-motion": "^10.18.0",
+    "ic-use-internet-identity": "^0.3.1",
     "lightweight-charts": "^5.0.7",
     "lottie-react": "^2.4.1",
     "react": "^18.2.0",
@@ -74,5 +75,9 @@
   "description": "",
   "devDependencies": {
     "typescript": "^4.9.5"
+  },
+  "resolutions": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

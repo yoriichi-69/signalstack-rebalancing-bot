@@ -1,62 +1,95 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import './Header.css';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInternetIdentity } from "ic-use-internet-identity";
+import "./Header.css";
 
-const Header = ({ 
-  user, 
-  activeAccount, 
-  userAccounts, 
-  onSwitchAccount, 
-  onCreateAccount, 
-  onLogout, 
-  onToggleMobileNav, 
-  theme, 
-  onToggleTheme, 
-  voiceCommandActive, 
-  onToggleVoice, 
+const Header = ({
+  user,
+  activeAccount,
+  userAccounts,
+  onSwitchAccount,
+  onCreateAccount,
+  onLogout,
+  onToggleMobileNav,
+  theme,
+  onToggleTheme,
+  voiceCommandActive,
+  onToggleVoice,
   isVoiceSupported,
   currentRoute,
-  onNavigate
+  onNavigate,
 }) => {
   const [showAccountDropdown, setShowAccountDropdown] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const { isAuthenticated, identity } = useInternetIdentity();
 
   const navItems = [
-    { path: '/dashboard', label: 'Dashboard', icon: '📊' },
-    { path: '/portfolio', label: 'Portfolio', icon: '💼' },
-    { path: '/signals', label: 'Signals', icon: '��' },
-    { path: '/bots', label: 'Bots', icon: '🤖' },
-    { path: '/market', label: 'Market', icon: '📈' }
+    { path: "/dashboard", label: "Dashboard", icon: "📊" },
+    { path: "/portfolio", label: "Portfolio", icon: "💼" },
+    { path: "/signals", label: "Signals", icon: "📡" },
+    { path: "/bots", label: "Bots", icon: "🤖" },
+    { path: "/market", label: "Market", icon: "📈" },
   ];
 
   const handleNavClick = (path) => {
-    console.log('Navigating to:', path);
-    
-    // Prevent default navigation that causes logout
-    if (onNavigate && typeof onNavigate === 'function') {
+    if (onNavigate && typeof onNavigate === "function") {
       onNavigate(path);
-      
-      // Close the dropdown menus if they're open
       setShowUserDropdown(false);
       setShowAccountDropdown(false);
     } else {
-      // If no navigation handler, update URL without reload
-      window.history.pushState({}, '', path);
+      window.history.pushState({}, "", path);
     }
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('userEmail');
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("userEmail");
     if (onLogout) {
       onLogout();
     } else {
-      window.location.href = '/';
+      window.location.href = "/";
     }
   };
 
+  const getUserDisplay = () => {
+    if (isAuthenticated && identity) {
+      return "Internet Identity";
+    }
+    return user?.email || "User";
+  };
+
+  const getUserInitial = () => {
+    if (isAuthenticated && identity) {
+      return "II";
+    }
+    return (user?.name || user?.email || "U").charAt(0).toUpperCase();
+  };
+
+  const getUserEmail = () => {
+    if (isAuthenticated && identity) {
+      return "Internet Identity User";
+    }
+    return user?.email || "";
+  };
+
+  const handleAccountClick = (e) => {
+    e.stopPropagation();
+    setShowAccountDropdown(!showAccountDropdown);
+    setShowUserDropdown(false);
+  };
+
+  const handleAccountSelect = (accountId) => {
+    onSwitchAccount(accountId);
+    setShowAccountDropdown(false);
+  };
+
+  const handleCreateAccount = () => {
+    onCreateAccount();
+    setShowAccountDropdown(false);
+  };
+
   return (
-    <motion.header 
+    <motion.header
       className={`dashboard-header theme-${theme}`}
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -66,7 +99,7 @@ const Header = ({
         <div className="header-left">
           {/* Logo */}
           <div className="header-logo">
-            <motion.h2 
+            <motion.h2
               className="logo-text"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -80,7 +113,9 @@ const Header = ({
             {navItems.map((item) => (
               <button
                 key={item.path}
-                className={`nav-link ${currentRoute === item.path ? 'active' : ''}`}
+                className={`nav-link ${
+                  currentRoute === item.path ? "active" : ""
+                }`}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
@@ -97,7 +132,7 @@ const Header = ({
 
         <div className="header-right">
           {/* Mobile Menu Button */}
-          <motion.button 
+          <motion.button
             className="mobile-menu-btn mobile-only"
             onClick={onToggleMobileNav}
             aria-label="Toggle mobile menu"
@@ -114,11 +149,15 @@ const Header = ({
             {/* Voice Command Button */}
             {isVoiceSupported && (
               <motion.button
-                className={`voice-btn ${voiceCommandActive ? 'active' : ''}`}
+                className={`voice-btn ${voiceCommandActive ? "active" : ""}`}
                 onClick={onToggleVoice}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                title={voiceCommandActive ? 'Stop Voice Commands' : 'Start Voice Commands'}
+                title={
+                  voiceCommandActive
+                    ? "Stop Voice Commands"
+                    : "Start Voice Commands"
+                }
               >
                 🎤
               </motion.button>
@@ -130,9 +169,9 @@ const Header = ({
               onClick={onToggleTheme}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+              title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
             >
-              {theme === 'dark' ? '☀️' : '🌙'}
+              {theme === "dark" ? "☀️" : "🌙"}
             </motion.button>
 
             {/* Account Selector */}
@@ -140,14 +179,20 @@ const Header = ({
               <div className="account-selector">
                 <motion.button
                   className="account-btn"
-                  onClick={() => setShowAccountDropdown(!showAccountDropdown)}
+                  onClick={handleAccountClick}
                   whileHover={{ scale: 1.05 }}
                 >
                   <span className="account-icon">💼</span>
                   <span className="account-name">
-                    {activeAccount?.name || 'Select Account'}
+                    {activeAccount?.name || "Select Account"}
                   </span>
-                  <span className="dropdown-arrow">▼</span>
+                  <span
+                    className={`dropdown-arrow ${
+                      showAccountDropdown ? "rotated" : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
                 </motion.button>
 
                 <AnimatePresence>
@@ -159,32 +204,50 @@ const Header = ({
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
                     >
-                      {userAccounts.map((account) => (
-                        <button
-                          key={account.id}
-                          className={`account-option ${activeAccount?.id === account.id ? 'active' : ''}`}
-                          onClick={() => {
-                            onSwitchAccount(account.id);
-                            setShowAccountDropdown(false);
-                          }}
-                        >
-                          <span className="account-option-icon">💼</span>
-                          <span className="account-option-name">{account.name}</span>
-                          {activeAccount?.id === account.id && (
-                            <span className="account-option-check">✓</span>
-                          )}
-                        </button>
-                      ))}
+                      <div className="account-dropdown-header">
+                        <h3>Trading Accounts</h3>
+                        <span className="account-count">
+                          {userAccounts.length} accounts
+                        </span>
+                      </div>
+
                       <div className="account-dropdown-divider"></div>
+
+                      <div className="account-list">
+                        {userAccounts.map((account) => (
+                          <button
+                            key={account.id}
+                            className={`account-option ${
+                              activeAccount?.id === account.id ? "active" : ""
+                            }`}
+                            onClick={() => handleAccountSelect(account.id)}
+                          >
+                            <span className="account-option-icon">💼</span>
+                            <div className="account-option-details">
+                              <span className="account-option-name">
+                                {account.name}
+                              </span>
+                              <span className="account-option-balance">
+                                ${account.balance?.toLocaleString() || "0.00"}
+                              </span>
+                            </div>
+                            {activeAccount?.id === account.id && (
+                              <span className="account-option-check">✓</span>
+                            )}
+                          </button>
+                        ))}
+                      </div>
+
+                      <div className="account-dropdown-divider"></div>
+
                       <button
                         className="account-option create-new"
-                        onClick={() => {
-                          onCreateAccount();
-                          setShowAccountDropdown(false);
-                        }}
+                        onClick={handleCreateAccount}
                       >
                         <span className="account-option-icon">➕</span>
-                        <span className="account-option-name">Create New Portfolio</span>
+                        <span className="account-option-name">
+                          Create New Portfolio
+                        </span>
                       </button>
                     </motion.div>
                   )}
@@ -200,10 +263,8 @@ const Header = ({
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="user-info">
-                  <span className="user-email">{user?.email || 'User'}</span>
-                  <div className="user-avatar">
-                    {(user?.name || user?.email || 'U').charAt(0).toUpperCase()}
-                  </div>
+                  <span className="user-email">{getUserDisplay()}</span>
+                  <div className="user-avatar">{getUserInitial()}</div>
                 </div>
                 <span className="dropdown-arrow">▼</span>
               </motion.button>
@@ -219,39 +280,39 @@ const Header = ({
                   >
                     <div className="user-dropdown-header">
                       <div className="user-avatar-large">
-                        {(user?.name || user?.email || 'U').charAt(0).toUpperCase()}
+                        {getUserInitial()}
                       </div>
                       <div className="user-details">
-                        <div className="user-name">{user?.name || 'Trading User'}</div>
-                        <div className="user-email-small">{user?.email || 'user@signalstack.com'}</div>
+                        <div className="user-name">{getUserDisplay()}</div>
+                        <div className="user-email-small">{getUserEmail()}</div>
                       </div>
                     </div>
-                    
+
                     <div className="user-dropdown-divider"></div>
-                    
+
                     <button className="user-dropdown-item">
                       <span className="dropdown-item-icon">⚙️</span>
                       <span>Settings</span>
                     </button>
-                    
+
                     <button className="user-dropdown-item">
                       <span className="dropdown-item-icon">👤</span>
                       <span>Profile</span>
                     </button>
-                    
+
                     <button className="user-dropdown-item">
                       <span className="dropdown-item-icon">🔔</span>
                       <span>Notifications</span>
                     </button>
-                    
+
                     <button className="user-dropdown-item">
                       <span className="dropdown-item-icon">❓</span>
                       <span>Help & Support</span>
                     </button>
-                    
+
                     <div className="user-dropdown-divider"></div>
-                    
-                    <button 
+
+                    <button
                       className="user-dropdown-item logout"
                       onClick={handleLogout}
                     >
@@ -269,7 +330,7 @@ const Header = ({
       {/* Status Indicators */}
       <div className="header-status">
         {voiceCommandActive && (
-          <motion.div 
+          <motion.div
             className="status-indicator voice-active"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
