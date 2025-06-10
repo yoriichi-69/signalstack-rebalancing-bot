@@ -15112,3 +15112,94 @@ er' object has no attribute 'detect_market_anomalies'
 2025-06-10 11:55:05,765 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
 2025-06-10 11:55:05,765 - __main__ - INFO - Data refresh completed successfully
 >>>>>>> 91da723d851bf105aec6025953206f71993272a3
+2025-06-10 11:59:51,669 - __main__ - INFO - Refreshing market data...
+2025-06-10 11:59:51,677 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 11:59:51,677 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 11:59:51,709 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.29.2:5000
+2025-06-10 11:59:51,710 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 12:00:26,577 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:00:26,586 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 12:00:26,587 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 12:00:26,615 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.29.2:5000
+2025-06-10 12:00:26,615 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 12:00:50,785 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:00:50,800 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 12:00:50,800 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 12:00:50,828 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.29.2:5000
+2025-06-10 12:00:50,829 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 12:00:51,446 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:00:51] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:00:51,758 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:00:51] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:00:51,760 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:00:51] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:00:51,763 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:00:51] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:00:51,766 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:00:51] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:00:51,770 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:00:51] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:00:51,780 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:00:51] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:01:28,907 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:01:28] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:01:29,014 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:01:29] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:01:29,223 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:01:29] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:01:29,224 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:01:29] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:01:29,225 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:01:29] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:01:29,225 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:01:29] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:01:29,227 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:01:29] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:01:29,561 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:01:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-10 12:01:50,801 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:01:50,802 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 12:01:50,803 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 12:02:50,804 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:02:50,805 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 12:02:50,806 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 12:03:50,807 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:03:50,809 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 12:03:50,809 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 12:04:50,810 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:04:50,811 - __main__ - WARNING - Risk assessment failed: 'RiskManager' object has no attribute 'detect_market_anomalies'
+2025-06-10 12:04:50,811 - __main__ - INFO - Data refresh completed successfully
+2025-06-10 12:05:45,548 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:05:45,604 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.29.2:5000
+2025-06-10 12:05:45,604 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 12:05:45,982 - services.price_service - ERROR - Error fetching prices: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ccardano%2Cpolkadot%2Cusd-coin&vs_currencies=usd
+2025-06-10 12:05:45,984 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:05:45,984 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:06:45,985 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:06:46,584 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:06:46,585 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:07:27,584 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:07:27] "[33mGET /main.e68fbd4a8518dd4cce0d.hot-update.json HTTP/1.1[0m" 404 -
+2025-06-10 12:07:29,137 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:07:29] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 12:07:29,146 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:07:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-10 12:07:29,467 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:07:29] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 12:07:29,478 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:07:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-10 12:07:46,585 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:07:46,896 - services.price_service - ERROR - Error fetching prices: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ccardano%2Cpolkadot%2Cusd-coin&vs_currencies=usd
+2025-06-10 12:07:46,900 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:07:46,900 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:08:38,344 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:38] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 12:08:38,592 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:38] "GET /api/account?user_id=default_user HTTP/1.1" 200 -
+2025-06-10 12:08:38,666 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:38] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 12:08:38,733 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:38] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 12:08:38,737 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:38] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 12:08:38,980 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:38] "GET /api/portfolio/recommendation?risk_profile=50&user_id=default_user HTTP/1.1" 200 -
+2025-06-10 12:08:39,060 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:39] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 12:08:39,066 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:39] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 12:08:39,383 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:39] "GET /api/strategies HTTP/1.1" 200 -
+2025-06-10 12:08:46,901 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:08:47,478 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:08:47,479 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:08:53,707 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:53] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:08:54,015 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:54] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:08:54,017 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:54] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:08:54,020 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:54] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:08:54,026 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:54] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:08:54,027 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:54] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:08:54,030 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:54] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -

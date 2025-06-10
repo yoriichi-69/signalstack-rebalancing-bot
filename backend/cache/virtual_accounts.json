@@ -1,307 +1,38 @@
 {
   "trading_user_01": {
-    "account_id": "7f34700c-d409-4bef-bfdb-822ed2ac0033",
+    "account_id": "11118c41-4a0e-44c0-9070-f2e8f75f8e6c",
     "user_id": "trading_user_01",
     "balance": 100000,
+    "initial_balance": 100000,
     "portfolio": {},
     "bots": [],
     "trade_history": [],
     "performance_history": [
       {
-        "timestamp": 1749454926.8009717,
+        "timestamp": 1749536991.6676207,
         "balance": 100000,
         "portfolio_value": 0,
         "total_value": 100000
-      },
-      {
-        "timestamp": 1749458578.1223867,
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000
-      },
-      {
-        "timestamp": 1749462237.3296845,
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000
-      },
-      {
-        "timestamp": 1749465873.0186577,
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000,
-        "total_initial": 100000,
-        "pnl": 0,
-        "pnl_percent": 0.0
-      },
-      {
-        "timestamp": 1749469507.876995,
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000,
-        "total_initial": 100000,
-        "pnl": 0,
-        "pnl_percent": 0.0
-      },
-      {
-<<<<<<< HEAD
-        "timestamp": 1749493386.0795503,
-=======
-        "timestamp": 1749480825.9913561,
->>>>>>> e98c503bed2391f6e1107bc68aeb6c2d1aac0b7d
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000,
-        "total_initial": 100000,
-        "pnl": 0,
-        "pnl_percent": 0.0
-      },
-      {
-<<<<<<< HEAD
-        "timestamp": 1749530820.7058074,
-=======
-        "timestamp": 1749487279.9753108,
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000,
-        "total_initial": 100000,
-        "pnl": 0,
-        "pnl_percent": 0.0
-      },
-      {
-        "timestamp": 1749490899.1005754,
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000,
-        "total_initial": 100000,
-        "pnl": 0,
-        "pnl_percent": 0.0
-      },
-      {
-        "timestamp": 1749494546.9378822,
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000,
-        "total_initial": 100000,
-        "pnl": 0,
-        "pnl_percent": 0.0
-      },
-      {
-        "timestamp": 1749498210.1565235,
->>>>>>> e98c503bed2391f6e1107bc68aeb6c2d1aac0b7d
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000,
-        "total_initial": 100000,
-        "pnl": 0,
-        "pnl_percent": 0.0
-      },
-      {
-        "timestamp": 1749533695.131751,
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000,
-        "total_initial": 100000,
-        "pnl": 0,
-        "pnl_percent": 0.0
       }
     ],
-    "created_at": 1749454926.8009717
+    "created_at": 1749536991.6676207
   },
   "default_user": {
-    "account_id": "3da29417-3e53-4f2b-a59d-4e1c0815dd8e",
+    "account_id": "b5cd0dcd-de4c-4dc9-a094-a1c392df05fa",
     "user_id": "default_user",
-    "balance": 50000,
+    "balance": 100000,
+    "initial_balance": 100000,
     "portfolio": {},
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "bots": [
-      {
-        "bot_id": "bot_momentum_321a53",
-        "strategy": "momentum",
-        "risk_profile": 100,
-        "allocated_fund": 100000,
-        "initial_value": 100000,
-        "portfolio_value": 44858.328,
-        "assets": {
-          "BTC": 0.4,
-          "ETH": 0.4,
-          "DOT": 0.2
-        },
-        "status": "active",
-        "created_at": 1749455559.930749,
-        "performance_history": [
-          {
-            "timestamp": 1749455559.930749,
-            "value": 100000,
-            "pnl": 0,
-            "pnl_percent": 0
-          },
-          {
-            "timestamp": 1749459182.162352,
-            "value": 18968.148183166817,
-            "pnl": -81031.85181683318,
-            "pnl_percent": -81.03185181683318
-          },
-          {
-            "timestamp": 1749462785.9452658,
-            "value": 43603.977999999996,
-            "pnl": -56396.022000000004,
-            "pnl_percent": -56.396022
-          },
-          {
-            "timestamp": 1749466428.1739404,
-            "value": 19267.819760124206,
-            "pnl": -80732.1802398758,
-            "pnl_percent": -80.73218023987579
-          },
-          {
-            "timestamp": 1749493386.0795503,
-            "value": 44428.276000000005,
-            "pnl": -55571.723999999995,
-            "pnl_percent": -55.57172399999999
-          },
-          {
-            "timestamp": 1749530820.7058074,
-            "value": 44883.54,
-            "pnl": -55116.46,
-            "pnl_percent": -55.116460000000004
-=======
-    "bots": [
-      {
-        "bot_id": "bot_momentum_f7380f",
-        "strategy": "momentum",
-        "risk_profile": 50,
-        "allocated_fund": 10000,
-        "initial_value": 10000,
-        "portfolio_value": 9971.441934156288,
-        "assets": {
-          "BTC": 0.03659534211839961,
-          "ETH": 1.4945995891411954,
-          "DOT": 483.62811815495405
-        },
-        "deployment_prices": {
-          "BTC": 109303.52794786026,
-          "ETH": 2676.3020872355655,
-          "ADA": 0.7024099099826357,
-          "DOT": 4.135408850151268,
-          "USDC": 1.0031594831987327
-        },
-        "status": "active",
-        "created_at": 1749534947.4724884,
-        "performance_history": [
-          {
-            "timestamp": 1749534947.4724884,
-            "value": 10000,
-            "pnl": 0,
-            "pnl_percent": 0
-          }
-        ]
-      },
-      {
-        "bot_id": "bot_risk_parity_0b13b4",
-        "strategy": "risk_parity",
-        "risk_profile": 50,
-        "allocated_fund": 40000,
-        "initial_value": 40000,
-        "portfolio_value": 40000,
-        "assets": {
-          "BTC": 0.0731642629157788,
-          "ETH": 4.503743736981366,
-          "ADA": 11496.548879733165,
-          "DOT": 973.23600973236,
-          "USDC": 8001.896449458522
-        },
-        "deployment_prices": {
-          "BTC": 109343,
-          "ETH": 2664.45,
-          "ADA": 0.695861,
-          "DOT": 4.11,
-          "USDC": 0.999763
-        },
-        "status": "active",
-        "created_at": 1749536746.4247835,
-        "performance_history": [
-          {
-            "timestamp": 1749536746.4247835,
-            "value": 40000,
-            "pnl": 0,
-            "pnl_percent": 0
->>>>>>> 91da723d851bf105aec6025953206f71993272a3
-          }
-        ]
-      }
-    ],
-<<<<<<< HEAD
-=======
     "bots": [],
->>>>>>> e98c503bed2391f6e1107bc68aeb6c2d1aac0b7d
-=======
->>>>>>> 91da723d851bf105aec6025953206f71993272a3
     "trade_history": [],
     "performance_history": [
       {
-        "timestamp": 1749494412.0603037,
+        "timestamp": 1749537518.3419333,
         "balance": 100000,
         "portfolio_value": 0,
-        "total_value": 100000,
-        "total_initial": 100000,
-        "pnl": 0,
-        "pnl_percent": 0.0
-      },
-      {
-        "timestamp": 1749498019.0546403,
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000,
-        "total_initial": 100000,
-<<<<<<< HEAD
-        "pnl": -55918.793999999994,
-        "pnl_percent": -55.91879399999999
-      },
-      {
-        "timestamp": 1749493386.0795503,
-        "balance": 0,
-        "portfolio_value": 44428.276000000005,
-        "total_value": 44428.276000000005,
-        "total_initial": 100000,
-        "pnl": -55571.723999999995,
-        "pnl_percent": -55.57172399999999
-      },
-      {
-        "timestamp": 1749530820.7058074,
-        "balance": 0,
-        "portfolio_value": 44883.54,
-        "total_value": 44883.54,
-        "total_initial": 100000,
-        "pnl": -55116.46,
-        "pnl_percent": -55.116460000000004
-=======
-        "pnl": 0,
-        "pnl_percent": 0.0
-<<<<<<< HEAD
->>>>>>> e98c503bed2391f6e1107bc68aeb6c2d1aac0b7d
-=======
-      },
-      {
-        "timestamp": 1749533695.131751,
-        "balance": 100000,
-        "portfolio_value": 0,
-        "total_value": 100000,
-        "total_initial": 100000,
-        "pnl": 0,
-        "pnl_percent": 0.0
-      },
-      {
-        "timestamp": 1749536505.6437485,
-        "balance": 90000,
-        "portfolio_value": 9964.781978743313,
-        "total_value": 99964.78197874331,
-        "total_initial": 100000,
-        "pnl": -35.2180212566891,
-        "pnl_percent": -0.035218021256689096
->>>>>>> 91da723d851bf105aec6025953206f71993272a3
+        "total_value": 100000
       }
-    ]
+    ],
+    "created_at": 1749537518.3419333
   }
 }
