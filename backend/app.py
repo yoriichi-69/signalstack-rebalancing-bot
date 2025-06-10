@@ -654,6 +654,60 @@ def get_performance_history():
         logger.error(f"Error fetching performance data: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/account/update-performance', methods=['POST'])
+def update_account_performance():
+    """Manually update account performance history with current calculated values"""
+    user_id = request.args.get('user_id', 'default_user')
+    
+    try:
+        account = account_manager.get_account(user_id)
+        if not account:
+            return jsonify({'error': 'Account not found'}), 404
+        
+        # Calculate current portfolio values
+        balance = account.get('balance', 0)
+        total_bot_value = 0
+        
+        for bot in account.get('bots', []):
+            if bot.get('status') == 'active':
+                total_bot_value += bot.get('portfolio_value', 0)
+        
+        total_value = balance + total_bot_value
+        initial_value = 100000
+        pnl = total_value - initial_value
+        pnl_percent = (pnl / initial_value) * 100
+        
+        # Add new performance record
+        new_record = {
+            'timestamp': time.time(),
+            'balance': balance,
+            'portfolio_value': total_bot_value,
+            'total_value': total_value,
+            'total_initial': initial_value,
+            'pnl': pnl,
+            'pnl_percent': pnl_percent
+        }
+        
+        # Add to performance history
+        if 'performance_history' not in account:
+            account['performance_history'] = []
+        
+        account['performance_history'].append(new_record)
+        
+        # Save account
+        account_manager.accounts[user_id] = account
+        account_manager.save_accounts()
+        
+        return jsonify({
+            'success': True,
+            'performance': new_record,
+            'message': f'Performance updated: P&L ${pnl:.2f} ({pnl_percent:+.2f}%)'
+        })
+        
+    except Exception as e:
+        logger.error(f"Error updating performance: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
 # Error handlers
 @app.errorhandler(404)
 def not_found(error):
@@ -690,4 +744,4 @@ if __name__ == '__main__':
     print("   • DELETE /api/bots/<id>/delete - Delete a trading bot")
     print("\n🌐 Frontend should connect to: http://localhost:5000")
     
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)

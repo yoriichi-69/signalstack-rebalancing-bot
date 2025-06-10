@@ -111,14 +111,72 @@ Health check endpoint that confirms the API is running.
 7. **Portfolio Diversification**: Learn about balanced crypto portfolios
 8. **Security Practices**: Discover how to keep your crypto assets safe
 
+## API Key Setup
+
+### Running Without Any API Keys
+
+The chatbot now supports a **Mock Data Mode** which works completely offline with no API keys required:
+
+1. Simply run the included `run_chatbot.bat` script
+2. This will start the chatbot with simulated cryptocurrency data
+3. Perfect for development, testing, or demo environments
+
+### CoinMarketCap API (Recommended)
+
+If you encounter a `CoinGecko API authentication failed` error, you can use CoinMarketCap as an alternative:
+
+1. Sign up for a free CoinMarketCap API key at [https://coinmarketcap.com/api/](https://coinmarketcap.com/api/)
+2. Create a `.env` file in the `chat-bot` directory (or edit if it exists)
+3. Add your API key: `COINMARKETCAP_API_KEY=your_api_key_here`
+4. Restart the chatbot server
+
+### CoinGecko API Rate Limits
+
+If you encounter a `429 Too Many Requests` error from the CoinGecko API, this indicates you've hit their rate limits. To resolve this:
+
+1. **Option 1: Get a CoinGecko API Key (Alternative)**
+
+   - Sign up for a CoinGecko Pro API key at [https://www.coingecko.com/en/api/pricing](https://www.coingecko.com/en/api/pricing)
+   - Create a `.env` file in the `chat-bot` directory (or edit if it exists)
+   - Add your API key: `COINGECKO_API_KEY=your_api_key_here`
+   - Restart the chatbot server
+
+2. **Option 2: Use CoinMarketCap API**
+
+   - As described above, the system now supports CoinMarketCap as an alternative data source
+   - The system will automatically fall back to this if CoinGecko fails
+
+3. **Option 3: Use Mock Data Mode**
+   - Run `run_chatbot.bat` which enables mock data mode
+   - No API keys required, works completely offline
+
+### OpenAI API Setup (For AI-Powered Responses)
+
+To enable AI-powered responses:
+
+1. Sign up for an API key at [OpenAI's website](https://platform.openai.com)
+2. Add to your `.env` file: `OPENAI_API_KEY=your_api_key_here`
+3. Restart the chatbot server
+
 ## Troubleshooting
 
-If you see "Offline mode - Limited functionality" in the chat interface:
+### API authentication failed
 
-1. Make sure the chatbot server is running (`python bot.py`)
-2. Check if there are any error messages in the terminal
-3. Ensure port 6502 is not blocked by your firewall
-4. For AI-powered responses, verify your OpenAI API key in the `.env` file
+If you see "CoinGecko API authentication failed" or "CoinMarketCap API authentication failed":
+
+1. Check that your API key is correct in the `.env` file
+2. Make sure the API key is not surrounded by quotes or extra spaces
+3. Try using the other API service (both CoinGecko and CoinMarketCap are supported)
+4. Use mock data mode by running `run_chatbot.bat` if you don't need real-time data
+
+### API returned status code 429
+
+This error means you've hit the rate limits for the API. Solutions:
+
+1. Wait a few minutes and try again
+2. Get a Pro API key as described above
+3. Switch to the alternative API (CoinGecko or CoinMarketCap)
+4. Use mock data mode by running `run_chatbot.bat`
 
 ## Contributing
 

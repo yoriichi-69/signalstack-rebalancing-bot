@@ -35,13 +35,12 @@ const PortfolioOverview = ({ portfolioData, timeframe }) => {
       
       setCryptoPrices(prices);
     } catch (error) {
-      console.error('Error fetching crypto prices:', error);
-        // Set fallback prices to prevent calculation errors
+      console.error('Error fetching crypto prices:', error);      // Set fallback prices to prevent calculation errors
       const fallbackPrices = {
-        BTC: 45000,
-        ETH: 3000,
-        ADA: 0.5,
-        DOT: 8,
+        BTC: 109400,  // Updated to current market prices
+        ETH: 2675,
+        ADA: 0.70,
+        DOT: 4.12,
         USDC: 1,
         USDT: 1
       };
@@ -119,9 +118,18 @@ const PortfolioOverview = ({ portfolioData, timeframe }) => {
         totalBotsValue += bot.portfolio_value || 0;
       });
     }
-    
-    // Calculate total value as remaining cash balance + current bot values
+      // Calculate total value as remaining cash balance + current bot values
     const totalValue = (account.balance || 0) + totalBotsValue;
+    
+    // Calculate total initial funds invested in active bots
+    let totalInitialFunds = 0;
+    if (account.bots && Array.isArray(account.bots)) {
+      account.bots.forEach(bot => {
+        if (bot.status === 'active') {
+          totalInitialFunds += bot.allocated_fund || 0;
+        }
+      });
+    }
     
     // Use performance history for accurate PnL if available
     let pnlAmount = 0;
@@ -156,11 +164,11 @@ const PortfolioOverview = ({ portfolioData, timeframe }) => {
     }
     
     allocations.sort((a, b) => b.value - a.value);
-    
-    return {
+      return {
       totalValue: totalValue || 0,
       pnlAmount: pnlAmount || 0,
       pnlPercent: pnlPercent || 0,
+      totalInitialFunds: totalInitialFunds || 0,
       allocations: allocations.length > 0 ? allocations : mockData.allocations,
     };
   }, [account, cryptoPrices]);
@@ -557,7 +565,7 @@ const PortfolioOverview = ({ portfolioData, timeframe }) => {
         </AnimatePresence>
       </div>
       <AdvancedRebalancePanel portfolioData={portfolioData} />
-      <VirtualTradingTerminal account={account} />
+      <VirtualTradingTerminal account={account} enableMultipleBots={true} />
     </>
   );
 };

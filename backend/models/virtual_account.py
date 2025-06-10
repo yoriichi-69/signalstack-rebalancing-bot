@@ -360,12 +360,11 @@ class VirtualAccountManager:
                     'pnl': total_portfolio_value - total_initial_investment,
                     'pnl_percent': ((total_portfolio_value / total_initial_investment) - 1) * 100 if total_initial_investment > 0 else 0
                 })
-        
-        # Save accounts after updating
+          # Save accounts after updating
         self.save_accounts()
         
     def _get_current_prices(self):
-        """Get current cryptocurrency prices."""
+        """Get current cryptocurrency prices with proper fallbacks."""
         try:
             # Try to get real prices from CoinGecko API
             url = "https://api.coingecko.com/api/v3/simple/price"
@@ -373,36 +372,41 @@ class VirtualAccountManager:
                 "ids": "bitcoin,ethereum,cardano,polkadot,usd-coin",
                 "vs_currencies": "usd"
             }
-            response = requests.get(url, params=params, timeout=5)
+            response = requests.get(url, params=params, timeout=10)
             
             if response.status_code == 200:
                 data = response.json()
                 prices = {
-                    'BTC': data.get('bitcoin', {}).get('usd', 45000),
-                    'ETH': data.get('ethereum', {}).get('usd', 3000),
-                    'ADA': data.get('cardano', {}).get('usd', 1.2),
-                    'DOT': data.get('polkadot', {}).get('usd', 25),
+                    'BTC': data.get('bitcoin', {}).get('usd', 109400),
+                    'ETH': data.get('ethereum', {}).get('usd', 2675),
+                    'ADA': data.get('cardano', {}).get('usd', 0.70),
+                    'DOT': data.get('polkadot', {}).get('usd', 4.12),
                     'USDC': data.get('usd-coin', {}).get('usd', 1)
                 }
+                return prices
             else:
-                # Fallback to simulated prices
-                base_prices = {
-                    'BTC': 45000,
-                    'ETH': 3000,
-                    'ADA': 1.2,
-                    'DOT': 25,
-                    'USDC': 1
-                }
-                prices = {}
-                for token, price in base_prices.items():
-                    # Add some random variation (±2%)
-                    variation = (random.random() - 0.5) * 0.04
-                    prices[token] = price * (1 + variation)
+                # API failed - use fallback prices
+                print(f"API failed with status {response.status_code}, using fallback prices")
                 
-            return prices
         except Exception as e:
-            print(f"Error fetching prices: {e}")
-            return None
+            print(f"Error fetching prices: {e}, using fallback prices")
+            
+        # Use current realistic fallback prices instead of outdated ones
+        fallback_prices = {
+            'BTC': 109400,  # Updated from 45000
+            'ETH': 2675,    # Updated from 3000  
+            'ADA': 0.70,    # Updated from 1.2
+            'DOT': 4.12,    # Updated from 25
+            'USDC': 1.00
+        }
+        
+        # Add slight variation to simulate market movement (±0.5%)
+        prices = {}
+        for token, price in fallback_prices.items():
+            variation = (random.random() - 0.5) * 0.01  # Reduced from 4% to 1%
+            prices[token] = price * (1 + variation)
+            
+        return prices
 
     def update_bot_portfolios(self, rebalance_engine, signal_generator, prices=None):
         """Periodically updates all active bots based on their strategies."""
