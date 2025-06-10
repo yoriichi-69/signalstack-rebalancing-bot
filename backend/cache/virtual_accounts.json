@@ -76,7 +76,7 @@
         "risk_profile": 100,
         "allocated_fund": 100000,
         "initial_value": 100000,
-        "portfolio_value": 19040.649380653565,
+        "portfolio_value": 44858.328,
         "assets": {
           "BTC": 0.4,
           "ETH": 0.4,
