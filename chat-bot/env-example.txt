@@ -1,0 +1,10 @@
+# CryptoRizz ChatBot Environment Variables
+# Copy this file to .env and fill in your API keys
+
+# OpenAI API Key - Get from https://platform.openai.com
+# Required for AI-powered responses
+OPENAI_API_KEY=your_api_key_here
+
+# CoinGecko API Key (Optional)
+# Free tier works without this, but for more requests consider Pro API
+# COINGECKO_API_KEY=your_coingecko_api_key_here 

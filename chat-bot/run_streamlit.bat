@@ -1,0 +1,1 @@
+streamlit run frontend_bot.py

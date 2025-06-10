@@ -42,7 +42,6 @@ const ChatSystem = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-
   const initializeChat = () => {
     // Simulate real-time connections
     setOnlineUsers([
@@ -53,43 +52,27 @@ const ChatSystem = () => {
       { id: 5, username: 'NFTCollector', status: 'online', avatar: '🎨' }
     ]);
 
-    // Simulate incoming messages
+    // Add a welcome message instead of simulated messages
+    if (messages.length === 0) {
+      addMessage({
+        id: Date.now(),
+        user: 'SignalStack AI',
+        message: 'Welcome to SignalStack Community! 👋 Ask me anything about trading, crypto analysis, or market insights.',
+        timestamp: new Date(),
+        room: activeRoom,
+        type: 'ai',
+        reactions: [],
+        isOwn: false,
+        isAI: true
+      });
+    }
+
+    // No more simulated messages - clean start
     simulateRealTimeMessages();
   };
-
   const simulateRealTimeMessages = () => {
-    const sampleMessages = [
-      { user: 'CryptoTrader', message: 'Bitcoin looking bullish! 🚀', type: 'text' },
-      { user: 'BitcoinMax', message: 'Just got a strong buy signal on ETH', type: 'signal' },
-      { user: 'EthereumQueen', message: 'DeFi yields are insane right now 💰', type: 'text' },
-      { user: 'DeFiGuru', message: 'Check out this new protocol launch', type: 'link' },
-      { user: 'NFTCollector', message: 'Minted some rare NFTs today 🎨', type: 'text' }
-    ];
-
-    let messageIndex = 0;
-    const messageInterval = setInterval(() => {
-      if (messageIndex < sampleMessages.length) {
-        const msg = sampleMessages[messageIndex];
-        addMessage({
-          id: Date.now() + messageIndex,
-          ...msg,
-          timestamp: new Date(),
-          room: activeRoom,
-          reactions: [],
-          isOwn: false
-        });
-        messageIndex++;
-        
-        if (!isOpen) {
-          setUnreadCount(prev => prev + 1);
-          NotificationService.info(`New message from ${msg.user}`, {
-            duration: 3000
-          });
-        }
-      } else {
-        clearInterval(messageInterval);
-      }
-    }, 5000);
+    // Removed default messages - chat starts clean
+    // Users can start their own conversations
   };
 
   const loadChatHistory = () => {

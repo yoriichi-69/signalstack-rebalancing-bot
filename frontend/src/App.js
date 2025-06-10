@@ -24,6 +24,7 @@ import Header from "./components/navigation/Header";
 import MobileNav from "./components/layout/MobileNav";
 import Dashboard from "./components/dashboard/Dashboard";
 import LandingPage from "./components/landing/LandingPage";
+import EnhancedChatbot from "./components/ai/EnhancedChatbot/EnhancedChatbot";
 
 // Enhanced V3 Imports (New services and features - Voice removed)
 import NotificationService from "./services/NotificationService";
@@ -780,8 +781,11 @@ function App() {
         <div className="app-status">
           {!isOnline && (
             <div className="status-item offline">📡 Offline Mode</div>
-          )}
+          )}{" "}
         </div>
+
+        {/* Enhanced Chatbot Component */}
+        <EnhancedChatbot />
       </div>
     );
   }
@@ -856,6 +860,9 @@ function App() {
         draggable
         pauseOnHover
       />
+
+      {/* Enhanced Chatbot Component */}
+      <EnhancedChatbot />
     </div>
   );
 }

@@ -58,20 +58,6 @@ const Dashboard = ({ activeAccount, portfolioData, signalsData, marketData }) =>
               Here's what's happening with your portfolio today
             </p>
           </div>
-          
-          <div className="timeframe-selector">
-            {['1h', '4h', '24h', '7d', '30d'].map(timeframe => (
-              <motion.button
-                key={timeframe}
-                className={`timeframe-btn ${selectedTimeframe === timeframe ? 'active' : ''}`}
-                onClick={() => setSelectedTimeframe(timeframe)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {timeframe}
-              </motion.button>
-            ))}
-          </div>
         </div>
       </motion.div>
 

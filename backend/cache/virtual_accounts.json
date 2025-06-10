@@ -44,7 +44,11 @@
         "pnl_percent": 0.0
       },
       {
+<<<<<<< HEAD
         "timestamp": 1749493386.0795503,
+=======
+        "timestamp": 1749480825.9913561,
+>>>>>>> e98c503bed2391f6e1107bc68aeb6c2d1aac0b7d
         "balance": 100000,
         "portfolio_value": 0,
         "total_value": 100000,
@@ -53,7 +57,38 @@
         "pnl_percent": 0.0
       },
       {
+<<<<<<< HEAD
         "timestamp": 1749530820.7058074,
+=======
+        "timestamp": 1749487279.9753108,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749490899.1005754,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749494546.9378822,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
+      },
+      {
+        "timestamp": 1749498210.1565235,
+>>>>>>> e98c503bed2391f6e1107bc68aeb6c2d1aac0b7d
         "balance": 100000,
         "portfolio_value": 0,
         "total_value": 100000,
@@ -65,10 +100,11 @@
     "created_at": 1749454926.8009717
   },
   "default_user": {
-    "account_id": "616931f3-f7bb-446d-a04b-b95643fd876b",
+    "account_id": "3da29417-3e53-4f2b-a59d-4e1c0815dd8e",
     "user_id": "default_user",
-    "balance": 0,
+    "balance": 100000,
     "portfolio": {},
+<<<<<<< HEAD
     "bots": [
       {
         "bot_id": "bot_momentum_321a53",
@@ -124,41 +160,27 @@
         ]
       }
     ],
+=======
+    "bots": [],
+>>>>>>> e98c503bed2391f6e1107bc68aeb6c2d1aac0b7d
     "trade_history": [],
     "performance_history": [
       {
-        "timestamp": 1749455385.7269156,
+        "timestamp": 1749494412.0603037,
         "balance": 100000,
         "portfolio_value": 0,
-        "total_value": 100000
-      },
-      {
-        "timestamp": 1749459001.3195274,
-        "balance": 0,
-        "portfolio_value": 18943.395654185606,
-        "total_value": 18943.395654185606
-      },
-      {
-        "timestamp": 1749462659.2154813,
-        "balance": 0,
-        "portfolio_value": 43566.966,
-        "total_value": 43566.966
-      },
-      {
-        "timestamp": 1749466302.668292,
-        "balance": 0,
-        "portfolio_value": 18998.347221684904,
-        "total_value": 18998.347221684904,
+        "total_value": 100000,
         "total_initial": 100000,
-        "pnl": -81001.6527783151,
-        "pnl_percent": -81.00165277831509
+        "pnl": 0,
+        "pnl_percent": 0.0
       },
       {
-        "timestamp": 1749469942.1075468,
-        "balance": 0,
-        "portfolio_value": 44081.206000000006,
-        "total_value": 44081.206000000006,
+        "timestamp": 1749498019.0546403,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
         "total_initial": 100000,
+<<<<<<< HEAD
         "pnl": -55918.793999999994,
         "pnl_percent": -55.91879399999999
       },
@@ -179,8 +201,11 @@
         "total_initial": 100000,
         "pnl": -55116.46,
         "pnl_percent": -55.116460000000004
+=======
+        "pnl": 0,
+        "pnl_percent": 0.0
+>>>>>>> e98c503bed2391f6e1107bc68aeb6c2d1aac0b7d
       }
-    ],
-    "created_at": 1749455385.7269156
+    ]
   }
 }

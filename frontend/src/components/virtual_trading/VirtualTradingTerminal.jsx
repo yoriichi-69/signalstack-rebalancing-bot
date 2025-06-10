@@ -6,7 +6,7 @@ import './VirtualTradingTerminal.css';
 import axios from 'axios';
 
 // Bot Card Component
-const BotCard = ({ bot, onStopBot, cryptoPrices }) => {
+const BotCard = ({ bot, onStopBot, onResumeBot, onDeleteBot, cryptoPrices }) => {
   const { bot_id, strategy, risk_profile, allocated_fund, status, assets } = bot;
 
   const portfolio_value = useMemo(() => {
@@ -88,19 +88,29 @@ const BotCard = ({ bot, onStopBot, cryptoPrices }) => {
           {(!assets || totalAssets === 0) && <div className="no-assets">No assets currently held</div>}
         </div>
       </div>
+      <div className="bot-card-footer">
       {status === 'active' && (
-        <div className="bot-card-footer">
           <button onClick={() => onStopBot(bot_id)} className="stop-bot-btn">
             Stop Bot
           </button>
+        )}
+        {status === 'stopped' && (
+          <div className="stopped-bot-actions">
+            <button onClick={() => onResumeBot(bot_id)} className="resume-bot-btn">
+              Resume
+            </button>
+            <button onClick={() => onDeleteBot(bot_id)} className="delete-bot-btn">
+              Delete
+          </button>
         </div>
       )}
+      </div>
     </motion.div>
   );
 };
 
 // Main Terminal Component
-const VirtualTradingTerminal = ({ account: propAccount }) => {
+const VirtualTradingTerminal = ({ account: propAccount, setVirtualAccount, enableMultipleBots = false }) => {
   const [account, setAccount] = useState(propAccount || null);
   const [strategies, setStrategies] = useState({});
   const [loading, setLoading] = useState(!propAccount);
@@ -200,25 +210,104 @@ const VirtualTradingTerminal = ({ account: propAccount }) => {
       return;
     }
     
-    if (allocation > account.balance) {
-      setError("Allocation cannot exceed available balance.");
+    // Check if there's an active bot with the same strategy and user hasn't enabled multiple bots
+    if (!enableMultipleBots && account.bots && account.bots.some(bot => bot.status === 'active' && bot.strategy === selectedStrategy)) {
+      setError(`Bot with '${selectedStrategy}' strategy is already active. Stop it first or enable multiple bots to deploy another.`);
+      return;
+    }
+
+    // Check if there's enough balance
+    if (account.balance < allocation) {
+      setError(`Insufficient balance. Available: $${account.balance.toLocaleString()}`);
       return;
     }
     
+    setLoading(true);
     try {
-      await AccountService.deployBot(selectedStrategy, riskProfile, allocation);
-      fetchAccountData(); // Refresh data after deploying
+      const result = await AccountService.deployBot(selectedStrategy, riskProfile, allocation);
+      if (result.success) {
+        // Refresh account data
+        const accountData = await AccountService.getAccount();
+        setAccount(accountData);
+        if (setVirtualAccount) {
+          setVirtualAccount(accountData);
+        }
+      } else {
+        setError(result.error || 'Failed to deploy bot.');
+      }
     } catch (err) {
-      setError(err.toString());
+      setError(err.message || 'Error deploying bot.');
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleStopBot = async (botId) => {
+    setLoading(true);
+    setError('');
     try {
-      await AccountService.stopBot(botId);
-      fetchAccountData(); // Refresh data after stopping
+      const result = await AccountService.stopBot(botId);
+      if (result.success) {
+        // Refresh account data
+        const accountData = await AccountService.getAccount();
+        setAccount(accountData);
+        if (setVirtualAccount) {
+          setVirtualAccount(accountData);
+        }
+      } else {
+        setError(result.error || `Failed to stop bot ${botId}.`);
+      }
     } catch (err) {
-      setError('Failed to stop bot.');
+      setError(`Error stopping bot: ${err.message || err}`);
+      console.error('Error stopping bot:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResumeBot = async (botId) => {
+    setLoading(true);
+    setError('');
+    try {
+      const result = await AccountService.resumeBot(botId);
+      if (result.success) {
+        // Refresh account data
+        const accountData = await AccountService.getAccount();
+        setAccount(accountData);
+        if (setVirtualAccount) {
+          setVirtualAccount(accountData);
+        }
+      } else {
+        setError(result.error || `Failed to resume bot ${botId}.`);
+      }
+    } catch (err) {
+      setError(`Error resuming bot: ${err.message || err}`);
+      console.error('Error resuming bot:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDeleteBot = async (botId) => {
+    setLoading(true);
+    setError('');
+    try {
+      const result = await AccountService.deleteBot(botId);
+      if (result.success) {
+        const accountData = await AccountService.getAccount();
+        setAccount(accountData);
+        if (setVirtualAccount) {
+          setVirtualAccount(accountData);
+        }
+      } else {
+        setError(result.error || `Failed to delete bot ${botId}.`);
+      }
+    } catch (err) {
+      setError(`Error deleting bot: ${err.message || err}`);
+      console.error('Error deleting bot:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -297,7 +386,7 @@ const VirtualTradingTerminal = ({ account: propAccount }) => {
             <div className="bots-grid">
               {activeBots.length > 0 ? (
                 activeBots.map(bot => (
-                  <BotCard key={bot.bot_id} bot={bot} onStopBot={handleStopBot} cryptoPrices={cryptoPrices} />
+                  <BotCard key={bot.bot_id} bot={bot} onStopBot={handleStopBot} onResumeBot={handleResumeBot} onDeleteBot={handleDeleteBot} cryptoPrices={cryptoPrices} />
                 ))
               ) : (
                 <div className="empty-message">
@@ -312,7 +401,7 @@ const VirtualTradingTerminal = ({ account: propAccount }) => {
           <div className="bots-grid">
             {stoppedBots.length > 0 ? (
               stoppedBots.map(bot => (
-                <BotCard key={bot.bot_id} bot={bot} onStopBot={handleStopBot} cryptoPrices={cryptoPrices} />
+                <BotCard key={bot.bot_id} bot={bot} onStopBot={handleStopBot} onResumeBot={handleResumeBot} onDeleteBot={handleDeleteBot} cryptoPrices={cryptoPrices} />
               ))
             ) : (
               <div className="empty-message">
