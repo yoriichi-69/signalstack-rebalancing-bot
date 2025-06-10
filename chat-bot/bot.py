@@ -10,7 +10,13 @@ import traceback
 import time
 import os
 from dotenv import load_dotenv
-load_dotenv()
+
+# Safely load environment variables without failing on encoding errors
+try:
+    load_dotenv()
+except Exception as e:
+    print(f"⚠️ Error loading .env file: {e}")
+    print("ℹ️ Continuing without environment variables")
 
 # Optional imports - will be used only if available
 try:
@@ -31,9 +37,25 @@ CORS(app)  # Enable CORS for all routes
 symbol_id_map = {}
 token_price_cache = {}
 CACHE_EXPIRY = 300  # 5 minutes
+MOCK_DATA_MODE = os.getenv("MOCK_DATA_MODE", "false").lower() in ("true", "1", "yes")  # Can be set via env var
+API_FAILED = False  # Set to True if both APIs fail, to reduce log spam
 
 # Check if API key is available
 has_openai_key = bool(os.getenv("OPENAI_API_KEY"))
+has_coingecko_key = False
+has_coinmarketcap_key = False
+
+coingecko_key = os.getenv("COINGECKO_API_KEY")
+coinmarketcap_key = os.getenv("COINMARKETCAP_API_KEY")
+
+# Check if key exists and is not a placeholder/demo key
+if coingecko_key and not coingecko_key.startswith(('CG-DEMO', 'your_')):
+    has_coingecko_key = True
+
+# Check if CMC key exists
+if coinmarketcap_key and not coinmarketcap_key.startswith(('your_')):
+    has_coinmarketcap_key = True
+
 rag_chain = None
 retriever = None
 
@@ -93,19 +115,57 @@ def load_symbol_id_map():
         "DOT": ["polkadot"]
     }
     print(f"✅ Loaded common coin symbols manually (to avoid rate limits)")
-    return
     
-    # Commented out real API call due to rate limits
+    # Use the CoinGecko API if we have a key, otherwise use the common symbols only
+    if not has_coingecko_key and not has_coinmarketcap_key:
+        print("⚠️ No CoinGecko or CoinMarketCap API keys found. Using limited coin set.")
+        print("ℹ️ To enable full coin support:")
+        print("   1. Create or update the .env file in the chat-bot directory")
+        print("   2. Add one of the following lines:")
+        print("      COINGECKO_API_KEY=your_api_key_here")
+        print("      COINMARKETCAP_API_KEY=your_api_key_here")
+        print("   3. Restart the chatbot server")
+        return
+    
+    # If both APIs failed before, don't try again to reduce log spam
+    global API_FAILED
+    if API_FAILED:
+        return
+
+    # Try to load from CoinGecko with API key if available
+    if has_coingecko_key:
+        try_load_from_coingecko()
+    # Try CoinMarketCap as fallback
+    elif has_coinmarketcap_key:
+        try_load_from_coinmarketcap()
+
+def try_load_from_coingecko():
+    """Try to load coin list from CoinGecko API"""
+    global API_FAILED
+    
     try:
         # Add delay to avoid rate limiting
         time.sleep(1)
         
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Accept': 'application/json'
+        }
+        
+        # Add API key to headers if available
+        if has_coingecko_key:
+            headers['x-cg-pro-api-key'] = coingecko_key
+            base_url = "https://pro-api.coingecko.com/api/v3"
+            print(f"✅ Using CoinGecko Pro API with authenticated key")
+        else:
+            base_url = "https://api.coingecko.com/api/v3"
+            if coingecko_key:
+                print(f"⚠️ CoinGecko API key appears to be a demo/placeholder key and will be ignored")
+        
         res = requests.get(
-            "https://api.coingecko.com/api/v3/coins/list",
-            headers={
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-                'Accept': 'application/json'
-            }
+            f"{base_url}/coins/list",
+            headers=headers,
+            timeout=10
         )
         if res.status_code == 200:
             coins = res.json()
@@ -115,14 +175,80 @@ def load_symbol_id_map():
                     symbol_id_map[symbol] = []
                 symbol_id_map[symbol].append(coin["id"])
             print(f"✅ Loaded {len(coins)} coins from CoinGecko")
+        elif res.status_code == 429:
+            print(f"⚠️ CoinGecko API rate limit exceeded (429)")
+            print("ℹ️ Consider getting a CoinGecko API key or waiting before retrying")
+            API_FAILED = True
+        elif res.status_code == 401 or res.status_code == 403:
+            print(f"⚠️ CoinGecko API error: {res.status_code} - Authentication failed")
+            # Try CoinMarketCap as fallback
+            if has_coinmarketcap_key:
+                print(f"ℹ️ Falling back to CoinMarketCap")
+                try_load_from_coinmarketcap()
+            API_FAILED = True
         else:
             print(f"⚠️ CoinGecko API returned status code {res.status_code}")
+            API_FAILED = True
+            # Try CoinMarketCap as fallback
+            if has_coinmarketcap_key:
+                print(f"ℹ️ Falling back to CoinMarketCap")
+                try_load_from_coinmarketcap()
     except Exception as e:
-        print(f"⚠️ Failed to load coin list: {e}")
+        print(f"⚠️ Failed to load coin list from CoinGecko: {e}")
+        API_FAILED = True
+        # Try CoinMarketCap as fallback
+        if has_coinmarketcap_key:
+            print(f"ℹ️ Falling back to CoinMarketCap")
+            try_load_from_coinmarketcap()
+
+def try_load_from_coinmarketcap():
+    """Try to load coin list from CoinMarketCap API"""
+    global API_FAILED
+    
+    try:
+        # Add delay to avoid rate limiting
+        time.sleep(1)
+        
+        headers = {
+            'X-CMC_PRO_API_KEY': coinmarketcap_key,
+            'Accept': 'application/json'
+        }
+        
+        res = requests.get(
+            "https://pro-api.coinmarketcap.com/v1/cryptocurrency/map",
+            headers=headers,
+            timeout=10
+        )
+        
+        if res.status_code == 200:
+            data = res.json()
+            if 'data' in data:
+                coins = data['data']
+                for coin in coins:
+                    symbol = coin["symbol"].upper()
+                    if symbol not in symbol_id_map:
+                        symbol_id_map[symbol] = []
+                    symbol_id_map[symbol].append(str(coin["id"]))
+                print(f"✅ Loaded {len(coins)} coins from CoinMarketCap")
+            else:
+                print("⚠️ Invalid response format from CoinMarketCap")
+                API_FAILED = True
+        elif res.status_code == 429:
+            print(f"⚠️ CoinMarketCap API rate limit exceeded (429)")
+            API_FAILED = True
+        elif res.status_code == 401 or res.status_code == 403:
+            print(f"⚠️ CoinMarketCap API error: {res.status_code} - Authentication failed")
+            API_FAILED = True
+        else:
+            print(f"⚠️ CoinMarketCap API returned status code {res.status_code}")
+            API_FAILED = True
+    except Exception as e:
+        print(f"⚠️ Failed to load coin list from CoinMarketCap: {e}")
+        API_FAILED = True
 
 def fetch_token_data(symbol):
-    """Enhanced token data fetcher with caching and better error handling"""
-    global token_price_cache
+    """Enhanced token data fetcher with multiple API sources and caching"""
+    global token_price_cache, API_FAILED
     
     now = time.time()
     
@@ -133,9 +259,44 @@ def fetch_token_data(symbol):
             print(f"✅ Using cached data for {symbol}")
             return cached_data['data']
     
-    # If we've hit rate limits recently, return mock data for demo purposes
-    if symbol.upper() == "BTC":
-        return {
+    # Use mock data if we're in mock mode or both APIs failed previously
+    if MOCK_DATA_MODE or API_FAILED:
+        return get_mock_token_data(symbol)
+
+    # Try CoinGecko first if we have a key
+    if has_coingecko_key:
+        try:
+            result = fetch_from_coingecko(symbol)
+            if 'error' not in result:
+                return result
+            # If there's an error, try CoinMarketCap next
+        except Exception as e:
+            print(f"⚠️ CoinGecko API failed: {e}")
+            # Let's continue to CoinMarketCap
+    
+    # Try CoinMarketCap if we have a key
+    if has_coinmarketcap_key:
+        try:
+            result = fetch_from_coinmarketcap(symbol)
+            if 'error' not in result:
+                return result
+        except Exception as e:
+            print(f"⚠️ CoinMarketCap API failed: {e}")
+    
+    # If all APIs failed, use mock data
+    API_FAILED = True
+    return get_mock_token_data(symbol)
+
+def get_mock_token_data(symbol):
+    """Get mock data for a token"""
+    global token_price_cache
+    now = time.time()
+    
+    symbol = symbol.upper()
+    
+    # Mock data for common coins
+    mock_data = {
+        "BTC": {
             "name": "Bitcoin",
             "symbol": "BTC",
             "price": 48250.75,
@@ -146,9 +307,8 @@ def fetch_token_data(symbol):
             "low_24h": 47820.15,
             "id": "bitcoin",
             "image": "https://assets.coingecko.com/coins/images/1/small/bitcoin.png"
-        }
-    elif symbol.upper() == "ETH":
-        return {
+        },
+        "ETH": {
             "name": "Ethereum",
             "symbol": "ETH",
             "price": 2534.67,
@@ -159,113 +319,275 @@ def fetch_token_data(symbol):
             "low_24h": 2498.76,
             "id": "ethereum",
             "image": "https://assets.coingecko.com/coins/images/279/small/ethereum.png"
+        },
+        "USDT": {
+            "name": "Tether",
+            "symbol": "USDT",
+            "price": 1.00,
+            "market_cap": 83591234567,
+            "volume_24h": 62987654321,
+            "price_change_24h": 0.01,
+            "high_24h": 1.002,
+            "low_24h": 0.998,
+            "id": "tether",
+            "image": "https://assets.coingecko.com/coins/images/325/small/tether.png"
+        },
+        "BNB": {
+            "name": "BNB",
+            "symbol": "BNB",
+            "price": 360.25,
+            "market_cap": 56789012345,
+            "volume_24h": 2345678901,
+            "price_change_24h": -1.25,
+            "high_24h": 366.50,
+            "low_24h": 358.75,
+            "id": "binancecoin",
+            "image": "https://assets.coingecko.com/coins/images/825/small/binance-coin-logo.png"
+        }
+    }
+    
+    # Get data for the requested token, or generate generic data if not found
+    if symbol in mock_data:
+        result = mock_data[symbol]
+    else:
+        # Generate mock data for unknown tokens
+        result = {
+            "name": f"{symbol} Token",
+            "symbol": symbol,
+            "price": 0.12345 + (ord(symbol[0]) % 10) * 0.1,  # Random-ish price based on first letter
+            "market_cap": 123456789 + (ord(symbol[0]) % 10) * 10000000,
+            "volume_24h": 9876543 + (ord(symbol[0]) % 10) * 1000000,
+            "price_change_24h": ((ord(symbol[0]) % 10) - 5) * 0.5,  # Between -2.5% and +2.5%
+            "high_24h": 0.12345 + (ord(symbol[0]) % 10) * 0.1 * 1.05,
+            "low_24h": 0.12345 + (ord(symbol[0]) % 10) * 0.1 * 0.95,
+            "id": symbol.lower(),
+            "image": "https://assets.coingecko.com/coins/images/1/small/generic.png"
         }
     
-    try:
-        # Add delay to avoid rate limiting
-        time.sleep(1)
-        
-        # Step 1: Fetch all coins
-        coins_list_url = "https://api.coingecko.com/api/v3/coins/list"
-        coins_list_resp = requests.get(
-            coins_list_url,
-            headers={
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-                'Accept': 'application/json'
-            },
-            timeout=10
-        )
-        
-        if coins_list_resp.status_code != 200:
-            print(f"⚠️ CoinGecko API error: {coins_list_resp.status_code}")
-            return {"error": f"API returned status code {coins_list_resp.status_code}"}
-        
-        coins_list = coins_list_resp.json()
-        matching = [coin for coin in coins_list if coin['symbol'].lower() == symbol.lower()]
+    # Cache the mock result
+    token_price_cache[symbol] = {
+        'data': result,
+        'timestamp': now
+    }
+    
+    return result
 
-        if not matching:
-            return {"error": f"No coin found for symbol '{symbol}'"}
+def fetch_from_coingecko(symbol):
+    """Fetch token data from CoinGecko API"""
+    # Add delay to avoid rate limiting
+    time.sleep(1)
+    
+    # Setup headers and base URL depending on whether we have an API key
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Accept': 'application/json'
+    }
+    
+    if has_coingecko_key:
+        headers['x-cg-pro-api-key'] = coingecko_key
+        base_url = "https://pro-api.coingecko.com/api/v3"
+    else:
+        base_url = "https://api.coingecko.com/api/v3"
+    
+    # Step 1: Fetch all coins
+    coins_list_url = f"{base_url}/coins/list"
+    coins_list_resp = requests.get(
+        coins_list_url,
+        headers=headers,
+        timeout=10
+    )
+    
+    if coins_list_resp.status_code == 429:
+        print(f"⚠️ CoinGecko API error: 429 - Rate limit exceeded")
+        return {"error": "CoinGecko API rate limit exceeded. Using fallback data for popular coins or try again later."}
+    elif coins_list_resp.status_code == 401 or coins_list_resp.status_code == 403:
+        print(f"⚠️ CoinGecko API error: {coins_list_resp.status_code} - Authentication failed")
+        return {"error": "CoinGecko API authentication failed. Please check your API key."}
+    elif coins_list_resp.status_code != 200:
+        print(f"⚠️ CoinGecko API error: {coins_list_resp.status_code}")
+        return {"error": f"API returned status code {coins_list_resp.status_code}"}
+    
+    coins_list = coins_list_resp.json()
+    matching = [coin for coin in coins_list if coin['symbol'].lower() == symbol.lower()]
 
-        # Step 2: If only one match, use it
-        if len(matching) == 1:
-            coin_id = matching[0]['id']
-        else:
-            # Step 3: Disambiguate using market cap
-            try:
-                market_data_url = "https://api.coingecko.com/api/v3/coins/markets"
-                market_data_params = {
-                    "vs_currency": "usd",
-                    "ids": ",".join([coin['id'] for coin in matching])
-                }
-                market_data_resp = requests.get(
-                    market_data_url,
-                    params=market_data_params,
-                    headers={'User-Agent': 'Mozilla/5.0'},
-                    timeout=10
-                )
-                
-                if market_data_resp.status_code != 200:
-                    print(f"⚠️ CoinGecko API error: {market_data_resp.status_code}")
-                    return {"error": f"API returned status code {market_data_resp.status_code}"}
-                
-                market_data = market_data_resp.json()
+    if not matching:
+        return {"error": f"No coin found for symbol '{symbol}'"}
 
-                if not market_data:
-                    return {"error": "Could not resolve coin by market cap"}
+    # Step 2: If only one match, use it
+    if len(matching) == 1:
+        coin_id = matching[0]['id']
+    else:
+        # Step 3: Disambiguate using market cap
+        try:
+            market_data_url = f"{base_url}/coins/markets"
+            market_data_params = {
+                "vs_currency": "usd",
+                "ids": ",".join([coin['id'] for coin in matching])
+            }
+            market_data_resp = requests.get(
+                market_data_url,
+                params=market_data_params,
+                headers=headers,
+                timeout=10
+            )
+            
+            if market_data_resp.status_code != 200:
+                print(f"⚠️ CoinGecko API error: {market_data_resp.status_code}")
+                return {"error": f"API returned status code {market_data_resp.status_code}"}
+            
+            market_data = market_data_resp.json()
 
-                # Step 4: Pick highest market cap
-                # Replace None market_caps with 0 to avoid comparison error
-                market_data.sort(key=lambda x: x.get("market_cap") or 0, reverse=True)
-                coin_id = market_data[0]["id"]
-            except Exception as e:
-                print(f"⚠️ Error during market data fetch: {e}")
-                coin_id = matching[0]['id']  # Fallback to first match
+            if not market_data:
+                return {"error": "Could not resolve coin by market cap"}
 
-        # Step 5: Fetch detailed data
-        coin_url = f"https://api.coingecko.com/api/v3/coins/{coin_id}"
-        coin_resp = requests.get(
-            coin_url,
-            headers={'User-Agent': 'Mozilla/5.0'},
-            timeout=10
-        )
-        
-        if coin_resp.status_code != 200:
-            print(f"⚠️ CoinGecko API error: {coin_resp.status_code}")
-            return {"error": f"API returned status code {coin_resp.status_code}"}
-        
-        data = coin_resp.json()
+            # Step 4: Pick highest market cap
+            # Replace None market_caps with 0 to avoid comparison error
+            market_data.sort(key=lambda x: x.get("market_cap") or 0, reverse=True)
+            coin_id = market_data[0]["id"]
+        except Exception as e:
+            print(f"⚠️ Error during market data fetch: {e}")
+            coin_id = matching[0]['id']  # Fallback to first match
 
-        # Extract relevant data
-        result = {
-            "name": data["name"],
-            "symbol": data["symbol"].upper(),
-            "price": data["market_data"]["current_price"]["usd"],
-            "market_cap": data["market_data"]["market_cap"]["usd"],
-            "volume_24h": data["market_data"]["total_volume"]["usd"],
-            "price_change_24h": data["market_data"]["price_change_percentage_24h"],
-            "high_24h": data["market_data"]["high_24h"]["usd"],
-            "low_24h": data["market_data"]["low_24h"]["usd"],
-            "id": coin_id,
-            "image": data["image"]["small"]
-        }
-        
-        # Cache the result
-        token_price_cache[symbol.upper()] = {
-            'data': result,
-            'timestamp': now
-        }
-        
-        return result
+    # Step 5: Fetch detailed data
+    coin_url = f"{base_url}/coins/{coin_id}"
+    coin_resp = requests.get(
+        coin_url,
+        headers=headers,
+        timeout=10
+    )
+    
+    if coin_resp.status_code != 200:
+        print(f"⚠️ CoinGecko API error: {coin_resp.status_code}")
+        return {"error": f"API returned status code {coin_resp.status_code}"}
+    
+    data = coin_resp.json()
 
-    except Exception as e:
-        print(f"⚠️ API failed: {e}")
-        print(traceback.format_exc())
-        return {"error": f"API failed: {str(e)}"}
+    # Extract relevant data
+    result = {
+        "name": data["name"],
+        "symbol": data["symbol"].upper(),
+        "price": data["market_data"]["current_price"]["usd"],
+        "market_cap": data["market_data"]["market_cap"]["usd"],
+        "volume_24h": data["market_data"]["total_volume"]["usd"],
+        "price_change_24h": data["market_data"]["price_change_percentage_24h"],
+        "high_24h": data["market_data"]["high_24h"]["usd"],
+        "low_24h": data["market_data"]["low_24h"]["usd"],
+        "id": coin_id,
+        "image": data["image"]["small"]
+    }
+    
+    # Cache the result
+    token_price_cache[symbol.upper()] = {
+        'data': result,
+        'timestamp': time.time()
+    }
+    
+    return result
+
+def fetch_from_coinmarketcap(symbol):
+    """Fetch token data from CoinMarketCap API"""
+    # Add delay to avoid rate limiting
+    time.sleep(1)
+    
+    headers = {
+        'X-CMC_PRO_API_KEY': coinmarketcap_key,
+        'Accept': 'application/json'
+    }
+    
+    # Step 1: First query to get the coin ID
+    lookup_url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/map"
+    params = {
+        "symbol": symbol
+    }
+    
+    lookup_resp = requests.get(
+        lookup_url,
+        params=params,
+        headers=headers,
+        timeout=10
+    )
+    
+    if lookup_resp.status_code == 429:
+        print(f"⚠️ CoinMarketCap API error: 429 - Rate limit exceeded")
+        return {"error": "CoinMarketCap API rate limit exceeded"}
+    elif lookup_resp.status_code == 401 or lookup_resp.status_code == 403:
+        print(f"⚠️ CoinMarketCap API error: {lookup_resp.status_code} - Authentication failed")
+        return {"error": "CoinMarketCap API authentication failed. Please check your API key."}
+    elif lookup_resp.status_code != 200:
+        print(f"⚠️ CoinMarketCap API error: {lookup_resp.status_code}")
+        return {"error": f"API returned status code {lookup_resp.status_code}"}
+    
+    lookup_data = lookup_resp.json()
+    if 'data' not in lookup_data or not lookup_data['data']:
+        return {"error": f"No coin found for symbol '{symbol}'"}
+    
+    # Sort by rank to get the most relevant one first
+    sorted_coins = sorted(lookup_data['data'], key=lambda x: x.get('rank', 9999))
+    coin_id = sorted_coins[0]['id']
+    coin_name = sorted_coins[0]['name']
+    
+    # Step 2: Get the latest quotes
+    quotes_url = "https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest"
+    params = {
+        "id": coin_id,
+        "convert": "USD"
+    }
+    
+    quotes_resp = requests.get(
+        quotes_url,
+        params=params,
+        headers=headers,
+        timeout=10
+    )
+    
+    if quotes_resp.status_code != 200:
+        print(f"⚠️ CoinMarketCap API error: {quotes_resp.status_code}")
+        return {"error": f"API returned status code {quotes_resp.status_code}"}
+    
+    quotes_data = quotes_resp.json()
+    
+    if 'data' not in quotes_data:
+        return {"error": "Invalid response from CoinMarketCap"}
+    
+    coin_data = quotes_data['data'][str(coin_id)]
+    quote = coin_data['quote']['USD']
+    
+    # Format the response to match our standard format
+    result = {
+        "name": coin_name,
+        "symbol": symbol.upper(),
+        "price": quote['price'],
+        "market_cap": quote['market_cap'],
+        "volume_24h": quote['volume_24h'],
+        "price_change_24h": quote['percent_change_24h'],
+        "high_24h": quote['price'] * (1 + abs(quote['percent_change_24h'] / 100)),  # Approximate high
+        "low_24h": quote['price'] * (1 - abs(quote['percent_change_24h'] / 100)),   # Approximate low
+        "id": str(coin_id),
+        "image": f"https://s2.coinmarketcap.com/static/img/coins/64x64/{coin_id}.png"  # CMC image URL format
+    }
+    
+    # Cache the result
+    token_price_cache[symbol.upper()] = {
+        'data': result,
+        'timestamp': time.time()
+    }
+    
+    return result
 
 def get_market_overview():
     """Fetch global market data overview"""
-    # Return mock data to avoid rate limits
-    return {
+    # Check if we have recent market data in cache
+    global token_price_cache
+    now = time.time()
+    
+    if "GLOBAL_MARKET" in token_price_cache:
+        cached_data = token_price_cache["GLOBAL_MARKET"]
+        if now - cached_data['timestamp'] < CACHE_EXPIRY:
+            print(f"✅ Using cached market data")
+            return cached_data['data']
+    
+    # Return mock data if no API key or to avoid rate limits
+    mock_data = {
         "total_market_cap_usd": 2157483647000,
         "total_volume_usd": 98765432100,
         "market_cap_change_percentage_24h": 1.23,
@@ -273,36 +595,79 @@ def get_market_overview():
         "markets": 673
     }
     
-    # Commented out real API call due to rate limits
-    try:
-        # Add delay to avoid rate limiting
-        time.sleep(1)
-        
-        res = requests.get(
-            "https://api.coingecko.com/api/v3/global",
-            headers={
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-                'Accept': 'application/json'
-            },
-            timeout=10
-        )
-        
-        if res.status_code != 200:
-            return {"error": f"API returned status code {res.status_code}"}
-            
-        data = res.json()["data"]
-        
-        # Format the response
-        return {
-            "total_market_cap_usd": data["total_market_cap"]["usd"],
-            "total_volume_usd": data["total_volume"]["usd"],
-            "market_cap_change_percentage_24h": data["market_cap_change_percentage_24h_usd"],
-            "active_cryptocurrencies": data["active_cryptocurrencies"],
-            "markets": data["markets"]
-        }
-    except Exception as e:
-        print(f"⚠️ Market overview API failed: {e}")
-        return {"error": f"Could not fetch market overview: {str(e)}"}
+    # Cache the mock result
+    token_price_cache["GLOBAL_MARKET"] = {
+        'data': mock_data,
+        'timestamp': now
+    }
+    
+    # If we don't have an API key, just return mock data
+    if not has_coingecko_key and has_coinmarketcap_key:
+        try:
+            return get_coinmarketcap_market_overview()
+        except Exception as e:
+            print(f"⚠️ CoinMarketCap market overview API failed: {e}")
+    
+    # Return mock data in all other cases
+    return get_mock_market_overview()
+
+def get_mock_market_overview():
+    """Get mock market overview data"""
+    global token_price_cache
+    now = time.time()
+    
+    mock_data = {
+        "total_market_cap_usd": 2157483647000,
+        "total_volume_usd": 98765432100,
+        "market_cap_change_percentage_24h": 1.23,
+        "active_cryptocurrencies": 8942,
+        "markets": 673
+    }
+    
+    # Cache the mock result
+    token_price_cache["GLOBAL_MARKET"] = {
+        'data': mock_data,
+        'timestamp': now
+    }
+    
+    return mock_data
+
+def get_coinmarketcap_market_overview():
+    """Get market overview from CoinMarketCap"""
+    headers = {
+        'X-CMC_PRO_API_KEY': coinmarketcap_key,
+        'Accept': 'application/json'
+    }
+    
+    global_url = "https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest"
+    
+    resp = requests.get(
+        global_url,
+        headers=headers,
+        timeout=10
+    )
+    
+    if resp.status_code != 200:
+        raise Exception(f"CoinMarketCap API returned status code {resp.status_code}")
+    
+    data = resp.json()
+    quote = data['data']['quote']['USD']
+    
+    result = {
+        "total_market_cap_usd": quote['total_market_cap'],
+        "total_volume_usd": quote['total_volume_24h'],
+        "market_cap_change_percentage_24h": quote['total_market_cap_yesterday_percentage_change'],
+        "active_cryptocurrencies": data['data']['active_cryptocurrencies'],
+        "markets": data['data']['active_exchanges']
+    }
+    
+    # Cache the result
+    token_price_cache["GLOBAL_MARKET"] = {
+        'data': result,
+        'timestamp': time.time()
+    }
+    
+    return result
 
 def format_token_response(token_data):
     """Format token data response in a nice markdown format"""
@@ -495,6 +860,31 @@ def chat():
     data = request.get_json()
     query = data.get("query", "")
     
+    # Special command to check API status
+    if query.lower() in ["status", "check status", "api status"]:
+        status_info = {
+            "openai_api": "Available" if has_openai_key else "Not configured",
+            "coingecko_api": "Available (Pro)" if has_coingecko_key else 
+                           ("Available (Free - Rate Limited)" if not has_coingecko_key and not coingecko_key else 
+                            "Invalid/Demo key detected"),
+            "mode": "AI-powered" if rag_chain else "Rule-based",
+            "vector_db": "Available" if retriever else "Not available",
+        }
+        
+        status_message = f"""### System Status
+
+**APIs:**
+- CoinGecko Data API: {status_info['coingecko_api']}
+- OpenAI API: {status_info['openai_api']}
+
+**Configuration:**
+- Operating Mode: {status_info['mode']}
+- Vector Database: {status_info['vector_db']}
+
+To configure API keys, edit the `.env` file in the chat-bot directory.
+"""
+        return jsonify({"response": status_message})
+        
     # Check for token price queries - looking for $SYMBOL pattern
     if "$" in query:
         token_match = re.search(r"\$([A-Za-z0-9]+)", query)
@@ -540,5 +930,22 @@ def root():
 if __name__ == "__main__":
     print("🚀 Starting CryptoRizz Chat Assistant API...")
     print(f"🤖 Mode: {'AI-powered' if rag_chain else 'Rule-based (no OpenAI API key)'}")
+    
+    if has_coingecko_key:
+        print(f"💰 CoinGecko API: Using Pro API with key")
+    elif coingecko_key:
+        print(f"💰 CoinGecko API: Found key but appears to be a demo/placeholder (using public API)")
+    else:
+        print(f"💰 CoinGecko API: Not configured")
+        
+    if has_coinmarketcap_key:
+        print(f"💰 CoinMarketCap API: Using API with key")
+    else:
+        print(f"💰 CoinMarketCap API: Not configured")
+        
+    if not has_coingecko_key and not has_coinmarketcap_key:
+        print(f"⚠️ No cryptocurrency API keys available. Using mock data only.")
+        MOCK_DATA_MODE = True
+        
     load_symbol_id_map()
     app.run(debug=True, port=6502)

@@ -110,7 +110,7 @@ const BotCard = ({ bot, onStopBot, onResumeBot, onDeleteBot, cryptoPrices }) => 
 };
 
 // Main Terminal Component
-const VirtualTradingTerminal = ({ account: propAccount, setVirtualAccount, enableMultipleBots = false }) => {
+const VirtualTradingTerminal = ({ account: propAccount, setVirtualAccount, enableMultipleBots = true }) => {
   const [account, setAccount] = useState(propAccount || null);
   const [strategies, setStrategies] = useState({});
   const [loading, setLoading] = useState(!propAccount);
