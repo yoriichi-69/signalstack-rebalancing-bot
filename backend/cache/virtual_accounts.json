@@ -13,6 +13,15 @@
         "balance": 100000,
         "portfolio_value": 0,
         "total_value": 100000
+      },
+      {
+        "timestamp": 1749540597.8056643,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
       }
     ],
     "created_at": 1749536991.6676207
@@ -31,6 +40,15 @@
         "balance": 100000,
         "portfolio_value": 0,
         "total_value": 100000
+      },
+      {
+        "timestamp": 1749541149.7522595,
+        "balance": 100000,
+        "portfolio_value": 0,
+        "total_value": 100000,
+        "total_initial": 100000,
+        "pnl": 0,
+        "pnl_percent": 0.0
       }
     ],
     "created_at": 1749537518.3419333

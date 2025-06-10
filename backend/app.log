@@ -15203,3 +15203,200 @@ er' object has no attribute 'detect_market_anomalies'
 2025-06-10 12:08:54,026 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:54] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
 2025-06-10 12:08:54,027 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:54] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
 2025-06-10 12:08:54,030 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:08:54] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:22:38,431 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:22:38,459 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.29.2:5000
+2025-06-10 12:22:38,460 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-10 12:22:39,016 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:22:39,016 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:23:04,236 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:23:04] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:23:04,238 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:23:04] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:23:04,536 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:23:04] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:23:04,537 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:23:04] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:23:04,539 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:23:04] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:23:04,542 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:23:04] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:23:04,548 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:23:04] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:23:04,619 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:23:04] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 12:23:39,017 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:23:39,345 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:23:39,345 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:24:39,347 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:24:39,951 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:24:39,951 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:25:39,952 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:25:40,479 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:25:40,480 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:26:40,481 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:26:41,091 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:26:41,091 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:27:41,092 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:27:42,081 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:27:42,081 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:28:42,083 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:28:42,336 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:28:42,336 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:29:42,338 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:29:42,944 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:29:42,945 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:30:42,946 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:30:43,574 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:30:43,574 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:31:43,576 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:31:44,094 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:31:44,094 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:32:44,095 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:32:44,716 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:32:44,717 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:33:03,837 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:33:03] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:33:03,839 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:33:03] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:33:04,141 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:33:04] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:33:04,143 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:33:04] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:33:04,144 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:33:04] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:33:04,147 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:33:04] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:33:04,156 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:33:04] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:33:04,313 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:33:04] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 12:33:04,639 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:33:04] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 12:33:44,718 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:33:45,028 - services.price_service - ERROR - Error fetching prices: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ccardano%2Cpolkadot%2Cusd-coin&vs_currencies=usd
+2025-06-10 12:33:45,030 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:33:45,031 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:34:45,032 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:34:45,487 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:34:45,488 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:34:53,614 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:34:53] "[33mGET /sounds/success.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:34:53,615 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:34:53] "[33mGET /sounds/error.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:34:53,913 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:34:53] "[33mGET /sounds/warning.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:34:53,914 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:34:53] "[33mGET /sounds/info.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:34:53,916 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:34:53] "[33mGET /sounds/trade.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:34:53,919 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:34:53] "[33mGET /sounds/price_alert.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:34:53,926 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:34:53] "[33mGET /sounds/notification.mp3 HTTP/1.1[0m" 404 -
+2025-06-10 12:34:54,148 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:34:54] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 12:34:54,498 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:34:54] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 12:34:54,515 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:34:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-10 12:34:54,517 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:34:54] "[33mGET /api/portfolio HTTP/1.1[0m" 404 -
+2025-06-10 12:35:45,489 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:35:45,658 - services.price_service - ERROR - Error fetching prices: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ccardano%2Cpolkadot%2Cusd-coin&vs_currencies=usd
+2025-06-10 12:35:45,659 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:35:45,660 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:36:45,661 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:36:46,182 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:36:46,183 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:37:46,184 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:37:46,728 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:37:46,729 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:38:46,730 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:38:47,012 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:38:47,013 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:39:47,014 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:39:47,547 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:39:47,548 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:40:47,549 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:40:47,844 - services.price_service - ERROR - Error fetching prices: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ccardano%2Cpolkadot%2Cusd-coin&vs_currencies=usd
+2025-06-10 12:40:47,846 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:40:47,847 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:41:47,847 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:41:48,361 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:41:48,363 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:42:48,363 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:42:48,991 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:42:48,991 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:43:48,993 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:43:49,306 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:43:49,306 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:44:49,308 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:44:49,918 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:44:49,919 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:45:49,921 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:45:50,344 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:45:50,344 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:46:50,345 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:46:50,514 - services.price_service - ERROR - Error fetching prices: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ccardano%2Cpolkadot%2Cusd-coin&vs_currencies=usd
+2025-06-10 12:46:50,515 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:46:50,515 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:47:50,516 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:47:51,009 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:47:51,010 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:48:51,011 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:48:51,689 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:48:51,689 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:49:51,691 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:49:51,978 - services.price_service - ERROR - Error fetching prices: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ccardano%2Cpolkadot%2Cusd-coin&vs_currencies=usd
+2025-06-10 12:49:51,979 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:49:51,979 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:50:51,980 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:50:52,631 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:50:52,632 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:51:52,633 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:51:53,297 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:51:53,298 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:52:53,299 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:52:53,982 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:52:53,983 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:53:53,984 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:53:54,141 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:53:54,141 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:54:54,142 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:54:54,696 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:54:54,697 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:55:54,698 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:55:55,938 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:55:55,939 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:56:55,941 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:56:56,479 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:56:56,481 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:57:56,481 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:57:57,032 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:57:57,032 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:58:57,033 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:58:57,240 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:58:57,242 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:59:01,622 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:59:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-10 12:59:01,769 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:59:01] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 12:59:02,106 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:59:02] "[33mGET /static/css/main.css HTTP/1.1[0m" 404 -
+2025-06-10 12:59:02,280 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:59:02] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-10 12:59:02,286 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:59:02] "[33mGET /icon-192x192.png HTTP/1.1[0m" 404 -
+2025-06-10 12:59:02,288 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:59:02] "[33mGET /icon-512x512.png HTTP/1.1[0m" 404 -
+2025-06-10 12:59:02,301 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:59:02] "[33mGET /offline.html HTTP/1.1[0m" 404 -
+2025-06-10 12:59:02,304 - werkzeug - INFO - 127.0.0.1 - - [10/Jun/2025 12:59:02] "[33mGET /api/portfolio HTTP/1.1[0m" 404 -
+2025-06-10 12:59:57,244 - __main__ - INFO - Refreshing market data...
+2025-06-10 12:59:57,818 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 12:59:57,818 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:00:57,820 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:00:58,071 - services.price_service - ERROR - Error fetching prices: 429 Client Error: Too Many Requests for url: https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Ccardano%2Cpolkadot%2Cusd-coin&vs_currencies=usd
+2025-06-10 13:00:58,072 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:00:58,073 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:01:58,074 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:01:59,251 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:01:59,252 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:02:59,253 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:02:59,566 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:02:59,566 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:03:59,568 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:03:59,881 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:03:59,881 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:04:59,882 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:05:00,401 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:05:00,402 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:06:00,403 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:06:00,716 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:06:00,718 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:07:00,719 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:07:01,236 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:07:01,237 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:08:01,238 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:08:05,438 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:08:05,439 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:09:05,440 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:09:06,059 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:09:06,060 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:10:06,062 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:10:07,090 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:10:07,091 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:11:07,092 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:11:07,710 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:11:07,711 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:12:07,712 - __main__ - INFO - Refreshing market data...
+2025-06-10 13:12:08,025 - __main__ - WARNING - Risk assessment failed: PriceService.get_historical_data() missing 1 required positional argument: 'token'
+2025-06-10 13:12:08,025 - __main__ - ERROR - Error in background refresh: PriceService.get_historical_data() missing 1 required positional argument: 'token'
